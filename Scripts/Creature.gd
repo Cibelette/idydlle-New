@@ -74,12 +74,23 @@ func update_happiness_display():
 
 func _on_timer_timeout():
 	if data:
-		ResourcesManager.add_resource(data.resource_type, data.produce_amount)
+		# The timer now only handles sounds/flavor text
 		print(data.species_name, " dit : ", data.sound_text)
-	else:
-		# Fallback if no data is assigned
-		ResourcesManager.add_resource("Wood", 1)
-		print("Une créature inconnue produit du bois...")
+
+func produce_from_source(source: Node2D):
+	if not data or not source: return
+	
+	# Amount = Creature Amount * Furniture Amount
+	# We assume the source is a Furniture with furniture_data
+	var f_amount = 0
+	if "furniture_data" in source and source.furniture_data:
+		f_amount = source.furniture_data.produce_amount
+		
+	var total_amount = data.produce_amount * f_amount
+	
+	if total_amount > 0:
+		ResourcesManager.add_resource(data.resource_type, total_amount)
+		print("[Production] ", data.species_name, " harvested ", total_amount, " ", data.resource_type, " from ", source.name)
 
 ## Allows you to inject custom data at runtime (e.g. for evolutions)
 func set_creature_data(new_data: CreatureData):

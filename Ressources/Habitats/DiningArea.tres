@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="HabitatData" format=3 uid="uid://dha0j15ae1m28"]
 
-[ext_resource type="Resource" uid="uid://dkca2tpu0yrm2" path="res://Ressources/Creatures/Cat.tres" id="1_vx64q"]
+[ext_resource type="Resource" uid="uid://b8lk3dvnja152" path="res://Ressources/Creatures/Cow.tres" id="1_vx64q"]
 [ext_resource type="PackedScene" uid="uid://02fm25c7lmj4" path="res://Scenes/Creature.tscn" id="2_2pxgx"]
 [ext_resource type="Script" uid="uid://bkuhhp5f81uqc" path="res://Scripts/HabitatData.gd" id="2_necsk"]
 

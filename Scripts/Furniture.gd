@@ -54,5 +54,18 @@ func start_production():
 	timer.start()
 
 func _on_production_timeout():
-	if furniture_data:
-		ResourcesManager.add_resource(furniture_data.resource_type, furniture_data.produce_amount)
+	if not furniture_data: return
+	
+	var habitat = get_meta("habitat_parent", null)
+	if habitat and is_instance_valid(habitat):
+		# Habitat is the node with Habitat.gd script
+		if habitat.has_method("spawn_creatures_clean_up"):
+			habitat.spawn_creatures_clean_up()
+		
+		for creature in habitat.spawned_creatures:
+			if is_instance_valid(creature) and creature.data and creature.data.resource_type == furniture_data.resource_type:
+				if creature.has_method("produce_from_source"):
+					creature.produce_from_source(self)
+	else:
+		# If not in a habitat, trees/furniture no longer produce alone
+		pass

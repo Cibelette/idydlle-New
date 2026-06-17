@@ -8,10 +8,10 @@ script = ExtResource("1_script")
 name = "Pine Tree"
 furniture_type = "Tree"
 costs = {
-"Wood": 5
+"Wood": 0
 }
 scene = ExtResource("2_scene")
 resource_type = "Wood"
-produce_amount = 1
-produce_time = 15.0
+produce_amount = 5
+produce_time = 5.0
 metadata/_custom_type_script = "uid://bkuhhp5f81uqc"
