@@ -60,11 +60,11 @@ func update_happiness_display():
 
 func _on_timer_timeout():
 	if data:
-		Global.add_resource(data.resource_type, data.produce_amount)
+		ResourcesManager.add_resource(data.resource_type, data.produce_amount)
 		print(data.species_name, " dit : ", data.sound_text)
 	else:
 		# Fallback if no data is assigned
-		Global.add_resource("Wood", 1)
+		ResourcesManager.add_resource("Wood", 1)
 		print("Une créature inconnue produit du bois...")
 
 ## Allows you to inject custom data at runtime (e.g. for evolutions)

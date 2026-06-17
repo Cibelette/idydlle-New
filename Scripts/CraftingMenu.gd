@@ -43,17 +43,9 @@ func _on_open_button_pressed():
 # Generic crafting function using Resource
 func craft_item(item_data: FurnitureData):
 	# Check if we can afford all resources
-	var can_afford = true
-	for res_type in item_data.costs:
-		if Global.ressource_inventory.get(res_type, 0) < item_data.costs[res_type]:
-			can_afford = false
-			print("Not enough ", res_type, " to craft ", item_data.name)
-			break
-	
-	if can_afford:
+	if ResourcesManager.can_afford_multiple(item_data.costs):
 		# Spend all resources
-		for res_type in item_data.costs:
-			Global.spend_resource(res_type, item_data.costs[res_type])
+		ResourcesManager.spend_multiple(item_data.costs)
 			
 		var new_item = item_data.scene.instantiate()
 		if "furniture_data" in new_item:
@@ -63,5 +55,7 @@ func craft_item(item_data: FurnitureData):
 			new_item.is_placed = false
 		item_crafted.emit(new_item)
 		crafting_panel.visible = false
+	else:
+		print("Not enough resources to craft ", item_data.name)
 		
 		
