@@ -3,10 +3,8 @@ extends Node2D
 @onready var world_node = $Background # Or create a dedicated 'World' node
 
 func _ready():
-	# Register this world to global managers
-	HabitatManager.world_node = self
-	CreatureManager.world_node = self
-	FurnitureManager.world_node = self
+	# Register this world to Global
+	Global.current_world = self
 	
 	_load_habitat_recipes()
 	Global.furniture_placed.connect(_on_furniture_placed)

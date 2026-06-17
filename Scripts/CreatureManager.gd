@@ -1,15 +1,13 @@
 extends Node
 
-# Reference to the world node where creatures should be added
-var world_node: Node2D
 var all_creatures: Array[Creature] = []
 
 var base_creature_scene = preload("res://Scenes/Creature.tscn")
 
 ## Spawns a creature for a specific habitat
 func spawn_creature_for_habitat(habitat: Habitat) -> Creature:
-	if not is_instance_valid(world_node):
-		print("[CreatureManager] Error: world_node is not valid. Register it in Game.gd.")
+	if not is_instance_valid(Global.current_world):
+		print("[CreatureManager] Error: Global.current_world is not valid. Register it in Game.gd.")
 		return null
 		
 	var creature: Creature
@@ -37,7 +35,7 @@ func spawn_creature_for_habitat(habitat: Habitat) -> Creature:
 		creature.habitat = habitat
 		
 	# Add to world
-	world_node.add_child(creature)
+	Global.current_world.add_child(creature)
 	
 	# Track the creature
 	all_creatures.append(creature)

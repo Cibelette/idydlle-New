@@ -8,13 +8,12 @@ signal habitat_created(habitat: Habitat)
 # Track all active habitats globally
 var all_habitats: Array[Habitat] = []
 
-# Reference to the world node where habitats and creatures should be added
-var world_node: Node2D
+var habitat_scene = preload("res://Scenes/Habitat.tscn")
 
 ## Checks if a new habitat can be formed around the item just placed
 func check_for_new_habitat(placed_item: Node2D):
-	if not is_instance_valid(world_node):
-		print("[HabitatManager] Error: world_node is not valid. Register it in Game.gd.")
+	if not is_instance_valid(Global.current_world):
+		print("[HabitatManager] Error: Global.current_world is not valid. Register it in Game.gd.")
 		return
 
 	print("[HabitatManager] Checking item: ", placed_item.name)
@@ -34,7 +33,7 @@ func check_for_new_habitat(placed_item: Node2D):
 
 func find_recipe_components(recipe: HabitatData, center_item: Node2D) -> Array[Node2D]:
 	# Get all furniture in the world (you might want to use groups for optimization)
-	var all_furniture = world_node.get_tree().get_nodes_in_group("furniture")
+	var all_furniture = Global.current_world.get_tree().get_nodes_in_group("furniture")
 	
 	var components_found: Array[Node2D] = []
 	var recipe_counts = recipe.recipe.duplicate()
@@ -68,9 +67,8 @@ func find_recipe_components(recipe: HabitatData, center_item: Node2D) -> Array[N
 	return components_found
 
 func create_habitat(recipe: HabitatData, components: Array[Node2D]):
-	var habitat = Node2D.new()
+	var habitat = habitat_scene.instantiate()
 	habitat.name = recipe.habitat_name
-	habitat.set_script(load("res://Scripts/Habitat.gd"))
 	habitat.data = recipe
 	habitat.components = components
 	
@@ -82,7 +80,7 @@ func create_habitat(recipe: HabitatData, components: Array[Node2D]):
 	habitat.global_position = avg_pos / components.size()
 	
 	# Add the habitat to the world first
-	world_node.add_child(habitat)
+	Global.current_world.add_child(habitat)
 	
 	# Now reparent each component to be a child of the habitat
 	for c in components:

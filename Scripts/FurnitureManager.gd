@@ -1,10 +1,6 @@
 extends Node
 
-# Signal emitted when an item is successfully placed
-signal furniture_placed(item: Node2D)
-
 # Reference to the world node where furniture should be added
-var world_node: Node2D
 var current_placing_item: Node2D = null
 var all_furniture: Array[Node2D] = []
 
@@ -27,10 +23,10 @@ func start_placement(item_node: Node2D):
 	
 	current_placing_item = item_node
 	
-	if world_node:
-		world_node.add_child(current_placing_item)
+	if is_instance_valid(Global.current_world):
+		Global.current_world.add_child(current_placing_item)
 	else:
-		# Fallback to current scene if world_node is not yet registered
+		# Fallback to current scene if Global.current_world is not yet registered
 		get_tree().current_scene.add_child(current_placing_item)
 	
 	print("[FurnitureManager] Started placement of ", item_node.name)
@@ -65,8 +61,7 @@ func finalize_placement():
 		current_placing_item.place()
 		all_furniture.append(current_placing_item)
 		
-		# Emit both manager signal and global signal for compatibility
-		furniture_placed.emit(current_placing_item)
+		# Emit global signal for compatibility
 		Global.furniture_placed.emit(current_placing_item)
 		
 		print("[FurnitureManager] Placed ", current_placing_item.name)
