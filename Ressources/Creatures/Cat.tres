@@ -1,11 +1,33 @@
 [gd_resource type="Resource" script_class="CreatureData" format=3 uid="uid://dkca2tpu0yrm2"]
 
-[ext_resource type="Script" path="res://Scripts/CreatureData.gd" id="1_o26ci"]
+[ext_resource type="Script" uid="uid://bmqoq12meetm6" path="res://Scripts/CreatureData.gd" id="1_o26ci"]
+[ext_resource type="Texture2D" uid="uid://c4365kfxwflrh" path="res://Assets/Characters/Basic Charakter Spritesheet.png" id="2_5t52s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ats5v"]
+atlas = ExtResource("2_5t52s")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6kva"]
+atlas = ExtResource("2_5t52s")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1qhx7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ats5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6kva")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_o26ci")
 species_name = "Cat"
+sprite_frames = SubResource("SpriteFrames_1qhx7")
 produce_amount = 10
-produce_time = 10.0
-resource_type = "Wood"
 sound_text = "Meow!"
