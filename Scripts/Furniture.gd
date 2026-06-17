@@ -40,3 +40,19 @@ func place():
 	var obstacle = get_node_or_null("NavigationObstacle2D")
 	if obstacle:
 		obstacle.avoidance_enabled = true
+		
+	# Start production if configured
+	if furniture_data and furniture_data.produce_time > 0:
+		start_production()
+
+func start_production():
+	var timer = Timer.new()
+	timer.name = "ProductionTimer"
+	add_child(timer)
+	timer.wait_time = furniture_data.produce_time
+	timer.timeout.connect(_on_production_timeout)
+	timer.start()
+
+func _on_production_timeout():
+	if furniture_data:
+		ResourcesManager.add_resource(furniture_data.resource_type, furniture_data.produce_amount)

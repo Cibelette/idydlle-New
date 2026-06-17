@@ -11,4 +11,7 @@ costs = {
 "Wood": 5
 }
 scene = ExtResource("2_scene")
+resource_type = "Wood"
+produce_amount = 1
+produce_time = 15.0
 metadata/_custom_type_script = "uid://bkuhhp5f81uqc"
