@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FurnitureData" format=3 uid="uid://c7m5yq1p8j3v2"]
+
+[ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/FurnitureData.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://b225mu6f36725" path="res://Scenes/tree.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_script")
+name = "Pine Tree"
+furniture_type = "Tree"
+costs = {
+"Wood": 5
+}
+scene = ExtResource("2_scene")
+metadata/_custom_type_script = "uid://bkuhhp5f81uqc"

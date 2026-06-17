@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CreatureData" format=3 uid="uid://dil8w8qd3k0fv"]
+
+[ext_resource type="Script" uid="uid://bmqoq12meetm6" path="res://Scripts/CreatureData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+species_name = "Chicken"
+produce_amount = 20
+resource_type = "Berry"
+sound_text = "Cluck!"
+hapiness = 15

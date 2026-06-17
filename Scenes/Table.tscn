@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bn2yef70ssfu8"]
+
+[ext_resource type="Script" uid="uid://bfnrlhu3qtm5y" path="res://Scripts/Furniture.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://d27uigxo5e5kl" path="res://Assets/Top-Down_Retro_Interior/TopDownHouse_FurnitureState1.png" id="2_5ervl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ab3gw"]
+size = Vector2(32, 16)
+
+[node name="Table" type="StaticBody2D" unique_id=1134970973]
+position = Vector2(8, 8)
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1230966753]
+position = Vector2(17.5, 19)
+scale = Vector2(0.6875, 0.5454546)
+texture = ExtResource("2_5ervl")
+region_enabled = true
+region_rect = Rect2(0, 30.30954, 48.32254, 33.593452)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1462445709]
+position = Vector2(17, 19)
+shape = SubResource("RectangleShape2D_ab3gw")

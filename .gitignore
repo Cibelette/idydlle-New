@@ -1,0 +1,31 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Godot 3-specific ignores (just in case you ever downgrade or port files)
+.import/
+export.cfg
+export_presets.cfg
+
+# Exported builds (It's best practice to keep your builds out of version control)
+export/
+builds/
+bin/
+*.aapk
+*.apk
+
+# OS-specific hidden files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# External Editor Directories (if you or a collaborator use them)
+.vscode/
+.idea/
+*.sln
+*.csproj
+.mono/

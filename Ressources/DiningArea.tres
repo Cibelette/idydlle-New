@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HabitatData" format=3 uid="uid://dha0j15ae1m28"]
+
+[ext_resource type="PackedScene" uid="uid://02fm25c7lmj4" path="res://Scenes/Creature.tscn" id="1_nyxgk"]
+[ext_resource type="Script" uid="uid://bkuhhp5f81uqc" path="res://Scripts/HabitatData.gd" id="2_necsk"]
+
+[resource]
+script = ExtResource("2_necsk")
+habitat_name = "Dining Area"
+recipe = {
+"Stool": 1,
+"Table": 1
+}
+creature_scene = ExtResource("1_nyxgk")

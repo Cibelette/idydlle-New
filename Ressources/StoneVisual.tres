@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ResourceVisualData" format=3 uid="uid://3d6847r1umij"]
+
+[ext_resource type="Script" uid="uid://bojic1is5b2ho" path="res://Scripts/ResourceVisualData.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bes5p4jeu47ke" path="res://Assets/Objects/Basic Grass Biom things 1.png" id="2_tex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stone"]
+atlas = ExtResource("2_tex")
+region = Rect2(128, 16, 16, 16)
+
+[resource]
+script = ExtResource("1_script")
+name = "Pierre"
+type = "Stone"
+cost = 15
+sprite = SubResource("AtlasTexture_stone")

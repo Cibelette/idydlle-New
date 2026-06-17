@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b5y1p60sjngof"]
+
+[ext_resource type="Script" uid="uid://c1fx0jyievqxs" path="res://Scripts/rts_camera.gd" id="1_y3i48"]
+
+[sub_resource type="GDScript" id="GDScript_sa8aq"]
+
+[node name="RTSCamera" type="Node2D" unique_id=429112930]
+script = ExtResource("1_y3i48")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1091824916]
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+script = SubResource("GDScript_sa8aq")

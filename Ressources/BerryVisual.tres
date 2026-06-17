@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ResourceVisualData" format=3 uid="uid://bhgwrnuxu50pv"]
+
+[ext_resource type="Script" uid="uid://bojic1is5b2ho" path="res://Scripts/ResourceVisualData.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bes5p4jeu47ke" path="res://Assets/Objects/Basic Grass Biom things 1.png" id="2_tex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_berry"]
+atlas = ExtResource("2_tex")
+region = Rect2(64, 48, 16, 16)
+
+[resource]
+script = ExtResource("1_script")
+name = "Baies"
+type = "Berry"
+cost = 5
+sprite = SubResource("AtlasTexture_berry")

@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://c2dbeep7q6ayh"]
+
+[ext_resource type="Script" uid="uid://dhvbwx3psmngh" path="res://Scripts/Creature.gd" id="1_jy3mo"]
+[ext_resource type="Texture2D" uid="uid://b03wkjons1jby" path="res://Assets/Characters/Free Chicken Sprites.png" id="2_jy3mo"]
+[ext_resource type="Resource" path="res://Ressources/Chicken.tres" id="3_data"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7h841"]
+atlas = ExtResource("2_jy3mo")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jayuq"]
+atlas = ExtResource("2_jy3mo")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4x4tm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7h841")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jayuq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23j0x"]
+size = Vector2(14, 14)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=77996297]
+script = ExtResource("1_jy3mo")
+data = ExtResource("3_data")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1207395925]
+position = Vector2(2, -1.0000002)
+scale = Vector2(1.3, 1.3)
+sprite_frames = SubResource("SpriteFrames_4x4tm")
+autoplay = "default"
+frame_progress = 0.20358595
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1418115596]
+shape = SubResource("RectangleShape2D_23j0x")
+
+[node name="Timer" type="Timer" parent="." unique_id=932620505]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1418115594]
+path_desired_distance = 4.0
+target_desired_distance = 4.0
+path_postprocessing = 1
+
+[node name="HappinessLabel" type="Label" parent="."]
+offset_left = -26.0
+offset_top = -25.0
+offset_right = 29.0
+offset_bottom = -2.0
+theme_override_font_sizes/font_size = 8
+text = "Happiness: 0"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

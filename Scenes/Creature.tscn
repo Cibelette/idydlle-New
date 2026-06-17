@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://02fm25c7lmj4"]
+
+[ext_resource type="Texture2D" uid="uid://c4365kfxwflrh" path="res://Assets/Characters/Basic Charakter Spritesheet.png" id="1_0xcsw"]
+[ext_resource type="Script" uid="uid://dhvbwx3psmngh" path="res://Scripts/Creature.gd" id="2_23j0x"]
+[ext_resource type="Resource" uid="uid://dkca2tpu0yrm2" path="res://Ressources/Cat.tres" id="3_data"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23j0x"]
+atlas = ExtResource("1_0xcsw")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2uub"]
+atlas = ExtResource("1_0xcsw")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4x4tm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23j0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2uub")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23j0x"]
+size = Vector2(32, 32)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=77996297]
+script = ExtResource("2_23j0x")
+data = ExtResource("3_data")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1207395925]
+position = Vector2(0, -3.9999998)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_4x4tm")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1418115596]
+shape = SubResource("RectangleShape2D_23j0x")
+
+[node name="Timer" type="Timer" parent="." unique_id=932620505]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1418115594]
+path_desired_distance = 4.0
+target_desired_distance = 4.0
+path_postprocessing = 1
+
+[node name="Happiness" type="Control" parent="." unique_id=447208601]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Happiness" unique_id=16020618]
+layout_mode = 0
+offset_left = -9.0
+offset_top = -33.0
+offset_right = 31.0
+offset_bottom = -10.0
+theme_override_font_sizes/font_size = 6
+text = "Happiness:
+x"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

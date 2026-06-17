@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CreatureData" format=3 uid="uid://dkca2tpu0yrm2"]
+
+[ext_resource type="Script" path="res://Scripts/CreatureData.gd" id="1_o26ci"]
+
+[resource]
+script = ExtResource("1_o26ci")
+species_name = "Cat"
+produce_amount = 10
+produce_time = 10.0
+resource_type = "Wood"
+sound_text = "Meow!"

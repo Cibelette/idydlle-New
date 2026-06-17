@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CreatureData" format=3 uid="uid://b8lk3dvnja152"]
+
+[ext_resource type="Script" uid="uid://bmqoq12meetm6" path="res://Scripts/CreatureData.gd" id="1_2tlp5"]
+
+[resource]
+script = ExtResource("1_2tlp5")
+species_name = "cow"
+produce_amount = 30
+resource_type = "Stone"
+sound_text = "Mooh!"
+metadata/_custom_type_script = "uid://bmqoq12meetm6"

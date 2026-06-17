@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceVisualData" format=3 uid="uid://d021uwpcsil48"]
+
+[ext_resource type="Script" uid="uid://bojic1is5b2ho" path="res://Scripts/ResourceVisualData.gd" id="1_565as"]
+[ext_resource type="Texture2D" uid="uid://bes5p4jeu47ke" path="res://Assets/Objects/Basic Grass Biom things 1.png" id="2_uy2ii"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l885d"]
+atlas = ExtResource("2_uy2ii")
+region = Rect2(32, 32, 16, 16)
+
+[resource]
+script = ExtResource("1_565as")
+name = "Apple"
+type = "Fruit"
+cost = 1
+sprite = SubResource("AtlasTexture_l885d")
+metadata/_custom_type_script = "uid://bojic1is5b2ho"

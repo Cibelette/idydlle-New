@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FurnitureData" format=3 uid="uid://c6u6vphfkp0qr"]
+
+[ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/FurnitureData.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://bmsw5cujbgufg" path="res://Scenes/stool.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_script")
+name = "Stool"
+furniture_type = "Stool"
+costs = {
+"Wood": 0
+}
+scene = ExtResource("2_scene")

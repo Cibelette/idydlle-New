@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://cbnpygl4mn6ku"]
+
+[ext_resource type="Script" uid="uid://c8f4rgp52ih1w" path="res://Scripts/CraftingMenu.gd" id="1_script"]
+[ext_resource type="Resource" path="res://Ressources/Chest.tres" id="2_chest"]
+[ext_resource type="Resource" path="res://Ressources/Table.tres" id="3_table"]
+[ext_resource type="Resource" path="res://Ressources/Stool.tres" id="4_stool"]
+[ext_resource type="Resource" path="res://Ressources/Tree.tres" id="5_tree"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ka71"]
+bg_color = Color(0.6554657, 0.58961415, 0.50203437, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.8393535, 0.49998587, 0.4588676, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="CraftingMenu" type="Control" unique_id=1671119595]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_script")
+craftable_items = Array[Resource("res://Scripts/FurnitureData.gd")]([ExtResource("2_chest"), ExtResource("3_table"), ExtResource("4_stool"), ExtResource("5_tree")])
+
+[node name="OpenButton" type="Button" parent="." unique_id=801116239]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -60.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Craft Menu (C)"
+
+[node name="CraftingPanel" type="Panel" parent="." unique_id=406012739]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ka71")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CraftingPanel" unique_id=49760621]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="CraftingPanel/VBoxContainer" unique_id=1394947445]
+layout_mode = 2
+text = "CRAFTING"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CraftingPanel/VBoxContainer" unique_id=1109217162]
+layout_mode = 2
+
+[node name="CraftChest" type="Button" parent="CraftingPanel/VBoxContainer" unique_id=2012547969]
+layout_mode = 2
+text = "Wooden Chest (10 Wood)"
+
+[node name="CraftTable" type="Button" parent="CraftingPanel/VBoxContainer" unique_id=1099338628]
+layout_mode = 2
+text = "Wooden Table (15 Wood)"
+
+[node name="CraftStool" type="Button" parent="CraftingPanel/VBoxContainer" unique_id=1930610772]
+layout_mode = 2
+text = "Wooden Table (15 Wood)"
+
+[connection signal="pressed" from="OpenButton" to="." method="_on_open_button_pressed"]
