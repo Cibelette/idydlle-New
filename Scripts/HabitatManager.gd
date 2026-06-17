@@ -1,6 +1,8 @@
 extends Node
 class_name HabitatManager
 
+signal habitat_created(habitat: Habitat)
+
 # List of all possible habitat recipes
 @export var habitat_recipes: Array[HabitatData] = []
 
@@ -85,4 +87,5 @@ func create_habitat(recipe: HabitatData, components: Array[Node2D]):
 		c.set_meta("habitat_parent", habitat)
 		c.modulate = Color(0.8, 1.2, 0.8) # Visual feedback
 	
+	habitat_created.emit(habitat)
 	print("[HabitatManager] Created ", habitat.name, " with ", components.size(), " items.")

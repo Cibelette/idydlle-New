@@ -7,16 +7,16 @@ If you want to "evolve" a creature or create a "Mutant Cat" with random stats, y
 
 ```gdscript
 func create_mutant_cat():
-    var mutant_data = CreatureData.new() # Create a new instance in memory
-    mutant_data.species_name = "Mutant Cat"
-    mutant_data.produce_amount = randi_range(50, 100) # Randomized!
-    mutant_data.produce_time = 5.0
-    mutant_data.resource_type = "Stone"
-    
-    # Now just give it to a creature
-    var new_cat = load("res://Scenes/cat.tscn").instantiate()
-    new_cat.data = mutant_data
-    add_child(new_cat)
+	var mutant_data = CreatureData.new() # Create a new instance in memory
+	mutant_data.species_name = "Mutant Cat"
+	mutant_data.produce_amount = randi_range(50, 100) # Randomized!
+	mutant_data.produce_time = 5.0
+	mutant_data.resource_type = "Stone"
+	
+	# Now just give it to a creature
+	var new_cat = load("res://Scenes/cat.tscn").instantiate()
+	new_cat.data = mutant_data
+	add_child(new_cat)
 ```
 
 ### 2. Saving to Disk (Optional)
@@ -24,11 +24,11 @@ If you want that specific "Mutant Cat" to exist forever (even after the player r
 
 ```gdscript
 func save_custom_creature(data: CreatureData, filename: String):
-    var path = "user://custom_creatures/" + filename + ".tres"
-    # Ensure directory exists
-    DirAccess.make_dir_recursive_absolute("user://custom_creatures/")
-    # Save the file
-    ResourceSaver.save(data, path)
+	var path = "user://custom_creatures/" + filename + ".tres"
+	# Ensure directory exists
+	DirAccess.make_dir_recursive_absolute("user://custom_creatures/")
+	# Save the file
+	ResourceSaver.save(data, path)
 ```
 *Note: Use `user://` for save data, as `res://` is read-only in exported games.*
 
@@ -37,9 +37,9 @@ You rarely need to "generate" a `.tscn` file. Instead, you usually have a "Base"
 
 ```gdscript
 func spawn_custom_object(base_scene: PackedScene, color: Color):
-    var obj = base_scene.instantiate()
-    obj.modulate = color # Change visual properties on the fly
-    add_child(obj)
+	var obj = base_scene.instantiate()
+	obj.modulate = color # Change visual properties on the fly
+	add_child(obj)
 ```
 
 ### When should you do this?
