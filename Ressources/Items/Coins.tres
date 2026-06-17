@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ResourceVisualData" format=3 uid="uid://dyk2t8mm78hhy"]
+
+[ext_resource type="Script" uid="uid://bojic1is5b2ho" path="res://Scripts/ResourceVisualData.gd" id="1_itpw6"]
+
+[resource]
+script = ExtResource("1_itpw6")
+name = "Coin"
+type = "Currency"
+metadata/_custom_type_script = "uid://bojic1is5b2ho"
