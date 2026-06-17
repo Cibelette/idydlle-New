@@ -9,7 +9,7 @@ region = Rect2(32, 32, 16, 16)
 
 [resource]
 script = ExtResource("1_hxq5j")
-name = "Apple"
+name = "Apples"
 type = "Fruit"
 cost = 1
 sprite = SubResource("AtlasTexture_l885d")

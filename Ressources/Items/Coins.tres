@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_itpw6")
-name = "Coin"
+name = "Coins"
 type = "Currency"
 metadata/_custom_type_script = "uid://bojic1is5b2ho"
