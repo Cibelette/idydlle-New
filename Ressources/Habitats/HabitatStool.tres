@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="HabitatData" format=3 uid="uid://ciux1oxun18gv"]
+
+[ext_resource type="Script" uid="uid://bkuhhp5f81uqc" path="res://Scripts/HabitatData.gd" id="1_ijabl"]
+[ext_resource type="Resource" uid="uid://dil8w8qd3k0fv" path="res://Ressources/Creatures/Chicken.tres" id="1_ki07t"]
+[ext_resource type="PackedScene" uid="uid://02fm25c7lmj4" path="res://Scenes/Creature.tscn" id="2_jur3e"]
+
+[resource]
+script = ExtResource("1_ijabl")
+recipe = {
+"Stool": 1
+}
+creature_scene = ExtResource("2_jur3e")
+creature_data = ExtResource("1_ki07t")
+metadata/_custom_type_script = "uid://bkuhhp5f81uqc"

@@ -1,10 +1,34 @@
 [gd_resource type="Resource" script_class="CreatureData" format=3 uid="uid://dil8w8qd3k0fv"]
 
 [ext_resource type="Script" uid="uid://bmqoq12meetm6" path="res://Scripts/CreatureData.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://b03wkjons1jby" path="res://Assets/Characters/Free Chicken Sprites.png" id="2_wdshj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f45oe"]
+atlas = ExtResource("2_wdshj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jcbe"]
+atlas = ExtResource("2_wdshj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q00kg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f45oe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jcbe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_script")
 species_name = "Chicken"
+sprite_frames = SubResource("SpriteFrames_q00kg")
 produce_amount = 20
 resource_type = "Berry"
 sound_text = "Cluck!"

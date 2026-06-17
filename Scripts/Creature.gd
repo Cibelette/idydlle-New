@@ -12,7 +12,8 @@ var is_moving: bool = false
 
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var production_timer: Timer = $Timer # On réutilise le timer existant dans la scène
-@onready var happiness_label: Label = get_node_or_null("HappinessLabel")
+@onready var happiness_label: Label = get_node_or_null("Happiness/Label")
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _process(delta):
 	if is_moving:
@@ -34,18 +35,31 @@ func _wander():
 	is_moving = true
 
 func _ready():
-	# Configuration de la production basée sur les données de la ressource
-	if production_timer and data:
-		production_timer.wait_time = data.produce_time
-		production_timer.start()
-	
-	update_happiness_display()
+	_apply_data()
 	
 	await get_tree().process_frame
 	await get_tree().process_frame
 	
 	if habitat:
 		print("[Creature] Habitat trouvé : ", habitat.global_position)
+
+func _apply_data():
+	if not data: return
+	
+	# Visuals
+	if sprite and data.sprite_frames:
+		sprite.sprite_frames = data.sprite_frames
+		sprite.play("default") # Ensure it starts playing
+		
+	# Update scale
+	scale = Vector2(data.scale, data.scale)
+	
+	# Configuration de la production basée sur les données de la ressource
+	if production_timer:
+		production_timer.wait_time = data.produce_time
+		production_timer.start()
+	
+	update_happiness_display()
 
 func update_happiness_display():
 	if data:
@@ -70,10 +84,7 @@ func _on_timer_timeout():
 ## Allows you to inject custom data at runtime (e.g. for evolutions)
 func set_creature_data(new_data: CreatureData):
 	data = new_data
-	if production_timer:
-		production_timer.wait_time = data.produce_time
-		production_timer.start()
-	update_happiness_display()
+	_apply_data()
 		
 
 

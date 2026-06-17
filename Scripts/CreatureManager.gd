@@ -4,18 +4,27 @@ extends Node
 var world_node: Node2D
 var all_creatures: Array[Creature] = []
 
+var base_creature_scene = preload("res://Scenes/Creature.tscn")
+
 ## Spawns a creature for a specific habitat
 func spawn_creature_for_habitat(habitat: Habitat) -> Creature:
 	if not is_instance_valid(world_node):
 		print("[CreatureManager] Error: world_node is not valid. Register it in Game.gd.")
 		return null
 		
-	if not habitat.data or not habitat.data.creature_scene:
-		print("[CreatureManager] Warning: No creature_scene assigned to habitat '", habitat.name, "'.")
+	var creature: Creature
+	
+	if habitat.data.creature_data:
+		# Dynamic spawning using single scene
+		creature = base_creature_scene.instantiate()
+		creature.data = habitat.data.creature_data
+	elif habitat.data.creature_scene:
+		# Legacy spawning using specific scenes
+		creature = habitat.data.creature_scene.instantiate()
+	else:
+		print("[CreatureManager] Warning: No creature_data or creature_scene assigned to habitat '", habitat.name, "'.")
 		return null
 		
-	var creature = habitat.data.creature_scene.instantiate()
-	
 	# Position the creature near the habitat center
 	var spawn_pos = habitat.global_position + Vector2(
 		randf_range(-20, 20), 
