@@ -49,23 +49,46 @@ func start_production():
 	var timer = Timer.new()
 	timer.name = "ProductionTimer"
 	add_child(timer)
-	timer.wait_time = furniture_data.produce_time
 	timer.timeout.connect(_on_production_timeout)
+	# Initial interval setup
+	timer.wait_time = _calculate_production_interval()
 	timer.start()
+
+func _calculate_production_interval() -> float:
+	if not furniture_data: return 1.0
+	
+	var multiplier = 1.0
+	var habitat = get_meta("habitat_parent", null)
+	if habitat and is_instance_valid(habitat):
+		if habitat.has_method("spawn_creatures_clean_up"):
+			habitat.spawn_creatures_clean_up()
+			
+		for creature in habitat.spawned_creatures:
+			if is_instance_valid(creature) and creature.data and creature.data.resource_type == furniture_data.resource_type:
+				# Use the creature's produce_time as the multiplier
+				multiplier = creature.data.produce_time
+				break
+				
+	return furniture_data.produce_time * multiplier
 
 func _on_production_timeout():
 	if not furniture_data: return
 	
 	var habitat = get_meta("habitat_parent", null)
 	if habitat and is_instance_valid(habitat):
-		# Habitat is the node with Habitat.gd script
-		if habitat.has_method("spawn_creatures_clean_up"):
-			habitat.spawn_creatures_clean_up()
-		
+		var matched_any = false
 		for creature in habitat.spawned_creatures:
 			if is_instance_valid(creature) and creature.data and creature.data.resource_type == furniture_data.resource_type:
 				if creature.has_method("produce_from_source"):
 					creature.produce_from_source(self)
+					matched_any = true
+		
+		# Update the timer interval for the next cycle based on current creatures
+		var timer = $ProductionTimer
+		if timer:
+			timer.wait_time = _calculate_production_interval()
 	else:
-		# If not in a habitat, trees/furniture no longer produce alone
-		pass
+		# If no habitat, reset to base time or stay idle
+		var timer = $ProductionTimer
+		if timer:
+			timer.wait_time = furniture_data.produce_time if furniture_data.produce_time > 0 else 1.0
