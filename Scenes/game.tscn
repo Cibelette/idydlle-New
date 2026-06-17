@@ -153,5 +153,3 @@ resource_type = "Fruit"
 
 [node name="CharacterBody2D" parent="." unique_id=77996297 instance=ExtResource("6_1l0tm")]
 position = Vector2(144, 168)
-
-[connection signal="item_crafted" from="CanvasLayer/CraftingMenu" to="." method="_on_crafting_menu_item_crafted"]

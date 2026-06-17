@@ -53,6 +53,10 @@ func craft_item(item_data: FurnitureData):
 			
 		if "is_placed" in new_item:
 			new_item.is_placed = false
+		
+		# Start placement through the manager
+		FurnitureManager.start_placement(new_item)
+		
 		item_crafted.emit(new_item)
 		crafting_panel.visible = false
 	else:
