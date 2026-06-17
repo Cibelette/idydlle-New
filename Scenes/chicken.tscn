@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dhvbwx3psmngh" path="res://Scripts/Creature.gd" id="1_jy3mo"]
 [ext_resource type="Texture2D" uid="uid://b03wkjons1jby" path="res://Assets/Characters/Free Chicken Sprites.png" id="2_jy3mo"]
-[ext_resource type="Resource" path="res://Ressources/Chicken.tres" id="3_data"]
+[ext_resource type="Resource" uid="uid://dil8w8qd3k0fv" path="res://Ressources/Creatures/Chicken.tres" id="3_data"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7h841"]
 atlas = ExtResource("2_jy3mo")

@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cbnpygl4mn6ku"]
 
 [ext_resource type="Script" uid="uid://c8f4rgp52ih1w" path="res://Scripts/CraftingMenu.gd" id="1_script"]
-[ext_resource type="Resource" path="res://Ressources/Chest.tres" id="2_chest"]
-[ext_resource type="Resource" path="res://Ressources/Table.tres" id="3_table"]
-[ext_resource type="Resource" path="res://Ressources/Stool.tres" id="4_stool"]
-[ext_resource type="Resource" path="res://Ressources/Tree.tres" id="5_tree"]
+[ext_resource type="Resource" uid="uid://wj6fik6b7w5s" path="res://Ressources/Furnitures/Chest.tres" id="2_chest"]
+[ext_resource type="Resource" uid="uid://b0xqis5eqyghh" path="res://Ressources/Furnitures/Table.tres" id="3_table"]
+[ext_resource type="Resource" uid="uid://c6u6vphfkp0qr" path="res://Ressources/Furnitures/Stool.tres" id="4_stool"]
+[ext_resource type="Resource" uid="uid://c7m5yq1p8j3v2" path="res://Ressources/Furnitures/tree.tres" id="5_tree"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ka71"]
 bg_color = Color(0.6554657, 0.58961415, 0.50203437, 1)
