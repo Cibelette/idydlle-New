@@ -1,15 +1,15 @@
 extends Node
-class_name CreatureManager
 
 # Reference to the world node where creatures should be added
 var world_node: Node2D
 var all_creatures: Array[Creature] = []
 
-func _init(_world: Node2D):
-	world_node = _world
-
 ## Spawns a creature for a specific habitat
 func spawn_creature_for_habitat(habitat: Habitat) -> Creature:
+	if not is_instance_valid(world_node):
+		print("[CreatureManager] Error: world_node is not valid. Register it in Game.gd.")
+		return null
+		
 	if not habitat.data or not habitat.data.creature_scene:
 		print("[CreatureManager] Warning: No creature_scene assigned to habitat '", habitat.name, "'.")
 		return null

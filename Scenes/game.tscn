@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://df4rpok0h54iw" path="res://Assets/Tilesets/Grass.png" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://cp4movt136ywo" path="res://Scripts/Game.gd" id="1_game_script"]
 [ext_resource type="PackedScene" uid="uid://b5y1p60sjngof" path="res://Scenes/rts_camera.tscn" id="2_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://cy7uuawj3uw2f" path="res://Scenes/cow.tscn" id="6_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://pwqshwpwjb57" path="res://Scenes/resource_counter.tscn" id="6_i6g32"]
 [ext_resource type="PackedScene" uid="uid://cbnpygl4mn6ku" path="res://Scenes/CraftingMenu.tscn" id="7_craft_menu"]
 
@@ -149,5 +150,8 @@ offset_top = 24.0
 offset_right = 281.0
 offset_bottom = 64.0
 resource_type = "Fruit"
+
+[node name="CharacterBody2D" parent="." unique_id=77996297 instance=ExtResource("6_1l0tm")]
+position = Vector2(144, 168)
 
 [connection signal="item_crafted" from="CanvasLayer/CraftingMenu" to="." method="_on_crafting_menu_item_crafted"]

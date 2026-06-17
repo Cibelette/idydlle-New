@@ -4,7 +4,6 @@ class_name Habitat
 var data: HabitatData
 var components: Array[Node2D] = [] # Furniture pieces making this habitat
 var spawned_creatures: Array[Creature] = []
-var creature_manager: CreatureManager
 
 @onready var spawn_timer: Timer = Timer.new()
 
@@ -21,10 +20,7 @@ func _on_spawn_timer_timeout():
 		spawn_creature()
 
 func spawn_creature():
-	if creature_manager:
-		creature_manager.spawn_creature_for_habitat(self)
-	else:
-		print("[Habitat] Warning: No creature_manager assigned to habitat '", name, "'.")
+	CreatureManager.spawn_creature_for_habitat(self)
 
 func on_creature_spawned(creature: Creature):
 	spawn_creatures_clean_up() # Remove dead ones from list

@@ -2,24 +2,31 @@
 
 [ext_resource type="Script" uid="uid://dhvbwx3psmngh" path="res://Scripts/Creature.gd" id="1_u4wuh"]
 [ext_resource type="Resource" uid="uid://b8lk3dvnja152" path="res://Ressources/Creatures/Cow.tres" id="2_u4wuh"]
-[ext_resource type="Texture2D" uid="uid://c4365kfxwflrh" path="res://Assets/Characters/Basic Charakter Spritesheet.png" id="3_vpkvw"]
+[ext_resource type="Texture2D" uid="uid://p7pgtqhrt2ht" path="res://Assets/Characters/Free Cow Sprites.png" id="3_u4wuh"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_23j0x"]
-atlas = ExtResource("3_vpkvw")
-region = Rect2(0, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxqef"]
+atlas = ExtResource("3_u4wuh")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r2uub"]
-atlas = ExtResource("3_vpkvw")
-region = Rect2(48, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpkvw"]
+atlas = ExtResource("3_u4wuh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oad1y"]
+atlas = ExtResource("3_u4wuh")
+region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4x4tm"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_23j0x")
+"texture": SubResource("AtlasTexture_gxqef")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r2uub")
+"texture": SubResource("AtlasTexture_vpkvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oad1y")
 }],
 "loop": true,
 "name": &"default",
@@ -49,7 +56,7 @@ path_desired_distance = 4.0
 target_desired_distance = 4.0
 path_postprocessing = 1
 
-[node name="HappinessLabel" type="Label" parent="."]
+[node name="HappinessLabel" type="Label" parent="." unique_id=2037708252]
 offset_left = -26.0
 offset_top = -25.0
 offset_right = 29.0

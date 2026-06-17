@@ -1,19 +1,22 @@
 extends Node
-class_name HabitatManager
 
 signal habitat_created(habitat: Habitat)
 
 # List of all possible habitat recipes
 @export var habitat_recipes: Array[HabitatData] = []
 
+# Track all active habitats globally
+var all_habitats: Array[Habitat] = []
+
 # Reference to the world node where habitats and creatures should be added
 var world_node: Node2D
 
-func _init(_world: Node2D):
-	world_node = _world
-
 ## Checks if a new habitat can be formed around the item just placed
 func check_for_new_habitat(placed_item: Node2D):
+	if not is_instance_valid(world_node):
+		print("[HabitatManager] Error: world_node is not valid. Register it in Game.gd.")
+		return
+
 	print("[HabitatManager] Checking item: ", placed_item.name)
 	if not "furniture_data" in placed_item or not placed_item.furniture_data:
 		print("[HabitatManager] Aborting: No furniture_data found")
@@ -87,5 +90,9 @@ func create_habitat(recipe: HabitatData, components: Array[Node2D]):
 		c.set_meta("habitat_parent", habitat)
 		c.modulate = Color(0.8, 1.2, 0.8) # Visual feedback
 	
+	all_habitats.append(habitat)
 	habitat_created.emit(habitat)
 	print("[HabitatManager] Created ", habitat.name, " with ", components.size(), " items.")
+
+func cleanup_habitats():
+	all_habitats = all_habitats.filter(func(h): return is_instance_valid(h))

@@ -1,27 +1,20 @@
 extends Node2D
 
 var current_placing_item = null
-var habitat_manager: HabitatManager
-var creature_manager: CreatureManager
 
 @onready var world_node = $Background # Or create a dedicated 'World' node
 
 func _ready():
-	habitat_manager = HabitatManager.new(self)
-	creature_manager = CreatureManager.new(self)
-	
-	habitat_manager.habitat_created.connect(_on_habitat_created)
+	# Register this world to global managers
+	HabitatManager.world_node = self
+	CreatureManager.world_node = self
 	
 	_load_habitat_recipes()
 	Global.furniture_placed.connect(_on_furniture_placed)
 
-func _on_habitat_created(habitat: Habitat):
-	print("[Game] New habitat detected, assigning creature manager...")
-	habitat.creature_manager = creature_manager
-
 func _on_furniture_placed(item):
 	print("[Game] Signal received: Furniture placed, checking habitat...")
-	habitat_manager.check_for_new_habitat(item)
+	HabitatManager.check_for_new_habitat(item)
 
 func _load_habitat_recipes():
 	var recipes: Array[HabitatData] = []
@@ -33,7 +26,7 @@ func _load_habitat_recipes():
 		if res is HabitatData:
 			recipes.append(res)
 	
-	habitat_manager.habitat_recipes = recipes
+	HabitatManager.habitat_recipes = recipes
 	print("[Game] Loaded ", recipes.size(), " habitat recipes recursively.")
 
 func _get_files_recursive(path: String, extension: String) -> Array[String]:
