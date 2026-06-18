@@ -80,6 +80,23 @@ func update_happiness_display():
 func produce_from_source(source: Node2D):
 	if not data or not source: return
 	
+	# Verify we are in a HabitatZone
+	if not habitat or not habitat is HabitatZone:
+		print("[Production] ", data.species_name, " aborted harvest: Not in a valid HabitatZone.")
+		return
+		
+	# Find a Chest in the HabitatZone
+	var target_chest = null
+	for item in habitat.furniture_inside:
+		if is_instance_valid(item) and "furniture_data" in item and item.furniture_data:
+			if item.furniture_data.furniture_type == "Chest":
+				target_chest = item
+				break
+				
+	if not target_chest:
+		print("[Production] ", data.species_name, " aborted harvest: No Chest found in habitat to store resources.")
+		return
+	
 	# Amount = Creature Amount * Furniture Amount
 	# We assume the source is a Furniture with furniture_data
 	var f_amount = 0
@@ -89,8 +106,9 @@ func produce_from_source(source: Node2D):
 	var total_amount = data.produce_amount * f_amount
 	
 	if total_amount > 0:
-		ResourcesManager.add_resource(data.resource_type, total_amount)
-		print("[Production] ", data.species_name, " harvested ", total_amount, " ", data.resource_type, " from ", source.name)
+		# Store in the Chest instead of global
+		target_chest.store_resource(data.resource_type, total_amount)
+		print("[Production] ", data.species_name, " deposited ", total_amount, " ", data.resource_type, " into Chest.")
 
 ## Allows you to inject custom data at runtime (e.g. for evolutions)
 func set_creature_data(new_data: CreatureData):

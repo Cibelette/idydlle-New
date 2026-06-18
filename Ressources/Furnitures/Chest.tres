@@ -32,6 +32,7 @@ region = Rect2(63, 19, 18, 13)
 [resource]
 script = ExtResource("2_kbbx7")
 name = "Wooden Chest"
+furniture_type = "Chest"
 costs = {
 "Wood": 0
 }

@@ -8,7 +8,10 @@ extends StaticBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 
+var inventory: Dictionary = {}
+
 func _ready():
+	input_pickable = true
 	_apply_data()
 	
 	if Engine.is_editor_hint():
@@ -130,3 +133,36 @@ func _get_current_habitat_zone() -> HabitatZone:
 		if zone is HabitatZone and zone.furniture_inside.has(self):
 			return zone
 	return null
+
+func _input_event(viewport: Node, event: InputEvent, shape_idx: int):
+	if is_placed and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if furniture_data and furniture_data.furniture_type == "Chest":
+			collect_inventory()
+
+func store_resource(type: String, amount: int):
+	if inventory.has(type):
+		inventory[type] += amount
+	else:
+		inventory[type] = amount
+	
+	# Small visual feedback
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(1.1, 1.1), 0.1)
+	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
+
+func collect_inventory():
+	if inventory.is_empty():
+		print("[Storage] Chest is empty.")
+		return
+		
+	print("[Storage] Collecting from Chest:")
+	for type in inventory:
+		ResourcesManager.add_resource(type, inventory[type])
+		print("  - Added ", inventory[type], " ", type, " to global storage.")
+		
+	inventory.clear()
+	
+	# Visual feedback for collection
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(1.5, 1.5, 1.5), 0.15)
+	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.15)
