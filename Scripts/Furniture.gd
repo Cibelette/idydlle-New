@@ -12,6 +12,10 @@ var inventory: Dictionary = {}
 
 func _ready():
 	input_pickable = true
+	# Force connection in case Godot's implicit routing fails
+	if not input_event.is_connected(_input_event):
+		input_event.connect(_input_event)
+		
 	_apply_data()
 	
 	if Engine.is_editor_hint():

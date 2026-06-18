@@ -7,6 +7,7 @@ size = Vector2(15, 15)
 
 [node name="Furniture_1x1" type="StaticBody2D" unique_id=311139844]
 position = Vector2(8, 8)
+input_pickable = true
 script = ExtResource("1_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1801210152]

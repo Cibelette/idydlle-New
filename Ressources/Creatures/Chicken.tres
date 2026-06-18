@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CreatureData" format=3 uid="uid://dil8w8qd3k0fv"]
 
-[ext_resource type="Script" uid="uid://bmqoq12meetm6" path="res://Scripts/CreatureData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bmqoq12meetm6" path="res://Scripts/Creatures/CreatureData.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://b03wkjons1jby" path="res://Assets/Characters/Free Chicken Sprites.png" id="2_wdshj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f45oe"]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://02fm25c7lmj4"]
 
 [ext_resource type="Texture2D" uid="uid://c4365kfxwflrh" path="res://Assets/Characters/Basic Charakter Spritesheet.png" id="1_0xcsw"]
-[ext_resource type="Script" uid="uid://dhvbwx3psmngh" path="res://Scripts/Creature.gd" id="2_23j0x"]
+[ext_resource type="Script" uid="uid://dhvbwx3psmngh" path="res://Scripts/Creatures/Creature.gd" id="2_23j0x"]
 [ext_resource type="Resource" uid="uid://dkca2tpu0yrm2" path="res://Ressources/Creatures/Cat.tres" id="3_data"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23j0x"]

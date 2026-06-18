@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CreatureData" format=3 uid="uid://dkca2tpu0yrm2"]
 
-[ext_resource type="Script" uid="uid://bmqoq12meetm6" path="res://Scripts/CreatureData.gd" id="1_o26ci"]
+[ext_resource type="Script" uid="uid://bmqoq12meetm6" path="res://Scripts/Creatures/CreatureData.gd" id="1_o26ci"]
 [ext_resource type="Texture2D" uid="uid://c4365kfxwflrh" path="res://Assets/Characters/Basic Charakter Spritesheet.png" id="2_5t52s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ats5v"]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CreatureData" format=3 uid="uid://b8lk3dvnja152"]
 
-[ext_resource type="Script" uid="uid://bmqoq12meetm6" path="res://Scripts/CreatureData.gd" id="1_2tlp5"]
+[ext_resource type="Script" uid="uid://bmqoq12meetm6" path="res://Scripts/Creatures/CreatureData.gd" id="1_2tlp5"]
 [ext_resource type="Texture2D" uid="uid://p7pgtqhrt2ht" path="res://Assets/Characters/Free Cow Sprites.png" id="2_v2pm2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xjqfx"]

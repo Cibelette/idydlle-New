@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 ResourcesManager="*res://Scripts/ResourcesManager.gd"
-CreatureManager="*res://Scripts/CreatureManager.gd"
+CreatureManager="*res://Scripts/Creatures/CreatureManager.gd"
 HabitatManager="*res://Scripts/HabitatManager.gd"
 FurnitureManager="*res://Scripts/FurnitureManager.gd"
 Global="*uid://u50owy08q3dw"
