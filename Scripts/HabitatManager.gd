@@ -94,7 +94,7 @@ func create_habitat(recipe: HabitatData, components: Array[Node2D], zone: Habita
 	Global.current_world.add_child(habitat)
 	
 	for c in components:
-		c.reparent(habitat)
+		# Visual feedback and metadata to mark as used
 		c.set_meta("habitat_parent", habitat)
 		c.modulate = Color(0.8, 1.2, 0.8)
 	

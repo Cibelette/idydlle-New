@@ -86,8 +86,10 @@ func _calculate_production_interval() -> float:
 	if not furniture_data: return 1.0
 	
 	var multiplier = 1.0
-	var habitat = get_meta("habitat_parent", null)
-	if habitat and is_instance_valid(habitat):
+	var zone = _get_current_habitat_zone()
+	
+	if zone and is_instance_valid(zone.active_habitat):
+		var habitat = zone.active_habitat
 		if habitat.has_method("spawn_creatures_clean_up"):
 			habitat.spawn_creatures_clean_up()
 			
@@ -102,8 +104,9 @@ func _calculate_production_interval() -> float:
 func _on_production_timeout():
 	if not furniture_data: return
 	
-	var habitat = get_meta("habitat_parent", null)
-	if habitat and is_instance_valid(habitat):
+	var zone = _get_current_habitat_zone()
+	if zone and is_instance_valid(zone.active_habitat):
+		var habitat = zone.active_habitat
 		var matched_any = false
 		for creature in habitat.spawned_creatures:
 			if is_instance_valid(creature) and creature.data and creature.data.resource_type == furniture_data.resource_type:
@@ -120,3 +123,10 @@ func _on_production_timeout():
 		var timer = $ProductionTimer
 		if timer:
 			timer.wait_time = furniture_data.produce_time if furniture_data.produce_time > 0 else 1.0
+
+func _get_current_habitat_zone() -> HabitatZone:
+	var zones = get_tree().get_nodes_in_group("habitat_zones")
+	for zone in zones:
+		if zone is HabitatZone and zone.furniture_inside.has(self):
+			return zone
+	return null
