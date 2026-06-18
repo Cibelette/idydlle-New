@@ -140,10 +140,10 @@ func _get_current_habitat_zone() -> HabitatZone:
 
 func _input_event(viewport: Node, event: InputEvent, shape_idx: int):
 	if is_placed and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if furniture_data and furniture_data.furniture_type == "Chest":
+		if furniture_data and furniture_data.furniture_type == Types.FurnitureType.CHEST:
 			collect_inventory()
 
-func store_resource(type: String, amount: int):
+func store_resource(type: Types.ResourceType, amount: int):
 	if inventory.has(type):
 		inventory[type] += amount
 	else:
@@ -168,16 +168,23 @@ func collect_inventory():
 	for type in inventory:
 		var amount = inventory[type]
 		ResourcesManager.add_resource(type, amount)
-		print("  - Added ", amount, " ", type, " to global storage.")
+		print("  - Added ", amount, " ", Types.resource_to_string(type), " to global storage.")
 		
 		if popup_scene:
 			var popup = popup_scene.instantiate()
 			# Stagger popups horizontally if there are multiple types
 			var offset_x = (idx - (total_types - 1) / 2.0) * 24.0
-			popup.global_position = global_position + Vector2(offset_x, -20.0)
+			var spawn_pos = global_position + Vector2(offset_x, -20.0)
+			popup.global_position = spawn_pos
 			
 			get_parent().add_child(popup)
 			popup.setup(type, amount)
+			
+			# Spawn themed sparkle burst
+			var burst = SparkleBurst.new()
+			burst.global_position = spawn_pos + Vector2(0, 10) # Positioned slightly below the text
+			get_parent().add_child(burst)
+			burst.setup(type)
 		idx += 1
 		
 	inventory.clear()

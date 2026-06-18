@@ -1,6 +1,6 @@
 extends Control
 
-@export var resource_type: String = "Wood"
+@export var resource_type: Types.ResourceType = Types.ResourceType.WOOD
 @export var show_name: bool = false
 
 @onready var label: Label = $Label

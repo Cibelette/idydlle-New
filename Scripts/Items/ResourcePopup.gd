@@ -4,7 +4,7 @@ class_name ResourcePopup
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var label: Label = $Label
 
-func setup(resource_type: String, amount: int):
+func setup(resource_type: Types.ResourceType, amount: int):
 	# Fetch resource visual data using ResourcesManager
 	var visual_data = ResourcesManager.get_resource_data(resource_type)
 	if visual_data:

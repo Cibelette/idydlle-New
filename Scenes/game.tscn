@@ -134,18 +134,18 @@ offset_left = 107.0
 offset_top = 28.0
 offset_right = 147.0
 offset_bottom = 68.0
-resource_type = "Berry"
+resource_type = 3
 
 [node name="stone_count" parent="CanvasLayer" unique_id=553587191 instance=ExtResource("6_i6g32")]
 offset_left = 174.0
 offset_top = 26.0
 offset_right = 214.0
 offset_bottom = 66.0
-resource_type = "Stone"
+resource_type = 2
 
 [node name="fruit_count" parent="CanvasLayer" unique_id=406914489 instance=ExtResource("6_i6g32")]
 offset_left = 241.0
 offset_top = 24.0
 offset_right = 281.0
 offset_bottom = 64.0
-resource_type = "Fruit"
+resource_type = 5

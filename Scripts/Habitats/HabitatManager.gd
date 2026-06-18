@@ -49,18 +49,19 @@ func find_recipe_components_in_zone(recipe: HabitatData, zone: HabitatZone) -> A
 			print("[HabitatManager]   - Item ", item.name, " is NOT placed yet.")
 			continue
 			
-		var type = ""
+		var type: Types.FurnitureType = Types.FurnitureType.MISC
 		if "furniture_data" in item and item.furniture_data:
 			type = item.furniture_data.furniture_type
 		
-		print("[HabitatManager]   - Found item type: '", type, "' (", item.name, ")")
+		var type_string = Types.furniture_to_string(type)
+		print("[HabitatManager]   - Found item type: '", type_string, "' (", item.name, ")")
 		
-		if recipe_counts.has(type) and recipe_counts[type] > 0:
+		if recipe_counts.has(type_string) and recipe_counts[type_string] > 0:
 			# Check if this item is already part of another habitat
 			if item.get_meta("habitat_parent", null) == null:
 				components_found.append(item)
-				recipe_counts[type] -= 1
-				print("[HabitatManager]     Matches requirement! Remaining: ", recipe_counts[type], " for ", type)
+				recipe_counts[type_string] -= 1
+				print("[HabitatManager]     Matches requirement! Remaining: ", recipe_counts[type_string], " for ", type_string)
 	
 	# Verify if all requirements are met
 	for type in recipe_counts:

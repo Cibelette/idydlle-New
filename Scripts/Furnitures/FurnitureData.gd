@@ -3,8 +3,8 @@ extends Resource
 class_name FurnitureData
 
 @export var name: String = "New Furniture"
-@export var furniture_type: String = "Misc" # Used for Habitat Recipes (e.g. "Table")
-@export var costs: Dictionary = {"Wood": 10}
+@export var furniture_type: Types.FurnitureType = Types.FurnitureType.MISC # Used for Habitat Recipes (e.g. "Table")
+@export var costs: Array[CostItem] = []
 @export var icon: Texture2D
 @export var custom_scene: PackedScene
 
@@ -17,6 +17,6 @@ class_name FurnitureData
 @export var size: Vector2i = Vector2i(1, 1)
 
 @export_group("Production")
-@export var resource_type: String = "" # e.g. "Wood"
+@export var resource_type: Types.ResourceType = Types.ResourceType.NONE # e.g. "Wood"
 @export var produce_amount: int = 0
 @export var produce_time: float = 0.0 # 0 means no production

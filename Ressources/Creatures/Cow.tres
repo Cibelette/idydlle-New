@@ -37,6 +37,6 @@ script = ExtResource("1_2tlp5")
 species_name = "cow"
 sprite_frames = SubResource("SpriteFrames_oe8gf")
 produce_amount = 30
-resource_type = "Stone"
+resource_type = 2
 sound_text = "Mooh!"
 metadata/_custom_type_script = "uid://bmqoq12meetm6"

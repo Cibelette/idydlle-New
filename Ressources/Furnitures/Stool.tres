@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="FurnitureData" format=3 uid="uid://c6u6vphfkp0qr"]
 
+[ext_resource type="Script" path="res://Scripts/Items/CostItem.gd" id="1_costitem"]
 [ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/Furnitures/FurnitureData.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://doooqhuqhksaj" path="res://Assets/Objects/Basic Furniture.png" id="2_awkjv"]
 
@@ -7,12 +8,15 @@
 atlas = ExtResource("2_awkjv")
 region = Rect2(66, 48, 13, 16)
 
+[sub_resource type="Resource" id="Resource_cost"]
+script = ExtResource("1_costitem")
+resource = 1
+amount = 0
+
 [resource]
 script = ExtResource("1_script")
 name = "Stool"
-furniture_type = "Stool"
-costs = {
-"Wood": 0
-}
+furniture_type = 3
+costs = Array[ExtResource("1_costitem")]([SubResource("Resource_cost")])
 texture = SubResource("AtlasTexture_awkjv")
 scale = 1.5

@@ -89,7 +89,7 @@ func produce_from_source(source: Node2D):
 	var target_chest = null
 	for item in habitat.furniture_inside:
 		if is_instance_valid(item) and "furniture_data" in item and item.furniture_data:
-			if item.furniture_data.furniture_type == "Chest":
+			if item.furniture_data.furniture_type == Types.FurnitureType.CHEST:
 				target_chest = item
 				break
 				
@@ -108,7 +108,7 @@ func produce_from_source(source: Node2D):
 	if total_amount > 0:
 		# Store in the Chest instead of global
 		target_chest.store_resource(data.resource_type, total_amount)
-		print("[Production] ", data.species_name, " deposited ", total_amount, " ", data.resource_type, " into Chest.")
+		print("[Production] ", data.species_name, " deposited ", total_amount, " ", Types.resource_to_string(data.resource_type), " into Chest.")
 
 ## Allows you to inject custom data at runtime (e.g. for evolutions)
 func set_creature_data(new_data: CreatureData):

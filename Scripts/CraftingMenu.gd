@@ -25,8 +25,9 @@ func setup_menu():
 		
 		var btn = Button.new()
 		var cost_text = ""
-		for res_type in item_data.costs:
-			cost_text += "%d %s " % [item_data.costs[res_type], res_type]
+		for cost_item in item_data.costs:
+			if cost_item:
+				cost_text += "%d %s " % [cost_item.amount, Types.resource_to_string(cost_item.resource)]
 		
 		btn.text = "%s (%s)" % [item_data.name, cost_text.strip_edges()]
 		btn.pressed.connect(func(): craft_item(item_data))
