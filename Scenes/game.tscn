@@ -158,7 +158,7 @@ offset_bottom = 64.0
 resource_type = "Fruit"
 
 [node name="Furniture" parent="." unique_id=1471163140 instance=ExtResource("6_1l0tm")]
-position = Vector2(168, 216)
+position = Vector2(176, 224)
 is_placed = true
 furniture_data = ExtResource("7_v158k")
 

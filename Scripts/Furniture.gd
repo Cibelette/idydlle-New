@@ -49,9 +49,13 @@ func _apply_data():
 func _notification(what):
 	if Engine.is_editor_hint():
 		if what == NOTIFICATION_TRANSFORM_CHANGED:
-			# Only snap if we are not being actively dragged (optional refinement)
-			# For simplicity, we snap whenever transform changes in editor
-			global_position = (global_position / 16.0).floor() * 16.0 + Vector2(8, 8)
+			var size = Vector2(16, 16)
+			if furniture_data:
+				size = furniture_data.collision_size
+			
+			var new_pos = Global.snap_to_grid(global_position, size)
+			if global_position != new_pos:
+				global_position = new_pos
 
 func place():
 	is_placed = true

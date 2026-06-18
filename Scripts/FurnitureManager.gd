@@ -7,11 +7,13 @@ var all_furniture: Array[Node2D] = []
 func _process(_delta):
 	if current_placing_item != null:
 		update_preview()
-
 func update_preview():
-	# Use Global.snap_to_grid to keep consistency
-	current_placing_item.global_position = Global.snap_to_grid(current_placing_item.get_global_mouse_position())
-	
+	var size = Vector2(16, 16)
+	if "furniture_data" in current_placing_item and current_placing_item.furniture_data:
+		size = current_placing_item.furniture_data.collision_size
+
+	current_placing_item.global_position = Global.snap_to_grid(current_placing_item.get_global_mouse_position(), size)
+
 	if is_position_valid(current_placing_item):
 		current_placing_item.modulate = Color(1, 1, 1, 0.5)
 	else:
