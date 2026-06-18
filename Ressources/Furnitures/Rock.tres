@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="FurnitureData" format=3 uid="uid://0fav5j3gbedn"]
+
+[ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/FurnitureData.gd" id="1_flwae"]
+[ext_resource type="Texture2D" uid="uid://bes5p4jeu47ke" path="res://Assets/Objects/Basic Grass Biom things 1.png" id="2_5igdv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qccti"]
+atlas = ExtResource("2_5igdv")
+region = Rect2(78.04471, 64.12015, 19.388771, 15.879852)
+
+[resource]
+script = ExtResource("1_flwae")
+name = "Rock"
+furniture_type = "Rock"
+costs = {
+"Stone": 0
+}
+texture = SubResource("AtlasTexture_qccti")
+resource_type = "Stone"
+produce_amount = 10
+produce_time = 10.0
+metadata/_custom_type_script = "uid://dqk5knegtkhqr"

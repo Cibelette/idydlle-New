@@ -76,10 +76,6 @@ func update_happiness_display():
 			if alt_label:
 				alt_label.text = text
 
-func _on_timer_timeout():
-	if data:
-		# The timer now only handles sounds/flavor text
-		print(data.species_name, " dit : ", data.sound_text)
 
 func produce_from_source(source: Node2D):
 	if not data or not source: return
