@@ -10,8 +10,7 @@ class_name FurnitureData
 @export_group("Visuals")
 @export var texture: Texture2D
 @export var sprite_frames: SpriteFrames
-@export var region_enabled: bool = false
-@export var region_rect: Rect2 = Rect2()
+@export var scale: float = 1.0
 
 @export_group("Physics")
 @export var collision_size: Vector2 = Vector2(16, 16)

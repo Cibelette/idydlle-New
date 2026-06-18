@@ -29,6 +29,10 @@ func _apply_data():
 	if not furniture_data: return
 	
 	if animated_sprite and sprite:
+		# Apply scale to the visual representation
+		animated_sprite.scale = Vector2(furniture_data.scale, furniture_data.scale)
+		sprite.scale = Vector2(furniture_data.scale, furniture_data.scale)
+		
 		if furniture_data.sprite_frames:
 			animated_sprite.sprite_frames = furniture_data.sprite_frames
 			animated_sprite.visible = true
@@ -38,9 +42,6 @@ func _apply_data():
 			animated_sprite.visible = false
 			sprite.visible = true
 			sprite.texture = furniture_data.texture
-			sprite.region_enabled = furniture_data.region_enabled
-			if furniture_data.region_enabled:
-				sprite.region_rect = furniture_data.region_rect
 			
 	if collision and collision.shape is RectangleShape2D:
 		collision.shape.size = furniture_data.collision_size
