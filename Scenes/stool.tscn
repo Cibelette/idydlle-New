@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bmsw5cujbgufg"]
 
 [ext_resource type="Texture2D" uid="uid://d27uigxo5e5kl" path="res://Assets/Top-Down_Retro_Interior/TopDownHouse_FurnitureState1.png" id="1_7lt74"]
-[ext_resource type="Script" uid="uid://bfnrlhu3qtm5y" path="res://Scripts/Furniture.gd" id="1_v1j6b"]
+[ext_resource type="Script" uid="uid://bfnrlhu3qtm5y" path="res://Scripts/Furnitures/Furniture.gd" id="1_v1j6b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1j6b"]
 size = Vector2(14, 14)

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FurnitureData" format=3 uid="uid://wj6fik6b7w5s"]
 
-[ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/FurnitureData.gd" id="2_kbbx7"]
+[ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/Furnitures/FurnitureData.gd" id="2_kbbx7"]
 [ext_resource type="Texture2D" uid="uid://hvw5yhs41ad5" path="res://Assets/Objects/Chest.png" id="2_nphx2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nphx2"]

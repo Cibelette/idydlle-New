@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cbnpygl4mn6ku"]
 
 [ext_resource type="Script" uid="uid://c8f4rgp52ih1w" path="res://Scripts/CraftingMenu.gd" id="1_script"]
-[ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/FurnitureData.gd" id="2_4hqpc"]
+[ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/Furnitures/FurnitureData.gd" id="2_4hqpc"]
 [ext_resource type="Resource" uid="uid://wj6fik6b7w5s" path="res://Ressources/Furnitures/Chest.tres" id="2_chest"]
 [ext_resource type="Resource" uid="uid://b0xqis5eqyghh" path="res://Ressources/Furnitures/Table.tres" id="3_table"]
 [ext_resource type="Resource" uid="uid://c6u6vphfkp0qr" path="res://Ressources/Furnitures/Stool.tres" id="4_stool"]

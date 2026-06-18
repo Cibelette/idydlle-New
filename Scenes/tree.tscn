@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b225mu6f36725"]
 
-[ext_resource type="Script" uid="uid://bfnrlhu3qtm5y" path="res://Scripts/Furniture.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bfnrlhu3qtm5y" path="res://Scripts/Furnitures/Furniture.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://bes5p4jeu47ke" path="res://Assets/Objects/Basic Grass Biom things 1.png" id="2_0vwjc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rsuno"]
@@ -8,6 +8,7 @@ size = Vector2(64, 64)
 
 [node name="Tree" type="StaticBody2D" unique_id=2082116051]
 position = Vector2(8, 8)
+input_pickable = true
 script = ExtResource("1_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=57739393]

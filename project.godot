@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 ResourcesManager="*res://Scripts/ResourcesManager.gd"
 CreatureManager="*res://Scripts/Creatures/CreatureManager.gd"
 HabitatManager="*res://Scripts/HabitatManager.gd"
-FurnitureManager="*res://Scripts/FurnitureManager.gd"
+FurnitureManager="*res://Scripts/Furnitures/FurnitureManager.gd"
 Global="*uid://u50owy08q3dw"
 
 [display]
