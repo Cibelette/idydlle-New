@@ -160,9 +160,25 @@ func collect_inventory():
 		return
 		
 	print("[Storage] Collecting from Chest:")
+	
+	var popup_scene = load("res://Scenes/resource_popup.tscn")
+	var idx = 0
+	var total_types = inventory.size()
+	
 	for type in inventory:
-		ResourcesManager.add_resource(type, inventory[type])
-		print("  - Added ", inventory[type], " ", type, " to global storage.")
+		var amount = inventory[type]
+		ResourcesManager.add_resource(type, amount)
+		print("  - Added ", amount, " ", type, " to global storage.")
+		
+		if popup_scene:
+			var popup = popup_scene.instantiate()
+			# Stagger popups horizontally if there are multiple types
+			var offset_x = (idx - (total_types - 1) / 2.0) * 24.0
+			popup.global_position = global_position + Vector2(offset_x, -20.0)
+			
+			get_parent().add_child(popup)
+			popup.setup(type, amount)
+		idx += 1
 		
 	inventory.clear()
 	

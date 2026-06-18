@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmen24nc7xtp0"]
+
+[ext_resource type="Script" path="res://Scripts/Items/ResourcePopup.gd" id="1_popup"]
+[ext_resource type="FontFile" uid="uid://duvw337a7kvgq" path="res://Assets/Sprout Lands - UI Pack - Basic pack/fonts/pixelFont-7-8x14-sproutLands.ttf" id="2_font"]
+
+[node name="ResourcePopup" type="Node2D" unique_id=2134014780]
+script = ExtResource("1_popup")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1422194347]
+
+[node name="Label" type="Label" parent="." unique_id=358791758]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 14

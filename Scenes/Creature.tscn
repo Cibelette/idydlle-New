@@ -42,8 +42,6 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1418115596]
 shape = SubResource("RectangleShape2D_23j0x")
 
-[node name="Timer" type="Timer" parent="." unique_id=932620505]
-
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1418115594]
 path_desired_distance = 4.0
 target_desired_distance = 4.0
@@ -64,5 +62,3 @@ offset_bottom = -10.0
 theme_override_font_sizes/font_size = 6
 text = "Happiness:
 x"
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
