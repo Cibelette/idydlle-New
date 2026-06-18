@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="HabitatData" format=3 uid="uid://d07cblk81dau1"]
 
 [ext_resource type="Resource" uid="uid://dkca2tpu0yrm2" path="res://Ressources/Creatures/Cat.tres" id="1_o72c3"]
-[ext_resource type="Script" uid="uid://bkuhhp5f81uqc" path="res://Scripts/HabitatData.gd" id="1_sqbvt"]
+[ext_resource type="Script" uid="uid://bkuhhp5f81uqc" path="res://Scripts/Habitats/HabitatData.gd" id="1_sqbvt"]
 [ext_resource type="PackedScene" uid="uid://02fm25c7lmj4" path="res://Scenes/Creature.tscn" id="2_gqnwg"]
 
 [resource]
