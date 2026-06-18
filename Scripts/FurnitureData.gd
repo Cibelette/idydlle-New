@@ -5,8 +5,16 @@ class_name FurnitureData
 @export var name: String = "New Furniture"
 @export var furniture_type: String = "Misc" # Used for Habitat Recipes (e.g. "Table")
 @export var costs: Dictionary = {"Wood": 10}
-@export var scene: PackedScene
 @export var icon: Texture2D
+
+@export_group("Visuals")
+@export var texture: Texture2D
+@export var sprite_frames: SpriteFrames
+@export var region_enabled: bool = false
+@export var region_rect: Rect2 = Rect2()
+
+@export_group("Physics")
+@export var collision_size: Vector2 = Vector2(16, 16)
 
 @export_group("Production")
 @export var resource_type: String = "" # e.g. "Wood"

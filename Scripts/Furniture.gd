@@ -5,9 +5,12 @@ extends StaticBody2D
 @export var furniture_data: FurnitureData
 
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 
 func _ready():
+	_apply_data()
+	
 	if Engine.is_editor_hint():
 		set_notify_transform(true)
 		return
@@ -17,9 +20,30 @@ func _ready():
 		place()
 	else:
 		# Initially, collision is disabled while we are placing it
-		collision.disabled = true
+		if collision:
+			collision.disabled = true
 		# Give it some transparency to show it's a "ghost"
 		modulate.a = 0.5
+
+func _apply_data():
+	if not furniture_data: return
+	
+	if animated_sprite and sprite:
+		if furniture_data.sprite_frames:
+			animated_sprite.sprite_frames = furniture_data.sprite_frames
+			animated_sprite.visible = true
+			animated_sprite.play("default")
+			sprite.visible = false
+		else:
+			animated_sprite.visible = false
+			sprite.visible = true
+			sprite.texture = furniture_data.texture
+			sprite.region_enabled = furniture_data.region_enabled
+			if furniture_data.region_enabled:
+				sprite.region_rect = furniture_data.region_rect
+			
+	if collision and collision.shape is RectangleShape2D:
+		collision.shape.size = furniture_data.collision_size
 
 func _notification(what):
 	if Engine.is_editor_hint():

@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="FurnitureData" format=3 uid="uid://c7m5yq1p8j3v2"]
 
 [ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/FurnitureData.gd" id="1_script"]
-[ext_resource type="PackedScene" uid="uid://b225mu6f36725" path="res://Scenes/tree.tscn" id="2_scene"]
+[ext_resource type="Texture2D" uid="uid://bes5p4jeu47ke" path="res://Assets/Objects/Basic Grass Biom things 1.png" id="2_q0yih"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjnfm"]
+atlas = ExtResource("2_q0yih")
+region = Rect2(17.956875, -0.014499664, 28.242287, 32.4043)
 
 [resource]
 script = ExtResource("1_script")
@@ -10,7 +14,7 @@ furniture_type = "Tree"
 costs = {
 "Wood": 0
 }
-scene = ExtResource("2_scene")
+texture = SubResource("AtlasTexture_jjnfm")
 resource_type = "Wood"
 produce_amount = 5
 produce_time = 5.0

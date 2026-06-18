@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="FurnitureData" format=3 uid="uid://b0xqis5eqyghh"]
 
 [ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/FurnitureData.gd" id="1_script"]
-[ext_resource type="PackedScene" uid="uid://bn2yef70ssfu8" path="res://Scenes/Table.tscn" id="2_scene"]
+[ext_resource type="Texture2D" uid="uid://doooqhuqhksaj" path="res://Assets/Objects/Basic Furniture.png" id="2_n2g3s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03c3q"]
+atlas = ExtResource("2_n2g3s")
+region = Rect2(48.155605, 48.470226, 15.847126, 15.355743)
 
 [resource]
 script = ExtResource("1_script")
@@ -10,4 +14,4 @@ furniture_type = "Table"
 costs = {
 "Wood": 0
 }
-scene = ExtResource("2_scene")
+texture = SubResource("AtlasTexture_03c3q")

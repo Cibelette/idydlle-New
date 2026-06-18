@@ -7,6 +7,8 @@ signal item_crafted(item_node)
 
 @export var craftable_items: Array[FurnitureData]
 
+var base_furniture_scene = preload("res://Scenes/Furniture.tscn")
+
 func _ready():
 	crafting_panel.visible = false
 	setup_menu()
@@ -47,9 +49,8 @@ func craft_item(item_data: FurnitureData):
 		# Spend all resources
 		ResourcesManager.spend_multiple(item_data.costs)
 			
-		var new_item = item_data.scene.instantiate()
-		if "furniture_data" in new_item:
-			new_item.furniture_data = item_data
+		var new_item = base_furniture_scene.instantiate()
+		new_item.furniture_data = item_data
 			
 		if "is_placed" in new_item:
 			new_item.is_placed = false

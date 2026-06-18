@@ -1,7 +1,33 @@
 [gd_resource type="Resource" script_class="FurnitureData" format=3 uid="uid://wj6fik6b7w5s"]
 
-[ext_resource type="PackedScene" uid="uid://ds1l0akvkda6e" path="res://Scenes/chest.tscn" id="1_gwkyu"]
 [ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/FurnitureData.gd" id="2_kbbx7"]
+[ext_resource type="Texture2D" uid="uid://hvw5yhs41ad5" path="res://Assets/Objects/Chest.png" id="2_nphx2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nphx2"]
+atlas = ExtResource("2_nphx2")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28tsj"]
+atlas = ExtResource("2_nphx2")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tnrkh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nphx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28tsj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o17b"]
+atlas = ExtResource("2_nphx2")
+region = Rect2(63, 19, 18, 13)
 
 [resource]
 script = ExtResource("2_kbbx7")
@@ -9,4 +35,5 @@ name = "Wooden Chest"
 costs = {
 "Wood": 0
 }
-scene = ExtResource("1_gwkyu")
+texture = SubResource("AtlasTexture_2o17b")
+sprite_frames = SubResource("SpriteFrames_tnrkh")
