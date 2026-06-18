@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dp8ry28s5pkvx"]
+
+[ext_resource type="Script" uid="uid://bfnrlhu3qtm5y" path="res://Scripts/Furniture.gd" id="1_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_default"]
+size = Vector2(15, 15)
+
+[node name="Furniture_1x1" type="StaticBody2D" unique_id=311139844]
+position = Vector2(8, 8)
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1801210152]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=607578947]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1836771149]
+shape = SubResource("RectangleShape2D_default")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." unique_id=1960793426]
+avoidance_enabled = false

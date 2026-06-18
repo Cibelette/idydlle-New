@@ -13,7 +13,7 @@ class_name FurnitureData
 @export var scale: float = 1.0
 
 @export_group("Physics")
-@export var collision_size: Vector2 = Vector2(16, 16)
+@export var size: Vector2i = Vector2i(1, 1)
 
 @export_group("Production")
 @export var resource_type: String = "" # e.g. "Wood"

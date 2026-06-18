@@ -3,11 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://df4rpok0h54iw" path="res://Assets/Tilesets/Grass.png" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://cp4movt136ywo" path="res://Scripts/Game.gd" id="1_game_script"]
 [ext_resource type="PackedScene" uid="uid://b5y1p60sjngof" path="res://Scenes/rts_camera.tscn" id="2_qxrlw"]
-[ext_resource type="PackedScene" path="res://Scenes/Furniture.tscn" id="6_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://pwqshwpwjb57" path="res://Scenes/resource_counter.tscn" id="6_i6g32"]
 [ext_resource type="PackedScene" uid="uid://cbnpygl4mn6ku" path="res://Scenes/CraftingMenu.tscn" id="7_craft_menu"]
-[ext_resource type="Resource" uid="uid://b0xqis5eqyghh" path="res://Ressources/Furnitures/Table.tres" id="7_v158k"]
-[ext_resource type="Resource" uid="uid://wj6fik6b7w5s" path="res://Ressources/Furnitures/Chest.tres" id="8_v158k"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_abc12"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -156,13 +153,3 @@ offset_top = 24.0
 offset_right = 281.0
 offset_bottom = 64.0
 resource_type = "Fruit"
-
-[node name="Furniture" parent="." unique_id=1471163140 instance=ExtResource("6_1l0tm")]
-position = Vector2(176, 224)
-is_placed = true
-furniture_data = ExtResource("7_v158k")
-
-[node name="Furniture2" parent="." unique_id=1319835928 instance=ExtResource("6_1l0tm")]
-position = Vector2(296, 232)
-is_placed = true
-furniture_data = ExtResource("8_v158k")

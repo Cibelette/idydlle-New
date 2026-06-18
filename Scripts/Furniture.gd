@@ -43,17 +43,16 @@ func _apply_data():
 			sprite.visible = true
 			sprite.texture = furniture_data.texture
 			
-	if collision and collision.shape is RectangleShape2D:
-		collision.shape.size = furniture_data.collision_size
+	# Note: Collision size is now determined by the scene (1x1, 2x1, etc.)
 
 func _notification(what):
 	if Engine.is_editor_hint():
 		if what == NOTIFICATION_TRANSFORM_CHANGED:
-			var size = Vector2(16, 16)
+			var size_px = Vector2(16, 16)
 			if furniture_data:
-				size = furniture_data.collision_size
+				size_px = Vector2(furniture_data.size) * Global.grid_size
 			
-			var new_pos = Global.snap_to_grid(global_position, size)
+			var new_pos = Global.snap_to_grid(global_position, size_px)
 			if global_position != new_pos:
 				global_position = new_pos
 

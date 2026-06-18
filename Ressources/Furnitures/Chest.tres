@@ -38,4 +38,4 @@ costs = {
 texture = SubResource("AtlasTexture_2o17b")
 sprite_frames = SubResource("SpriteFrames_tnrkh")
 scale = 2.0
-collision_size = Vector2(32, 16)
+size = Vector2i(2, 1)

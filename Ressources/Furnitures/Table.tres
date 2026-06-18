@@ -15,5 +15,5 @@ costs = {
 "Wood": 0
 }
 texture = SubResource("AtlasTexture_03c3q")
-scale = 4.0
-collision_size = Vector2(32, 32)
+scale = 2.5
+size = Vector2i(2, 2)

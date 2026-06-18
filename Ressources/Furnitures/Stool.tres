@@ -15,3 +15,4 @@ costs = {
 "Wood": 0
 }
 texture = SubResource("AtlasTexture_awkjv")
+scale = 1.5

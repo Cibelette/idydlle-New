@@ -8,11 +8,11 @@ func _process(_delta):
 	if current_placing_item != null:
 		update_preview()
 func update_preview():
-	var size = Vector2(16, 16)
+	var size_px = Vector2(16, 16)
 	if "furniture_data" in current_placing_item and current_placing_item.furniture_data:
-		size = current_placing_item.furniture_data.collision_size
+		size_px = Vector2(current_placing_item.furniture_data.size) * Global.grid_size
 
-	current_placing_item.global_position = Global.snap_to_grid(current_placing_item.get_global_mouse_position(), size)
+	current_placing_item.global_position = Global.snap_to_grid(current_placing_item.get_global_mouse_position(), size_px)
 
 	if is_position_valid(current_placing_item):
 		current_placing_item.modulate = Color(1, 1, 1, 0.5)
