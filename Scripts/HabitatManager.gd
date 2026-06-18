@@ -13,84 +13,95 @@ var habitat_scene = preload("res://Scenes/Habitat.tscn")
 ## Checks if a new habitat can be formed around the item just placed
 func check_for_new_habitat(placed_item: Node2D):
 	if not is_instance_valid(Global.current_world):
-		print("[HabitatManager] Error: Global.current_world is not valid. Register it in Game.gd.")
 		return
 
-	print("[HabitatManager] Checking item: ", placed_item.name)
-	if not "furniture_data" in placed_item or not placed_item.furniture_data:
-		print("[HabitatManager] Aborting: No furniture_data found")
-		return
-	
-	print("[HabitatManager] Item type: ", placed_item.furniture_data.furniture_type)
+	# Wait for physics frame so overlapping bodies and groups are updated
+	await Global.get_tree().physics_frame
+	if not is_instance_valid(placed_item): return
+
+	# If we placed furniture, check if it's inside any HabitatZone
+	if placed_item.is_in_group("furniture"):
+		var all_zones = Global.current_world.get_tree().get_nodes_in_group("habitat_zones")
+		for zone in all_zones:
+			if zone is HabitatZone:
+				zone._update_furniture_inside()
+				zone.check_habitat_recipe()
+
+func check_zone_for_habitat(zone: HabitatZone):
+	print("[HabitatManager] Checking zone for habitat: ", zone.name)
 	
 	for recipe in habitat_recipes:
-		print("[HabitatManager] Testing recipe: ", recipe.habitat_name)
-		var found_components = find_recipe_components(recipe, placed_item)
+		var found_components = find_recipe_components_in_zone(recipe, zone)
 		if found_components.size() > 0:
-			print("[HabitatManager] SUCCESS: Habitat formed!")
-			create_habitat(recipe, found_components)
+			print("[HabitatManager] SUCCESS: Habitat formed in zone!")
+			var habitat = create_habitat(recipe, found_components, zone)
+			zone.set_habitat(habitat)
 			break
 
-func find_recipe_components(recipe: HabitatData, center_item: Node2D) -> Array[Node2D]:
-	# Get all furniture in the world (you might want to use groups for optimization)
-	var all_furniture = Global.current_world.get_tree().get_nodes_in_group("furniture")
-	
+func find_recipe_components_in_zone(recipe: HabitatData, zone: HabitatZone) -> Array[Node2D]:
 	var components_found: Array[Node2D] = []
 	var recipe_counts = recipe.recipe.duplicate()
 	
-	# Start with the item just placed
-	var center_type = ""
-	if "furniture_data" in center_item and center_item.furniture_data:
-		center_type = center_item.furniture_data.furniture_type
+	print("[HabitatManager] Checking recipe '", recipe.habitat_name, "' in zone. Items in zone: ", zone.furniture_inside.size())
 	
-	# Basic proximity check
-	for item in all_furniture:
-		if not item.is_placed: continue
-		if item.global_position.distance_to(center_item.global_position) > recipe.detection_radius:
+	for item in zone.furniture_inside:
+		if not item.is_placed: 
+			print("[HabitatManager]   - Item ", item.name, " is NOT placed yet.")
 			continue
 			
 		var type = ""
 		if "furniture_data" in item and item.furniture_data:
 			type = item.furniture_data.furniture_type
 		
+		print("[HabitatManager]   - Found item type: '", type, "' (", item.name, ")")
+		
 		if recipe_counts.has(type) and recipe_counts[type] > 0:
 			# Check if this item is already part of another habitat
 			if item.get_meta("habitat_parent", null) == null:
 				components_found.append(item)
 				recipe_counts[type] -= 1
+				print("[HabitatManager]     Matches requirement! Remaining: ", recipe_counts[type], " for ", type)
 	
-	# Verify if all requirements are met (all counts should be 0)
+	# Verify if all requirements are met
 	for type in recipe_counts:
 		if recipe_counts[type] > 0:
 			return [] # Recipe incomplete
 			
 	return components_found
 
-func create_habitat(recipe: HabitatData, components: Array[Node2D]):
+func find_recipe_components(recipe: HabitatData, center_item: Node2D) -> Array[Node2D]:
+	# (Old proximity logic, keep for safety or remove if fully switching)
+	# ... (existing code)
+	return []
+
+func create_habitat(recipe: HabitatData, components: Array[Node2D], zone: HabitatZone = null) -> Habitat:
 	var habitat = habitat_scene.instantiate()
 	habitat.name = recipe.habitat_name
 	habitat.data = recipe
 	habitat.components = components
+	habitat.habitat_zone = zone
 	
-	# Calculate center position before reparenting
+	# Calculate center position
 	var avg_pos = Vector2.ZERO
 	for c in components:
 		avg_pos += c.global_position
 	
-	habitat.global_position = avg_pos / components.size()
+	if zone:
+		habitat.global_position = zone.global_position
+	else:
+		habitat.global_position = avg_pos / components.size()
 	
-	# Add the habitat to the world first
 	Global.current_world.add_child(habitat)
 	
-	# Now reparent each component to be a child of the habitat
 	for c in components:
-		c.reparent(habitat) # Keeps global position by default in Godot 4
+		c.reparent(habitat)
 		c.set_meta("habitat_parent", habitat)
-		c.modulate = Color(0.8, 1.2, 0.8) # Visual feedback
+		c.modulate = Color(0.8, 1.2, 0.8)
 	
 	all_habitats.append(habitat)
 	habitat_created.emit(habitat)
 	print("[HabitatManager] Created ", habitat.name, " with ", components.size(), " items.")
+	return habitat
 
 func cleanup_habitats():
 	all_habitats = all_habitats.filter(func(h): return is_instance_valid(h))

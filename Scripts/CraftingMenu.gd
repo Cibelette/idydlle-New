@@ -54,7 +54,9 @@ func craft_item(item_data: FurnitureData):
 
 		# Fallback to base furniture scene if specific size doesn't exist
 		var target_scene = base_furniture_scene
-		if ResourceLoader.exists(scene_path):
+		if item_data.custom_scene:
+			target_scene = item_data.custom_scene
+		elif ResourceLoader.exists(scene_path):
 			target_scene = load(scene_path)
 
 		var new_item = target_scene.instantiate()

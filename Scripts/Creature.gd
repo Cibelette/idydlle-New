@@ -27,10 +27,14 @@ func _process(delta):
 
 func _wander():
 	var center = global_position
+	var current_wander_radius = wander_radius
+	
 	if habitat:
 		center = habitat.global_position
+		if habitat is HabitatZone:
+			current_wander_radius = 60.0 # Stay within 128x128 zone
 	
-	var offset = Vector2(randf_range(-wander_radius, wander_radius), randf_range(-wander_radius, wander_radius))
+	var offset = Vector2(randf_range(-current_wander_radius, current_wander_radius), randf_range(-current_wander_radius, current_wander_radius))
 	target_position = center + offset
 	is_moving = true
 

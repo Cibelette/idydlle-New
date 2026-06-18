@@ -54,6 +54,7 @@ func is_position_valid(item: Node2D) -> bool:
 	query.shape = collision_node.shape
 	query.transform = item.global_transform
 	query.exclude = [item.get_rid()]
+	query.collision_mask = item.collision_layer # Only check against layers this item is on
 	
 	var results = space_state.intersect_shape(query)
 	return results.size() == 0

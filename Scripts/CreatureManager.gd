@@ -32,7 +32,10 @@ func spawn_creature_for_habitat(habitat: Habitat) -> Creature:
 	
 	# Set up relationships
 	if "habitat" in creature:
-		creature.habitat = habitat
+		if habitat.habitat_zone:
+			creature.habitat = habitat.habitat_zone
+		else:
+			creature.habitat = habitat
 		
 	# Add to world
 	Global.current_world.add_child(creature)

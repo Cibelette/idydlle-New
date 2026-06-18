@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://b0xqis5eqyghh" path="res://Ressources/Furnitures/Table.tres" id="3_table"]
 [ext_resource type="Resource" uid="uid://c6u6vphfkp0qr" path="res://Ressources/Furnitures/Stool.tres" id="4_stool"]
 [ext_resource type="Resource" uid="uid://c7m5yq1p8j3v2" path="res://Ressources/Furnitures/tree.tres" id="5_tree"]
+[ext_resource type="Resource" path="res://Ressources/Furnitures/HabitatZone.tres" id="6_zone"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ka71"]
 bg_color = Color(0.6554657, 0.58961415, 0.50203437, 1)
@@ -28,7 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_script")
-craftable_items = Array[Resource("res://Scripts/FurnitureData.gd")]([ExtResource("2_chest"), ExtResource("3_table"), ExtResource("4_stool"), ExtResource("5_tree")])
+craftable_items = Array[Resource("res://Scripts/FurnitureData.gd")]([ExtResource("2_chest"), ExtResource("3_table"), ExtResource("4_stool"), ExtResource("5_tree"), ExtResource("6_zone")])
 
 [node name="OpenButton" type="Button" parent="." unique_id=801116239]
 layout_mode = 1

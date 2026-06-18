@@ -6,6 +6,7 @@ class_name FurnitureData
 @export var furniture_type: String = "Misc" # Used for Habitat Recipes (e.g. "Table")
 @export var costs: Dictionary = {"Wood": 10}
 @export var icon: Texture2D
+@export var custom_scene: PackedScene
 
 @export_group("Visuals")
 @export var texture: Texture2D

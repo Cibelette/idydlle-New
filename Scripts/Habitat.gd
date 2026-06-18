@@ -4,6 +4,7 @@ class_name Habitat
 var data: HabitatData
 var components: Array[Node2D] = [] # Furniture pieces making this habitat
 var spawned_creatures: Array[Creature] = []
+var habitat_zone: Node2D = null
 
 @onready var spawn_timer: Timer = Timer.new()
 
