@@ -1,5 +1,5 @@
 extends StaticBody2D
-class_name HabitatZone
+class_name LivingArea
 
 @export var is_placed: bool = false
 @export var furniture_data: FurnitureData
@@ -20,7 +20,7 @@ func _ready():
 
 func place():
 	is_placed = true
-	add_to_group("habitat_zones")
+	add_to_group("living_areas")
 	modulate.a = 1.0
 	collision.disabled = false
 	background.show()
@@ -49,7 +49,7 @@ func _update_furniture_inside():
 	var half_size = 256.0 # For 128x128 zone
 	var my_pos = global_position
 	
-	print("[HabitatZone] Scanning for furniture. Total in world: ", all_furniture.size())
+	print("[LivingArea] Scanning for furniture. Total in world: ", all_furniture.size())
 	
 	for f in all_furniture:
 		if not is_instance_valid(f) or not f.is_placed: continue
@@ -60,9 +60,9 @@ func _update_furniture_inside():
 		and f_pos.y >= my_pos.y - half_size and f_pos.y <= my_pos.y + half_size:
 			if not furniture_inside.has(f):
 				furniture_inside.append(f)
-				print("[HabitatZone]   - Detected inside: ", f.name, " at ", f_pos)
+				print("[LivingArea]   - Detected inside: ", f.name, " at ", f_pos)
 	
-	print("[HabitatZone] Scan complete. Items found: ", furniture_inside.size())
+	print("[LivingArea] Scan complete. Items found: ", furniture_inside.size())
 
 func check_habitat_recipe():
 	if active_habitat:

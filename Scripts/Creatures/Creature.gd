@@ -31,7 +31,7 @@ func _wander():
 	
 	if habitat:
 		center = habitat.global_position
-		if habitat is HabitatZone:
+		if habitat is LivingArea:
 			current_wander_radius = 60.0 # Stay within 128x128 zone
 	
 	var offset = Vector2(randf_range(-current_wander_radius, current_wander_radius), randf_range(-current_wander_radius, current_wander_radius))
@@ -80,12 +80,12 @@ func update_happiness_display():
 func produce_from_source(source: Node2D):
 	if not data or not source: return
 	
-	# Verify we are in a HabitatZone
-	if not habitat or not habitat is HabitatZone:
-		print("[Production] ", data.species_name, " aborted harvest: Not in a valid HabitatZone.")
+	# Verify we are in a LivingArea
+	if not habitat or not habitat is LivingArea:
+		print("[Production] ", data.species_name, " aborted harvest: Not in a valid LivingArea.")
 		return
 		
-	# Find a Chest in the HabitatZone
+	# Find a Chest in the LivingArea
 	var target_chest = null
 	for item in habitat.furniture_inside:
 		if is_instance_valid(item) and "furniture_data" in item and item.furniture_data:

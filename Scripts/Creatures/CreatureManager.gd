@@ -32,8 +32,8 @@ func spawn_creature_for_habitat(habitat: Habitat) -> Creature:
 	
 	# Set up relationships
 	if "habitat" in creature:
-		if habitat.habitat_zone:
-			creature.habitat = habitat.habitat_zone
+		if habitat.living_area:
+			creature.habitat = habitat.living_area
 		else:
 			creature.habitat = habitat
 		

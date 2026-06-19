@@ -19,15 +19,15 @@ func check_for_new_habitat(placed_item: Node2D):
 	await Global.get_tree().physics_frame
 	if not is_instance_valid(placed_item): return
 
-	# If we placed furniture, check if it's inside any HabitatZone
+	# If we placed furniture, check if it's inside any LivingArea
 	if placed_item.is_in_group("furniture"):
-		var all_zones = Global.current_world.get_tree().get_nodes_in_group("habitat_zones")
+		var all_zones = Global.current_world.get_tree().get_nodes_in_group("living_areas")
 		for zone in all_zones:
-			if zone is HabitatZone:
+			if zone is LivingArea:
 				zone._update_furniture_inside()
 				zone.check_habitat_recipe()
 
-func check_zone_for_habitat(zone: HabitatZone):
+func check_zone_for_habitat(zone: LivingArea):
 	print("[HabitatManager] Checking zone for habitat: ", zone.name)
 	
 	for recipe in habitat_recipes:
@@ -38,7 +38,7 @@ func check_zone_for_habitat(zone: HabitatZone):
 			zone.set_habitat(habitat)
 			break
 
-func find_recipe_components_in_zone(recipe: HabitatData, zone: HabitatZone) -> Array[Node2D]:
+func find_recipe_components_in_zone(recipe: HabitatData, zone: LivingArea) -> Array[Node2D]:
 	var components_found: Array[Node2D] = []
 	
 	var recipe_counts = {}
@@ -79,12 +79,12 @@ func find_recipe_components(recipe: HabitatData, center_item: Node2D) -> Array[N
 	# ... (existing code)
 	return []
 
-func create_habitat(recipe: HabitatData, components: Array[Node2D], zone: HabitatZone = null) -> Habitat:
+func create_habitat(recipe: HabitatData, components: Array[Node2D], zone: LivingArea = null) -> Habitat:
 	var habitat = habitat_scene.instantiate()
 	habitat.name = recipe.habitat_name
 	habitat.data = recipe
 	habitat.components = components
-	habitat.habitat_zone = zone
+	habitat.living_area = zone
 	
 	# Calculate center position
 	var avg_pos = Vector2.ZERO
