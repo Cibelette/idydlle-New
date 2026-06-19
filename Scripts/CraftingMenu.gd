@@ -19,8 +19,30 @@ func setup_menu():
 		if child is Button:
 			child.queue_free()
 	
+	# Load all items from directory dynamically
+	var items: Array[FurnitureData] = []
+	var path = "res://Ressources/Furnitures/"
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			# Godot exported builds might append .remap to text resources, but ends_with(".tres") works in editor
+			# We also check for ends_with(".tres.remap") for exported game compatibility
+			if not dir.current_is_dir() and (file_name.ends_with(".tres") or file_name.ends_with(".tres.remap")):
+				# Strip .remap suffix if present
+				var clean_name = file_name.replace(".remap", "")
+				var res = load(path + clean_name)
+				if res is FurnitureData:
+					items.append(res)
+			file_name = dir.get_next()
+		dir.list_dir_end()
+	
+	# Sort items alphabetically by name
+	items.sort_custom(func(a, b): return a.name.nocasecmp_to(b.name) < 0)
+	
 	# Create buttons for each craftable item resource
-	for item_data in craftable_items:
+	for item_data in items:
 		if not item_data: continue
 		
 		var btn = Button.new()

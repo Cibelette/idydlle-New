@@ -18,7 +18,8 @@ enum FurnitureType {
 	STOOL,
 	TREE,
 	ZONE,
-	ROCK
+	ROCK,
+	BUSH
 }
 
 static func resource_to_string(type: ResourceType) -> String:
@@ -49,6 +50,7 @@ static func furniture_to_string(type: FurnitureType) -> String:
 		FurnitureType.TREE: return "Tree"
 		FurnitureType.ZONE: return "Zone"
 		FurnitureType.ROCK: return "Rock"
+		FurnitureType.BUSH: return "Bush"
 		_: return "Misc"
 
 static func string_to_furniture(s: String) -> FurnitureType:
@@ -59,4 +61,5 @@ static func string_to_furniture(s: String) -> FurnitureType:
 		"tree": return FurnitureType.TREE
 		"zone": return FurnitureType.ZONE
 		"rock": return FurnitureType.ROCK
+		"bush": return FurnitureType.BUSH
 		_: return FurnitureType.MISC
