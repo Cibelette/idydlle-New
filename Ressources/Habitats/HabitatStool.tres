@@ -1,19 +1,18 @@
 [gd_resource type="Resource" script_class="HabitatData" format=3 uid="uid://ciux1oxun18gv"]
 
 [ext_resource type="Script" uid="uid://bkuhhp5f81uqc" path="res://Scripts/Habitats/HabitatData.gd" id="1_ijabl"]
-[ext_resource type="Resource" uid="uid://dkca2tpu0yrm2" path="res://Ressources/Creatures/Cat.tres" id="1_ki07t"]
+[ext_resource type="Resource" uid="uid://dil8w8qd3k0fv" path="res://Ressources/Creatures/Chicken.tres" id="1_jur3e"]
 [ext_resource type="PackedScene" uid="uid://02fm25c7lmj4" path="res://Scenes/Creature.tscn" id="2_jur3e"]
-[ext_resource type="Script" path="res://Scripts/Habitats/RecipeItem.gd" id="3_recipeitem"]
+[ext_resource type="Script" uid="uid://whnko2ecmjpy" path="res://Scripts/Habitats/RecipeItem.gd" id="3_recipeitem"]
 
 [sub_resource type="Resource" id="Resource_stool"]
 script = ExtResource("3_recipeitem")
 furniture_type = 3
-amount = 1
 
 [resource]
 script = ExtResource("1_ijabl")
 habitat_name = "Stool"
 recipe_items = Array[ExtResource("3_recipeitem")]([SubResource("Resource_stool")])
 creature_scene = ExtResource("2_jur3e")
-creature_data = ExtResource("1_ki07t")
+creature_data = ExtResource("1_jur3e")
 metadata/_custom_type_script = "uid://bkuhhp5f81uqc"

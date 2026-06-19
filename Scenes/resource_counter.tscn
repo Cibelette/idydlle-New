@@ -1,17 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://pwqshwpwjb57"]
+[gd_scene format=3 uid="uid://pwqshwpwjb57"]
 
 [ext_resource type="FontFile" uid="uid://duvw337a7kvgq" path="res://Assets/Sprout Lands - UI Pack - Basic pack/fonts/pixelFont-7-8x14-sproutLands.ttf" id="1_nxvpl"]
-[ext_resource type="Script" path="res://Scripts/ResourceCounter.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://b46ajwp2vybi0" path="res://Scripts/ResourceCounter.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://bnfmh1mrrdpos" path="res://Assets/Objects/Basic_tools_and_meterials.png" id="2_dewlx"]
 
-[node name="resource_counter" type="Control"]
+[node name="resource_counter" type="Control" unique_id=1164250319]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_script")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1548775312]
 layout_mode = 0
 offset_left = 19.0
 offset_top = -9.0
@@ -21,7 +21,7 @@ theme_override_fonts/font = ExtResource("1_nxvpl")
 theme_override_font_sizes/font_size = 32
 text = "0"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=420046058]
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_dewlx")
 region_enabled = true

@@ -5,6 +5,7 @@ enum ResourceType {
 	NONE,
 	WOOD,
 	STONE,
+	LEAF,
 	BERRY,
 	COINS,
 	FRUIT
@@ -24,6 +25,7 @@ static func resource_to_string(type: ResourceType) -> String:
 	match type:
 		ResourceType.WOOD: return "Wood"
 		ResourceType.STONE: return "Stone"
+		ResourceType.LEAF: return "Leaf"
 		ResourceType.BERRY: return "Berry"
 		ResourceType.COINS: return "Coins"
 		ResourceType.FRUIT: return "Fruit"
@@ -33,6 +35,7 @@ static func string_to_resource(s: String) -> ResourceType:
 	match s.to_lower():
 		"wood": return ResourceType.WOOD
 		"stone": return ResourceType.STONE
+		"leaf": return ResourceType.LEAF
 		"berry": return ResourceType.BERRY
 		"coins": return ResourceType.COINS
 		"fruit": return ResourceType.FRUIT

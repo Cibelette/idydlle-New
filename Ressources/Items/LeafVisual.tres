@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ResourceVisualData" format=3 uid="uid://2kyrh07dpbgv"]
+
+[ext_resource type="Script" uid="uid://bojic1is5b2ho" path="res://Scripts/Items/ResourceVisualData.gd" id="1_a4lq1"]
+[ext_resource type="Texture2D" uid="uid://bes5p4jeu47ke" path="res://Assets/Objects/Basic Grass Biom things 1.png" id="2_24qbt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stone"]
+atlas = ExtResource("2_24qbt")
+region = Rect2(128, 63.54551, 16, 15.454491)
+
+[resource]
+script = ExtResource("1_a4lq1")
+name = "Leaf"
+type = 3
+cost = 15
+sprite = SubResource("AtlasTexture_stone")
