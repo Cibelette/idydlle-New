@@ -11,8 +11,7 @@ extends StaticBody2D
 
 var inventory: Dictionary = {}
 
-var bubble_node: Sprite2D = null
-var bubble_icon_node: Sprite2D = null
+var bubble_indicator: BubbleIndicator = null
 
 func _ready():
 	input_pickable = true
@@ -94,37 +93,28 @@ func _init_bubble():
 	if not furniture_data or furniture_data.furniture_type != Types.FurnitureType.STORAGE: return
 	if not furniture_data.bubble_texture: return
 	
-	# Create the bubble background sprite
-	bubble_node = Sprite2D.new()
-	bubble_node.texture = furniture_data.bubble_texture
-	bubble_node.visible = false
-	bubble_node.z_index = 10 # Draw above other elements
-	add_child(bubble_node)
-	
-	# Create the resource icon sprite as a child of the bubble
-	bubble_icon_node = Sprite2D.new()
-	bubble_icon_node.position = Vector2.ZERO 
-	bubble_node.add_child(bubble_icon_node)
-	
-	# Set bubble position using offset and scale
-	bubble_node.position = furniture_data.bubble_offset * furniture_data.scale
+	bubble_indicator = BubbleIndicator.new()
+	add_child(bubble_indicator)
+	bubble_indicator.setup(
+		furniture_data.bubble_texture,
+		furniture_data.bubble_offset,
+		furniture_data.scale
+	)
 	
 	_update_bubble()
 
 func _update_bubble():
-	if not bubble_node or not is_instance_valid(bubble_node): return
+	if not bubble_indicator or not is_instance_valid(bubble_indicator): return
 	
 	if inventory.is_empty():
-		bubble_node.visible = false
+		bubble_indicator.hide_bubble()
 	else:
-		bubble_node.visible = true
 		var resource_type = inventory.keys()[0]
 		var res_data = ResourcesManager.get_resource_data(resource_type)
 		if res_data and res_data.sprite:
-			bubble_icon_node.texture = res_data.sprite
-			bubble_icon_node.scale = Vector2(0.7, 0.7)
+			bubble_indicator.show_icon(res_data.sprite)
 		else:
-			bubble_icon_node.texture = null
+			bubble_indicator.hide_bubble()
 
 func _notification(what):
 	if Engine.is_editor_hint():
