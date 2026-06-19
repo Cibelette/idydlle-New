@@ -3,13 +3,19 @@
 [ext_resource type="Resource" uid="uid://b8lk3dvnja152" path="res://Ressources/Creatures/Cow.tres" id="1_vx64q"]
 [ext_resource type="PackedScene" uid="uid://02fm25c7lmj4" path="res://Scenes/Creature.tscn" id="2_2pxgx"]
 [ext_resource type="Script" uid="uid://bkuhhp5f81uqc" path="res://Scripts/Habitats/HabitatData.gd" id="2_necsk"]
+[ext_resource type="Script" uid="uid://whnko2ecmjpy" path="res://Scripts/Habitats/RecipeItem.gd" id="3_recipeitem"]
+
+[sub_resource type="Resource" id="Resource_table"]
+script = ExtResource("3_recipeitem")
+furniture_type = 2
+
+[sub_resource type="Resource" id="Resource_stool"]
+script = ExtResource("3_recipeitem")
+furniture_type = 3
 
 [resource]
 script = ExtResource("2_necsk")
 habitat_name = "Dining Area"
-recipe = {
-"Stool": 1,
-"Table": 1
-}
+recipe_items = Array[ExtResource("3_recipeitem")]([SubResource("Resource_table"), SubResource("Resource_stool")])
 creature_scene = ExtResource("2_2pxgx")
 creature_data = ExtResource("1_vx64q")

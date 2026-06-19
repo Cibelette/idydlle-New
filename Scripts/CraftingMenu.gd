@@ -7,7 +7,7 @@ signal item_crafted(item_node)
 
 @export var craftable_items: Array[FurnitureData]
 
-var base_furniture_scene = preload("res://Scenes/Furniture.tscn")
+@export var base_furniture_scene: PackedScene = preload("res://Scenes/Furniture.tscn")
 
 func _ready():
 	crafting_panel.visible = false

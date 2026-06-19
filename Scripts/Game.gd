@@ -1,5 +1,7 @@
 extends Node2D
 
+@export_dir var recipes_dir: String = "res://Ressources/"
+
 @onready var world_node = $Background # Or create a dedicated 'World' node
 
 func _ready():
@@ -15,7 +17,7 @@ func _on_furniture_placed(item):
 
 func _load_habitat_recipes():
 	var recipes: Array[HabitatData] = []
-	var path = "res://Ressources/"
+	var path = recipes_dir
 	var files = Utils.get_files_recursive(path, ".tres")
 	
 	for file_path in files:

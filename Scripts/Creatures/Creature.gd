@@ -89,7 +89,7 @@ func produce_from_source(source: Node2D):
 	var target_chest = null
 	for item in habitat.furniture_inside:
 		if is_instance_valid(item) and "furniture_data" in item and item.furniture_data:
-			if item.furniture_data.furniture_type == Types.FurnitureType.CHEST:
+			if item.furniture_data.furniture_type == Types.FurnitureType.STORAGE:
 				target_chest = item
 				break
 				

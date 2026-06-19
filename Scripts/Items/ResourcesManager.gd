@@ -5,6 +5,7 @@ signal inventory_updated
 # Signal emitted for a specific resource change
 signal resource_changed(type: Types.ResourceType, new_amount: int)
 
+@export_dir var resources_dir: String = "res://Ressources/"
 @export var resource_definitions: Array[ResourceVisualData] = []
 
 # Internal inventory state: { Types.ResourceType.WOOD: 10, Types.ResourceType.STONE: 5, ... }
@@ -16,7 +17,7 @@ func _ready():
 
 ## Automatically loads all .tres files from res://Ressources/ and its subfolders
 func _load_resource_definitions():
-	var path = "res://Ressources/"
+	var path = resources_dir
 	var files = Utils.get_files_recursive(path, ".tres")
 
 	for file_path in files:

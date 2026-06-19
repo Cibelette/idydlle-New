@@ -8,7 +8,7 @@ signal habitat_created(habitat: Habitat)
 # Track all active habitats globally
 var all_habitats: Array[Habitat] = []
 
-var habitat_scene = preload("res://Scenes/Habitat.tscn")
+@export var habitat_scene: PackedScene = preload("res://Scenes/Habitat.tscn")
 
 ## Checks if a new habitat can be formed around the item just placed
 func check_for_new_habitat(placed_item: Node2D):
@@ -40,7 +40,11 @@ func check_zone_for_habitat(zone: HabitatZone):
 
 func find_recipe_components_in_zone(recipe: HabitatData, zone: HabitatZone) -> Array[Node2D]:
 	var components_found: Array[Node2D] = []
-	var recipe_counts = recipe.recipe.duplicate()
+	
+	var recipe_counts = {}
+	for req in recipe.recipe_items:
+		if req:
+			recipe_counts[req.furniture_type] = recipe_counts.get(req.furniture_type, 0) + req.amount
 	
 	print("[HabitatManager] Checking recipe '", recipe.habitat_name, "' in zone. Items in zone: ", zone.furniture_inside.size())
 	
@@ -56,12 +60,12 @@ func find_recipe_components_in_zone(recipe: HabitatData, zone: HabitatZone) -> A
 		var type_string = Types.furniture_to_string(type)
 		print("[HabitatManager]   - Found item type: '", type_string, "' (", item.name, ")")
 		
-		if recipe_counts.has(type_string) and recipe_counts[type_string] > 0:
+		if recipe_counts.has(type) and recipe_counts[type] > 0:
 			# Check if this item is already part of another habitat
 			if item.get_meta("habitat_parent", null) == null:
 				components_found.append(item)
-				recipe_counts[type_string] -= 1
-				print("[HabitatManager]     Matches requirement! Remaining: ", recipe_counts[type_string], " for ", type_string)
+				recipe_counts[type] -= 1
+				print("[HabitatManager]     Matches requirement! Remaining: ", recipe_counts[type], " for ", type_string)
 	
 	# Verify if all requirements are met
 	for type in recipe_counts:

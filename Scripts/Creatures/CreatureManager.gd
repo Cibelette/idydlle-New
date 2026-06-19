@@ -2,7 +2,7 @@ extends Node
 
 var all_creatures: Array[Creature] = []
 
-var base_creature_scene = preload("res://Scenes/Creature.tscn")
+@export var base_creature_scene: PackedScene = preload("res://Scenes/Creature.tscn")
 
 ## Spawns a creature for a specific habitat
 func spawn_creature_for_habitat(habitat: Habitat) -> Creature:

@@ -12,7 +12,7 @@ enum ResourceType {
 
 enum FurnitureType {
 	MISC,
-	CHEST,
+	STORAGE,
 	TABLE,
 	STOOL,
 	TREE,
@@ -40,7 +40,7 @@ static func string_to_resource(s: String) -> ResourceType:
 
 static func furniture_to_string(type: FurnitureType) -> String:
 	match type:
-		FurnitureType.CHEST: return "Chest"
+		FurnitureType.STORAGE: return "Storage"
 		FurnitureType.TABLE: return "Table"
 		FurnitureType.STOOL: return "Stool"
 		FurnitureType.TREE: return "Tree"
@@ -50,7 +50,7 @@ static func furniture_to_string(type: FurnitureType) -> String:
 
 static func string_to_furniture(s: String) -> FurnitureType:
 	match s.to_lower():
-		"chest": return FurnitureType.CHEST
+		"Storage": return FurnitureType.STORAGE
 		"table": return FurnitureType.TABLE
 		"stool": return FurnitureType.STOOL
 		"tree": return FurnitureType.TREE

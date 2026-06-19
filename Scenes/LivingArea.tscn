@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cxexaipntin76"]
 
-[ext_resource type="Script" uid="uid://jbwfqx6n0hpm" path="res://Scripts/HabitatZone.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://jbwfqx6n0hpm" path="res://Scripts/HabitatZone.gd" id="1_3t53e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_zone"]
 size = Vector2(256, 256)
@@ -9,7 +9,7 @@ size = Vector2(256, 256)
 position = Vector2(-64, -64)
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_script")
+script = ExtResource("1_3t53e")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=20745760]
 offset_left = -64.0

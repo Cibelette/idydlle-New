@@ -18,7 +18,16 @@ static func get_files_recursive(path: String, extension: String) -> Array[String
 			if dir.current_is_dir():
 				files.append_array(get_files_recursive(path + file_name + "/", extension))
 			else:
-				if file_name.ends_with(extension):
-					files.append(path + file_name)
+				# In exported builds, files inside the PCK may end with .remap or .import
+				var clean_name = file_name
+				if clean_name.ends_with(".remap"):
+					clean_name = clean_name.trim_suffix(".remap")
+				elif clean_name.ends_with(".import"):
+					clean_name = clean_name.trim_suffix(".import")
+				
+				if clean_name.ends_with(extension):
+					var full_path = path + clean_name
+					if not files.has(full_path):
+						files.append(full_path)
 			file_name = dir.get_next()
 	return files

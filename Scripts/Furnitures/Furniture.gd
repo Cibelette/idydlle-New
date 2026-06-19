@@ -3,6 +3,7 @@ extends StaticBody2D
 
 @export var is_placed: bool = false
 @export var furniture_data: FurnitureData
+@export var resource_popup_scene: PackedScene = preload("res://Scenes/resource_popup.tscn")
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -140,7 +141,7 @@ func _get_current_habitat_zone() -> HabitatZone:
 
 func _input_event(viewport: Node, event: InputEvent, shape_idx: int):
 	if is_placed and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if furniture_data and furniture_data.furniture_type == Types.FurnitureType.CHEST:
+		if furniture_data and furniture_data.furniture_type == Types.FurnitureType.STORAGE:
 			collect_inventory()
 
 func store_resource(type: Types.ResourceType, amount: int):
@@ -161,7 +162,7 @@ func collect_inventory():
 		
 	print("[Storage] Collecting from Chest:")
 	
-	var popup_scene = load("res://Scenes/resource_popup.tscn")
+	var popup_scene = resource_popup_scene
 	var idx = 0
 	var total_types = inventory.size()
 	
