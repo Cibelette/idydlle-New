@@ -46,7 +46,7 @@ func _update_furniture_inside():
 	if not is_instance_valid(Global.current_world): return
 	
 	var all_furniture = get_tree().get_nodes_in_group("furniture")
-	var half_size = 64.0 # For 128x128 zone
+	var half_size = 256.0 # For 128x128 zone
 	var my_pos = global_position
 	
 	print("[HabitatZone] Scanning for furniture. Total in world: ", all_furniture.size())
