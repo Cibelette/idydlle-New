@@ -16,6 +16,9 @@ texture = ExtResource("2_bagqn")
 region_enabled = true
 region_rect = Rect2(14.484478, 16.017727, 19.39075, 17.954403)
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=644429534]
 shape = SubResource("RectangleShape2D_1")
 

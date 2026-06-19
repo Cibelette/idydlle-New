@@ -11,6 +11,9 @@ extends StaticBody2D
 
 var inventory: Dictionary = {}
 
+var bubble_node: Sprite2D = null
+var bubble_icon_node: Sprite2D = null
+
 func _ready():
 	input_pickable = true
 	# Force connection in case Godot's implicit routing fails
@@ -18,10 +21,17 @@ func _ready():
 		input_event.connect(_input_event)
 		
 	_apply_data()
+	_init_bubble()
 	
 	if Engine.is_editor_hint():
 		set_notify_transform(true)
 		return
+
+	# Connect hover events for playing animation
+	if not mouse_entered.is_connected(_on_mouse_entered):
+		mouse_entered.connect(_on_mouse_entered)
+	if not mouse_exited.is_connected(_on_mouse_exited):
+		mouse_exited.connect(_on_mouse_exited)
 
 	if is_placed:
 		# If checked in Inspector, finalize immediately
@@ -43,15 +53,78 @@ func _apply_data():
 		
 		if furniture_data.sprite_frames:
 			animated_sprite.sprite_frames = furniture_data.sprite_frames
-			animated_sprite.visible = true
-			animated_sprite.play("default")
-			sprite.visible = false
+			if furniture_data.texture:
+				# Default to static texture if both are present
+				animated_sprite.visible = false
+				animated_sprite.stop()
+				sprite.visible = true
+				sprite.texture = furniture_data.texture
+			else:
+				# Only sprite frames available
+				animated_sprite.visible = true
+				animated_sprite.play("default")
+				sprite.visible = false
 		else:
 			animated_sprite.visible = false
 			sprite.visible = true
 			sprite.texture = furniture_data.texture
 			
 	# Note: Collision size is now determined by the scene (1x1, 2x1, etc.)
+
+func _on_mouse_entered():
+	if not is_placed: return
+	if not furniture_data: return
+	
+	if animated_sprite and sprite and furniture_data.sprite_frames and furniture_data.texture:
+		sprite.visible = false
+		animated_sprite.visible = true
+		animated_sprite.play("default")
+
+func _on_mouse_exited():
+	if not is_placed: return
+	if not furniture_data: return
+	
+	if animated_sprite and sprite and furniture_data.sprite_frames and furniture_data.texture:
+		animated_sprite.stop()
+		animated_sprite.visible = false
+		sprite.visible = true
+
+func _init_bubble():
+	if Engine.is_editor_hint(): return
+	if not furniture_data or furniture_data.furniture_type != Types.FurnitureType.STORAGE: return
+	if not furniture_data.bubble_texture: return
+	
+	# Create the bubble background sprite
+	bubble_node = Sprite2D.new()
+	bubble_node.texture = furniture_data.bubble_texture
+	bubble_node.visible = false
+	bubble_node.z_index = 10 # Draw above other elements
+	add_child(bubble_node)
+	
+	# Create the resource icon sprite as a child of the bubble
+	bubble_icon_node = Sprite2D.new()
+	bubble_icon_node.position = Vector2.ZERO 
+	bubble_node.add_child(bubble_icon_node)
+	
+	# Set bubble position using offset and scale
+	bubble_node.position = furniture_data.bubble_offset * furniture_data.scale
+	
+	_update_bubble()
+
+func _update_bubble():
+	if not bubble_node or not is_instance_valid(bubble_node): return
+	
+	if inventory.is_empty():
+		bubble_node.visible = false
+	else:
+		bubble_node.visible = true
+		var resource_type = inventory.keys()[0]
+		var res_data = ResourcesManager.get_resource_data(resource_type)
+		if res_data and res_data.sprite:
+			bubble_icon_node.texture = res_data.sprite
+			bubble_icon_node.scale = Vector2(0.7, 0.7)
+		else:
+			bubble_icon_node.texture = null
 
 func _notification(what):
 	if Engine.is_editor_hint():
@@ -150,10 +223,7 @@ func store_resource(type: Types.ResourceType, amount: int):
 	else:
 		inventory[type] = amount
 	
-	# Small visual feedback
-	var tween = create_tween()
-	tween.tween_property(self, "scale", Vector2(1.1, 1.1), 0.1)
-	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
+	_update_bubble()
 
 func collect_inventory():
 	if inventory.is_empty():
@@ -189,6 +259,7 @@ func collect_inventory():
 		idx += 1
 		
 	inventory.clear()
+	_update_bubble()
 	
 	# Visual feedback for collection
 	var tween = create_tween()
