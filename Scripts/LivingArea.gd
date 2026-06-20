@@ -7,6 +7,7 @@ class_name LivingArea
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var area: Area2D = $Area2D
 @onready var background: ColorRect = $ColorRect
+@onready var happiness_label: Label = get_node_or_null("HappinessLabel")
 
 var furniture_inside: Array[Node2D] = []
 var active_habitat: Habitat = null
@@ -118,3 +119,26 @@ func set_habitat(habitat: Habitat):
 	active_habitat = habitat
 	# Link creatures to this zone? 
 	# Habitat itself usually handles creature spawning.
+	update_happiness()
+
+func _process(_delta):
+	update_happiness()
+
+func update_happiness():
+	if not is_placed:
+		if happiness_label:
+			happiness_label.visible = false
+		return
+
+	if active_habitat and is_instance_valid(active_habitat):
+		if happiness_label:
+			happiness_label.visible = true
+			var total = 0
+			active_habitat.spawn_creatures_clean_up()
+			for creature in active_habitat.spawned_creatures:
+				if is_instance_valid(creature) and creature.data:
+					total += creature.data.hapiness
+			happiness_label.text = "Happiness: " + str(total)
+	else:
+		if happiness_label:
+			happiness_label.visible = false

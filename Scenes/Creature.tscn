@@ -47,18 +47,3 @@ path_desired_distance = 4.0
 target_desired_distance = 4.0
 path_postprocessing = 1
 
-[node name="Happiness" type="Control" parent="." unique_id=447208601]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="Happiness" unique_id=16020618]
-layout_mode = 0
-offset_left = -9.0
-offset_top = -33.0
-offset_right = 31.0
-offset_bottom = -10.0
-theme_override_font_sizes/font_size = 6
-text = "Happiness:
-x"

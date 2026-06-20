@@ -12,7 +12,6 @@ var is_moving: bool = false
 
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var production_timer: Timer = $Timer # On réutilise le timer existant dans la scène
-@onready var happiness_label: Label = get_node_or_null("Happiness/Label")
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _process(delta):
@@ -63,19 +62,6 @@ func _apply_data():
 		production_timer.wait_time = data.produce_time
 		production_timer.start()
 	
-	update_happiness_display()
-
-func update_happiness_display():
-	if data:
-		var text = "Happiness: " + str(data.hapiness)
-		if happiness_label:
-			happiness_label.text = text
-		else:
-			# Check for the structure in Creature.tscn
-			var alt_label = get_node_or_null("Happiness/Label")
-			if alt_label:
-				alt_label.text = text
-
 
 func produce_from_source(source: Node2D):
 	if not data or not source: return

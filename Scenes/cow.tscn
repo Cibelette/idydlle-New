@@ -56,13 +56,4 @@ path_desired_distance = 4.0
 target_desired_distance = 4.0
 path_postprocessing = 1
 
-[node name="HappinessLabel" type="Label" parent="." unique_id=2037708252]
-offset_left = -26.0
-offset_top = -25.0
-offset_right = 29.0
-offset_bottom = -2.0
-theme_override_font_sizes/font_size = 8
-text = "Happiness: 0"
-horizontal_alignment = 1
-
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
