@@ -9,9 +9,12 @@ class_name LivingArea
 @onready var background: ColorRect = $ColorRect
 @onready var happiness_label: Label = get_node_or_null("HappinessLabel")
 
+signal happiness_changed(new_value: int)
+
 var furniture_inside: Array[Node2D] = []
 var active_habitat: Habitat = null
 var inventory: Dictionary = {}
+var happiness: int = 0
 
 func _ready():
 	if not is_placed:
@@ -26,9 +29,16 @@ func place():
 	modulate.a = 1.0
 	collision.disabled = false
 	background.show()
+	
+	FurnitureManager.register_item(self)
+	
 	# Check for furniture already inside
 	_update_furniture_inside()
 	check_habitat_recipe()
+
+func _exit_tree():
+	if Engine.is_editor_hint(): return
+	FurnitureManager.deregister_item(self)
 
 func _on_area_2d_body_entered(body: Node2D):
 	# If it's a furniture (has furniture_data), we track it even if not placed yet
@@ -59,35 +69,20 @@ func _update_furniture_inside():
 		if is_instance_valid(f) and "living_area" in f and f.living_area == self:
 			f.living_area = null
 	furniture_inside.clear()
-	if not is_instance_valid(Global.current_world): return
 	
-	# Determine bounds dynamically from CollisionShape2D
-	var shape_size = Vector2(256.0, 256.0) # Fallback size
-	var zone_center = global_position + Vector2(64.0, 64.0) # Fallback center
+	var zone_cells = FurnitureManager.get_occupied_cells_for_item(self)
+	print("[LivingArea] Scanning for furniture inside zone cells: ", zone_cells)
 	
-	if collision and collision.shape is RectangleShape2D:
-		shape_size = collision.shape.size
-		zone_center = collision.global_position
-		
-	var half_size = shape_size / 2.0
-	
-	var all_furniture = get_tree().get_nodes_in_group("furniture")
-	print("[LivingArea] Scanning for furniture. Total in world: ", all_furniture.size())
-	
-	for f in all_furniture:
-		if not is_instance_valid(f) or not f.is_placed: continue
-		
-		var f_pos = f.global_position
-		# AABB check based on CollisionShape2D bounds
-		if f_pos.x >= zone_center.x - half_size.x and f_pos.x <= zone_center.x + half_size.x \
-		and f_pos.y >= zone_center.y - half_size.y and f_pos.y <= zone_center.y + half_size.y:
+	for cell in zone_cells:
+		var f = FurnitureManager.furniture_grid.get(cell)
+		if is_instance_valid(f) and f.is_placed:
 			if not furniture_inside.has(f):
 				furniture_inside.append(f)
 				if "living_area" in f:
 					f.living_area = self
 					if f.has_method("_update_bubble"):
 						f._update_bubble()
-				print("[LivingArea]   - Detected inside: ", f.name, " at ", f_pos)
+				print("[LivingArea]   - Detected inside: ", f.name, " at cell ", cell)
 	
 	print("[LivingArea] Scan complete. Items found: ", furniture_inside.size())
 	update_happiness()
@@ -120,28 +115,17 @@ func check_habitat_recipe():
 	HabitatManager.check_zone_for_habitat(self)
 
 func set_habitat(habitat: Habitat):
-	if active_habitat and is_instance_valid(active_habitat) and active_habitat.creatures_changed.is_connected(update_happiness):
-		active_habitat.creatures_changed.disconnect(update_happiness)
-
 	active_habitat = habitat
 	
-	if active_habitat and is_instance_valid(active_habitat):
-		active_habitat.creatures_changed.connect(update_happiness)
-		
 	# Link creatures to this zone? 
 	# Habitat itself usually handles creature spawning.
 	update_happiness()
 
 func get_total_happiness() -> int:
 	var total = 0
-	if active_habitat and is_instance_valid(active_habitat):
-		active_habitat.spawn_creatures_clean_up()
-		for creature in active_habitat.spawned_creatures:
-			if is_instance_valid(creature) and creature.data:
-				total += creature.data.happiness
-		for f in furniture_inside:
-			if is_instance_valid(f) and "is_placed" in f and f.is_placed and "furniture_data" in f and f.furniture_data:
-				total += f.furniture_data.happiness
+	for f in furniture_inside:
+		if is_instance_valid(f) and "is_placed" in f and f.is_placed and "furniture_data" in f and f.furniture_data:
+			total += f.furniture_data.happiness
 	return total
 
 func update_happiness():
@@ -153,8 +137,17 @@ func update_happiness():
 	if active_habitat and is_instance_valid(active_habitat):
 		if happiness_label:
 			happiness_label.visible = true
-			var total = get_total_happiness()
-			happiness_label.text = "Happiness: " + str(total)
+		
+		var new_happiness = get_total_happiness()
+		if new_happiness != happiness:
+			happiness = new_happiness
+			happiness_changed.emit(happiness)
+			
+		if happiness_label:
+			happiness_label.text = "Happiness: " + str(happiness)
 	else:
+		if happiness != 0:
+			happiness = 0
+			happiness_changed.emit(happiness)
 		if happiness_label:
 			happiness_label.visible = false

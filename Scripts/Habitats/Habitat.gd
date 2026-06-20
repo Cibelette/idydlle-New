@@ -1,8 +1,6 @@
 extends Node2D
 class_name Habitat
 
-signal creatures_changed
-
 var data: HabitatData
 var components: Array[Node2D] = [] # Furniture pieces making this habitat
 var spawned_creatures: Array[Creature] = []
@@ -28,12 +26,6 @@ func spawn_creature():
 func on_creature_spawned(creature: Creature):
 	spawn_creatures_clean_up() # Remove dead ones from list
 	spawned_creatures.append(creature)
-	creature.tree_exited.connect(func():
-		if is_instance_valid(self):
-			spawn_creatures_clean_up()
-			creatures_changed.emit()
-	)
-	creatures_changed.emit()
 
 func spawn_creatures_clean_up():
 	spawned_creatures = spawned_creatures.filter(func(c): return is_instance_valid(c))

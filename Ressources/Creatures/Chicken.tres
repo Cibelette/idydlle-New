@@ -33,4 +33,3 @@ produce_amount = 20
 produce_time = 1.0
 resource_type = 3
 sound_text = "Cluck!"
-happiness = 15
