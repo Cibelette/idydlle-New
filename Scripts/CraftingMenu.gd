@@ -65,21 +65,29 @@ func toggle_menu():
 func _on_open_button_pressed():
 	toggle_menu()
 
-# Generic crafting function using Resource
 func craft_item(item_data: FurnitureData):
 	# Check if we can afford all resources
 	if ResourcesManager.can_afford_multiple(item_data.costs):
-		# Spend all resources
-		ResourcesManager.spend_multiple(item_data.costs)
-
-		# Add to player inventory
-		ResourcesManager.add_furniture(item_data, 1)
-		
-		# Emitting placeholder for compatibility if needed
-		# (We don't instantiate the scene here anymore, it's done when placing from inventory)
-		
-		print("[Crafting] Crafted and added to inventory: ", item_data.name)
+		# Hide crafting panel
 		crafting_panel.visible = false
+		
+		# Instantiate and start direct placement
+		var scene_path = "res://Scenes/Furniture_%dx%d.tscn" % [item_data.size.x, item_data.size.y]
+		var target_scene = base_furniture_scene
+		if item_data.custom_scene:
+			target_scene = item_data.custom_scene
+		elif ResourceLoader.exists(scene_path):
+			target_scene = load(scene_path)
+
+		var new_item = target_scene.instantiate()
+		new_item.furniture_data = item_data
+		new_item.set_meta("is_direct_craft", true)
+
+		if "is_placed" in new_item:
+			new_item.is_placed = false
+
+		FurnitureManager.start_placement(new_item)
+		print("[Crafting] Proposed placement for: ", item_data.name)
 	else:
 		print("Not enough resources to craft ", item_data.name)
 		

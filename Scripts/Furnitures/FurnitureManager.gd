@@ -69,7 +69,15 @@ func finalize_placement():
 		all_furniture.append(current_placing_item)
 		
 		if f_data:
-			ResourcesManager.spend_furniture(f_data, 1)
+			if current_placing_item.has_meta("is_direct_craft") and current_placing_item.get_meta("is_direct_craft"):
+				if ResourcesManager.can_afford_multiple(f_data.costs):
+					ResourcesManager.spend_multiple(f_data.costs)
+				else:
+					print("[FurnitureManager] Cannot place - resources no longer available!")
+					cancel_placement()
+					return
+			else:
+				ResourcesManager.spend_furniture(f_data, 1)
 		
 		# Emit global signal for compatibility
 		Global.furniture_placed.emit(current_placing_item)
