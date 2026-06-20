@@ -138,6 +138,9 @@ func update_happiness():
 			for creature in active_habitat.spawned_creatures:
 				if is_instance_valid(creature) and creature.data:
 					total += creature.data.hapiness
+			for f in furniture_inside:
+				if is_instance_valid(f) and "is_placed" in f and f.is_placed and "furniture_data" in f and f.furniture_data:
+					total += f.furniture_data.hapiness
 			happiness_label.text = "Happiness: " + str(total)
 	else:
 		if happiness_label:

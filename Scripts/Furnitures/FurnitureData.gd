@@ -22,3 +22,4 @@ class_name FurnitureData
 @export var resource_type: Types.ResourceType = Types.ResourceType.NONE # e.g. "Wood"
 @export var produce_amount: int = 0
 @export var produce_time: float = 0.0 # 0 means no production
+@export var hapiness: int = 0

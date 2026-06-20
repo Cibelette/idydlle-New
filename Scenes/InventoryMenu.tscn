@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7t6qnx3r5u1v"]
+[gd_scene format=3 uid="uid://c7t6qnx3r5u1v"]
 
-[ext_resource type="Script" path="res://Scripts/InventoryMenu.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://btx1p2ej3r1o1" path="res://Scripts/InventoryMenu.gd" id="1_script"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inv"]
 bg_color = Color(0.180392, 0.14902, 0.129412, 0.941176)
@@ -18,7 +18,7 @@ shadow_color = Color(0, 0, 0, 0.392157)
 shadow_size = 12
 shadow_offset = Vector2(0, 8)
 
-[node name="InventoryMenu" type="Control"]
+[node name="InventoryMenu" type="Control" unique_id=1116854382]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,7 +28,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_script")
 
-[node name="OpenButton" type="Button" parent="."]
+[node name="OpenButton" type="Button" parent="." unique_id=1131415095]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -43,7 +43,7 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Inventory (I)"
 
-[node name="InventoryPanel" type="Panel" parent="."]
+[node name="InventoryPanel" type="Panel" parent="." unique_id=897340050]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -52,13 +52,13 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -440.0
 offset_top = -180.0
-offset_right = 440.0
+offset_right = 224.0
 offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_inv")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="InventoryPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryPanel" unique_id=73227953]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,56 +71,56 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="Header" type="HBoxContainer" parent="InventoryPanel/VBoxContainer"]
+[node name="Header" type="HBoxContainer" parent="InventoryPanel/VBoxContainer" unique_id=708146164]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="InventoryPanel/VBoxContainer/Header"]
+[node name="Title" type="Label" parent="InventoryPanel/VBoxContainer/Header" unique_id=912977010]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "INVENTORY"
 
-[node name="Spacer" type="Control" parent="InventoryPanel/VBoxContainer/Header"]
+[node name="Spacer" type="Control" parent="InventoryPanel/VBoxContainer/Header" unique_id=311501228]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CloseButton" type="Button" parent="InventoryPanel/VBoxContainer/Header"]
+[node name="CloseButton" type="Button" parent="InventoryPanel/VBoxContainer/Header" unique_id=1604185577]
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
 text = "X"
 
-[node name="TabButtons" type="HBoxContainer" parent="InventoryPanel/VBoxContainer"]
+[node name="TabButtons" type="HBoxContainer" parent="InventoryPanel/VBoxContainer" unique_id=2143140185]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="TabAll" type="Button" parent="InventoryPanel/VBoxContainer/TabButtons"]
+[node name="TabAll" type="Button" parent="InventoryPanel/VBoxContainer/TabButtons" unique_id=1262237347]
 custom_minimum_size = Vector2(100, 32)
 layout_mode = 2
 text = "All"
 
-[node name="TabResources" type="Button" parent="InventoryPanel/VBoxContainer/TabButtons"]
+[node name="TabResources" type="Button" parent="InventoryPanel/VBoxContainer/TabButtons" unique_id=182413873]
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
 text = "Resources"
 
-[node name="TabFurnitures" type="Button" parent="InventoryPanel/VBoxContainer/TabButtons"]
+[node name="TabFurnitures" type="Button" parent="InventoryPanel/VBoxContainer/TabButtons" unique_id=1981376157]
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
 text = "Furnitures"
 
-[node name="HSeparator" type="HSeparator" parent="InventoryPanel/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="InventoryPanel/VBoxContainer" unique_id=1742509989]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="InventoryPanel/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryPanel/VBoxContainer" unique_id=1884193662]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="InventoryPanel/VBoxContainer/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="InventoryPanel/VBoxContainer/ScrollContainer" unique_id=1231193566]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/h_separation = 6
 theme_override_constants/v_separation = 6
-columns = 16
+columns = 10
 
 [connection signal="pressed" from="OpenButton" to="." method="toggle_menu"]
 [connection signal="pressed" from="InventoryPanel/VBoxContainer/Header/CloseButton" to="." method="_on_close_button_pressed"]
