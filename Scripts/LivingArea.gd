@@ -58,19 +58,26 @@ func _update_furniture_inside():
 	furniture_inside.clear()
 	if not is_instance_valid(Global.current_world): return
 	
-	var all_furniture = get_tree().get_nodes_in_group("furniture")
-	var half_size = 128.0 # For 256x256 zone (half-width is 128)
-	var zone_center = global_position + Vector2(64.0, 64.0)
+	# Determine bounds dynamically from CollisionShape2D
+	var shape_size = Vector2(256.0, 256.0) # Fallback size
+	var zone_center = global_position + Vector2(64.0, 64.0) # Fallback center
 	
+	if collision and collision.shape is RectangleShape2D:
+		shape_size = collision.shape.size
+		zone_center = collision.global_position
+		
+	var half_size = shape_size / 2.0
+	
+	var all_furniture = get_tree().get_nodes_in_group("furniture")
 	print("[LivingArea] Scanning for furniture. Total in world: ", all_furniture.size())
 	
 	for f in all_furniture:
 		if not is_instance_valid(f) or not f.is_placed: continue
 		
 		var f_pos = f.global_position
-		# Simple AABB check
-		if f_pos.x >= zone_center.x - half_size and f_pos.x <= zone_center.x + half_size \
-		and f_pos.y >= zone_center.y - half_size and f_pos.y <= zone_center.y + half_size:
+		# AABB check based on CollisionShape2D bounds
+		if f_pos.x >= zone_center.x - half_size.x and f_pos.x <= zone_center.x + half_size.x \
+		and f_pos.y >= zone_center.y - half_size.y and f_pos.y <= zone_center.y + half_size.y:
 			if not furniture_inside.has(f):
 				furniture_inside.append(f)
 				if "living_area" in f:
