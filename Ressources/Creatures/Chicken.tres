@@ -30,6 +30,7 @@ script = ExtResource("1_script")
 species_name = "Chicken"
 sprite_frames = SubResource("SpriteFrames_q00kg")
 produce_amount = 20
+produce_time = 1.0
 resource_type = 3
 sound_text = "Cluck!"
 hapiness = 15

@@ -4,38 +4,8 @@ class_name Creature
 
 @export var data: CreatureData
 @export var habitat: Node2D
-@export var wander_radius: float = 100.0
-@export var movement_speed: float = 50.0
-
-var target_position: Vector2
-var is_moving: bool = false
-
-@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var production_timer: Timer = $Timer # On réutilise le timer existant dans la scène
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-
-func _process(delta):
-	if is_moving:
-		velocity = (target_position - global_position).normalized() * movement_speed
-		move_and_slide()
-		
-		if global_position.distance_to(target_position) < 5.0:
-			is_moving = false
-	elif randf() < 0.01: # Random chance to wander
-		_wander()
-
-func _wander():
-	var center = global_position
-	var current_wander_radius = wander_radius
-	
-	if habitat:
-		center = habitat.global_position
-		if habitat is LivingArea:
-			current_wander_radius = 60.0 # Stay within 128x128 zone
-	
-	var offset = Vector2(randf_range(-current_wander_radius, current_wander_radius), randf_range(-current_wander_radius, current_wander_radius))
-	target_position = center + offset
-	is_moving = true
 
 func _ready():
 	_apply_data()

@@ -124,7 +124,7 @@ layout_mode = 2
 
 [node name="CraftingMenu" parent="CanvasLayer" unique_id=1219859033 instance=ExtResource("7_craft_menu")]
 
-[node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("8_inv_menu")]
+[node name="InventoryMenu" parent="CanvasLayer" unique_id=1196556262 instance=ExtResource("8_inv_menu")]
 
 [node name="wood_count" parent="CanvasLayer" unique_id=1290331133 instance=ExtResource("6_i6g32")]
 offset_left = 39.0
