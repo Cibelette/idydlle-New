@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="LivingAreaData" format=3 uid="uid://cjlmx7ld1y0gt"]
 
-[ext_resource type="Script" path="res://Scripts/Items/CostItem.gd" id="1_costitem"]
-[ext_resource type="Script" path="res://Scripts/LivingAreaData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://dnme0ilvktar2" path="res://Scripts/Items/CostItem.gd" id="1_costitem"]
+[ext_resource type="Script" uid="uid://cetomlnlxdcnh" path="res://Scripts/LivingAreaData.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://cxexaipntin76" path="res://Scenes/LivingArea.tscn" id="2_kdj3q"]
 
 [resource]

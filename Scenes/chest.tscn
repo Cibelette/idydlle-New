@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ds1l0akvkda6e"]
+[gd_scene format=3 uid="uid://ghrh8e4gvdyh"]
 
 [ext_resource type="Script" uid="uid://bfnrlhu3qtm5y" path="res://Scripts/Furnitures/Furniture.gd" id="1_cjfl1"]
 [ext_resource type="Texture2D" uid="uid://hvw5yhs41ad5" path="res://Assets/Objects/Chest.png" id="2_bagqn"]
@@ -16,7 +16,7 @@ texture = ExtResource("2_bagqn")
 region_enabled = true
 region_rect = Rect2(14.484478, 16.017727, 19.39075, 17.954403)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1440548305]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=644429534]

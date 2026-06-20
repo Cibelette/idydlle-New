@@ -19,3 +19,4 @@ costs = Array[ExtResource("1_costitem")]([SubResource("Resource_cost")])
 texture = SubResource("AtlasTexture_03c3q")
 scale = 2.5
 size = Vector2i(2, 2)
+happiness = 5
