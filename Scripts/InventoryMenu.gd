@@ -218,6 +218,10 @@ func refresh_grid():
 			style.bg_color = Color(0.10, 0.08, 0.07, 0.8)
 			slot.add_theme_stylebox_override("panel", style)
 
+func show_menu():
+	inventory_panel.visible = true
+	refresh_grid()
+
 func place_furniture_item(item_data: FurnitureData):
 	print("[InventoryMenu] Placing furniture: ", item_data.name)
 	
@@ -241,6 +245,7 @@ func place_furniture_item(item_data: FurnitureData):
 		new_item.is_placed = false
 	
 	# Start placement through the manager
+	FurnitureManager.opened_from_menu = "inventory"
 	FurnitureManager.start_placement(new_item)
 
 func _on_close_button_pressed():

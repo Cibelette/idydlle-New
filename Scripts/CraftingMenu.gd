@@ -65,6 +65,9 @@ func toggle_menu():
 func _on_open_button_pressed():
 	toggle_menu()
 
+func show_menu():
+	crafting_panel.visible = true
+
 func craft_item(item_data: FurnitureData):
 	# Check if we can afford all resources
 	if ResourcesManager.can_afford_multiple(item_data.costs):
@@ -86,6 +89,7 @@ func craft_item(item_data: FurnitureData):
 		if "is_placed" in new_item:
 			new_item.is_placed = false
 
+		FurnitureManager.opened_from_menu = "crafting"
 		FurnitureManager.start_placement(new_item)
 		print("[Crafting] Proposed placement for: ", item_data.name)
 	else:
