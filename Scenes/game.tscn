@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b5y1p60sjngof" path="res://Scenes/rts_camera.tscn" id="2_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://pwqshwpwjb57" path="res://Scenes/resource_counter.tscn" id="6_i6g32"]
 [ext_resource type="PackedScene" uid="uid://cbnpygl4mn6ku" path="res://Scenes/CraftingMenu.tscn" id="7_craft_menu"]
+[ext_resource type="PackedScene" uid="uid://c7t6qnx3r5u1v" path="res://Scenes/InventoryMenu.tscn" id="8_inv_menu"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_abc12"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -122,6 +123,8 @@ visible = false
 layout_mode = 2
 
 [node name="CraftingMenu" parent="CanvasLayer" unique_id=1219859033 instance=ExtResource("7_craft_menu")]
+
+[node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("8_inv_menu")]
 
 [node name="wood_count" parent="CanvasLayer" unique_id=1290331133 instance=ExtResource("6_i6g32")]
 offset_left = 39.0

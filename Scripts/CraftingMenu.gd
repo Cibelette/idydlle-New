@@ -72,27 +72,13 @@ func craft_item(item_data: FurnitureData):
 		# Spend all resources
 		ResourcesManager.spend_multiple(item_data.costs)
 
-		# Build scene path based on size, e.g., Furniture_1x1.tscn
-		var scene_path = "res://Scenes/Furniture_%dx%d.tscn" % [item_data.size.x, item_data.size.y]
-
-		# Fallback to base furniture scene if specific size doesn't exist
-		var target_scene = base_furniture_scene
-		if item_data.custom_scene:
-			target_scene = item_data.custom_scene
-		elif ResourceLoader.exists(scene_path):
-			target_scene = load(scene_path)
-
-		var new_item = target_scene.instantiate()
-		new_item.furniture_data = item_data
-
-		if "is_placed" in new_item:
-
-			new_item.is_placed = false
+		# Add to player inventory
+		ResourcesManager.add_furniture(item_data, 1)
 		
-		# Start placement through the manager
-		FurnitureManager.start_placement(new_item)
+		# Emitting placeholder for compatibility if needed
+		# (We don't instantiate the scene here anymore, it's done when placing from inventory)
 		
-		item_crafted.emit(new_item)
+		print("[Crafting] Crafted and added to inventory: ", item_data.name)
 		crafting_panel.visible = false
 	else:
 		print("Not enough resources to craft ", item_data.name)

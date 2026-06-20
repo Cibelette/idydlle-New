@@ -61,8 +61,15 @@ func is_position_valid(item: Node2D) -> bool:
 
 func finalize_placement():
 	if current_placing_item.has_method("place"):
+		var f_data = null
+		if "furniture_data" in current_placing_item:
+			f_data = current_placing_item.furniture_data
+			
 		current_placing_item.place()
 		all_furniture.append(current_placing_item)
+		
+		if f_data:
+			ResourcesManager.spend_furniture(f_data, 1)
 		
 		# Emit global signal for compatibility
 		Global.furniture_placed.emit(current_placing_item)

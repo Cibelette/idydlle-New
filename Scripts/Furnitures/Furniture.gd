@@ -223,9 +223,38 @@ func _get_current_living_area() -> LivingArea:
 	return null
 
 func _input_event(viewport: Node, event: InputEvent, shape_idx: int):
-	if is_placed and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if furniture_data and furniture_data.furniture_type == Types.FurnitureType.STORAGE:
-			collect_inventory()
+	if is_placed and event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if furniture_data and furniture_data.furniture_type == Types.FurnitureType.STORAGE:
+				collect_inventory()
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			pickup()
+
+func pickup():
+	if not is_placed: return
+	
+	# If it's a storage, collect its contents first
+	if furniture_data and furniture_data.furniture_type == Types.FurnitureType.STORAGE:
+		collect_inventory()
+		
+	# Remove from living area if inside one
+	if living_area and is_instance_valid(living_area):
+		if living_area.furniture_inside.has(self):
+			living_area.furniture_inside.erase(self)
+		living_area.update_all_chests_bubbles()
+		living_area.check_habitat_recipe()
+		
+	# Remove from group and all_furniture
+	remove_from_group("furniture")
+	if FurnitureManager.all_furniture.has(self):
+		FurnitureManager.all_furniture.erase(self)
+		
+	# Add back to player inventory
+	if furniture_data:
+		ResourcesManager.add_furniture(furniture_data, 1)
+		
+	print("[Furniture] Picked up ", name, " into inventory.")
+	queue_free()
 
 func store_resource(type: Types.ResourceType, amount: int):
 	var inv = get_inventory()

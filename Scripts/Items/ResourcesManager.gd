@@ -7,9 +7,12 @@ signal resource_changed(type: Types.ResourceType, new_amount: int)
 
 @export_dir var resources_dir: String = "res://Ressources/"
 @export var resource_definitions: Array[ResourceVisualData] = []
+@export var furniture_definitions: Array[FurnitureData] = []
 
 # Internal inventory state: { Types.ResourceType.WOOD: 10, Types.ResourceType.STONE: 5, ... }
 var inventory: Dictionary = {}
+# Internal furniture inventory state: { FurnitureData: amount }
+var furniture_inventory: Dictionary = {}
 
 func _ready():
 	_load_resource_definitions()
@@ -24,8 +27,10 @@ func _load_resource_definitions():
 		var res = load(file_path)
 		if res is ResourceVisualData:
 			resource_definitions.append(res)
+		elif res is FurnitureData:
+			furniture_definitions.append(res)
 
-	print("ResourcesManager: Loaded ", resource_definitions.size(), " resource definitions recursively.")
+	print("ResourcesManager: Loaded ", resource_definitions.size(), " resource definitions and ", furniture_definitions.size(), " furniture definitions recursively.")
 
 ## Ensures all defined resources are present in the inventory dictionary
 func _initialize_inventory():
@@ -124,3 +129,30 @@ func get_amount(type_in) -> int:
 ## Returns the entire inventory dictionary
 func get_all_resources() -> Dictionary:
 	return inventory.duplicate()
+
+## Adds a furniture item to inventory
+func add_furniture(furniture_data: FurnitureData, amount: int = 1):
+	if not furniture_inventory.has(furniture_data):
+		furniture_inventory[furniture_data] = 0
+	furniture_inventory[furniture_data] += amount
+	print("ResourcesManager: Gained furniture ", furniture_data.name, "! Total: ", furniture_inventory[furniture_data])
+	inventory_updated.emit()
+
+## Spends/removes a furniture item from inventory
+func spend_furniture(furniture_data: FurnitureData, amount: int = 1) -> bool:
+	if has_furniture(furniture_data, amount):
+		furniture_inventory[furniture_data] -= amount
+		if furniture_inventory[furniture_data] <= 0:
+			furniture_inventory.erase(furniture_data)
+		print("ResourcesManager: Spent furniture ", furniture_data.name, "! Remaining: ", furniture_inventory.get(furniture_data, 0))
+		inventory_updated.emit()
+		return true
+	return false
+
+## Checks if the inventory has enough of a furniture item
+func has_furniture(furniture_data: FurnitureData, amount: int = 1) -> bool:
+	return furniture_inventory.get(furniture_data, 0) >= amount
+
+## Returns the entire furniture inventory dictionary
+func get_all_furniture() -> Dictionary:
+	return furniture_inventory.duplicate()

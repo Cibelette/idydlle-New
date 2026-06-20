@@ -29,3 +29,28 @@ func on_creature_spawned(creature: Creature):
 
 func spawn_creatures_clean_up():
 	spawned_creatures = spawned_creatures.filter(func(c): return is_instance_valid(c))
+
+func _process(_delta):
+	var valid_components = components.filter(func(c): return is_instance_valid(c) and c.is_placed)
+	if valid_components.size() < components.size():
+		dissolve()
+
+func dissolve():
+	print("[Habitat] Dissolving: ", data.habitat_name)
+	
+	for c in components:
+		if is_instance_valid(c):
+			c.set_meta("habitat_parent", null)
+			c.modulate = Color(1.0, 1.0, 1.0)
+			
+	for c in spawned_creatures:
+		if is_instance_valid(c):
+			c.queue_free()
+			
+	if living_area and is_instance_valid(living_area):
+		living_area.set_habitat(null)
+		
+	if HabitatManager.all_habitats.has(self):
+		HabitatManager.all_habitats.erase(self)
+		
+	queue_free()
