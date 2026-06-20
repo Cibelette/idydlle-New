@@ -178,6 +178,13 @@ func _calculate_production_interval() -> float:
 				multiplier = creature.data.produce_time
 				break
 				
+		# Fetch the zone's happiness and apply it as a production speed buff
+		# Each point of happiness reduces the production cycle duration by 1% (capped at a maximum of 75% speedup)
+		var happiness = zone.get_total_happiness()
+		if happiness > 0:
+			var speed_buff = 1.0 - clamp(happiness * 0.01, 0.0, 0.75)
+			multiplier *= speed_buff
+				
 	return furniture_data.produce_time * multiplier
 
 func _on_production_timeout():

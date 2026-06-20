@@ -41,6 +41,7 @@ func _on_area_2d_body_entered(body: Node2D):
 		# We don't check recipe yet because it might not be placed
 		if body.is_placed:
 			check_habitat_recipe()
+		update_happiness()
 
 func _on_area_2d_body_exited(body: Node2D):
 	if furniture_inside.has(body):
@@ -50,6 +51,7 @@ func _on_area_2d_body_exited(body: Node2D):
 			if body.has_method("_update_bubble"):
 				body._update_bubble()
 		check_habitat_recipe()
+		update_happiness()
 
 
 func _update_furniture_inside():
@@ -88,6 +90,8 @@ func _update_furniture_inside():
 				print("[LivingArea]   - Detected inside: ", f.name, " at ", f_pos)
 	
 	print("[LivingArea] Scan complete. Items found: ", furniture_inside.size())
+	update_happiness()
+
 
 func store_resource(type: Types.ResourceType, amount: int):
 	if inventory.has(type):
@@ -116,13 +120,29 @@ func check_habitat_recipe():
 	HabitatManager.check_zone_for_habitat(self)
 
 func set_habitat(habitat: Habitat):
+	if active_habitat and is_instance_valid(active_habitat) and active_habitat.creatures_changed.is_connected(update_happiness):
+		active_habitat.creatures_changed.disconnect(update_happiness)
+
 	active_habitat = habitat
+	
+	if active_habitat and is_instance_valid(active_habitat):
+		active_habitat.creatures_changed.connect(update_happiness)
+		
 	# Link creatures to this zone? 
 	# Habitat itself usually handles creature spawning.
 	update_happiness()
 
-func _process(_delta):
-	update_happiness()
+func get_total_happiness() -> int:
+	var total = 0
+	if active_habitat and is_instance_valid(active_habitat):
+		active_habitat.spawn_creatures_clean_up()
+		for creature in active_habitat.spawned_creatures:
+			if is_instance_valid(creature) and creature.data:
+				total += creature.data.happiness
+		for f in furniture_inside:
+			if is_instance_valid(f) and "is_placed" in f and f.is_placed and "furniture_data" in f and f.furniture_data:
+				total += f.furniture_data.happiness
+	return total
 
 func update_happiness():
 	if not is_placed:
@@ -133,14 +153,7 @@ func update_happiness():
 	if active_habitat and is_instance_valid(active_habitat):
 		if happiness_label:
 			happiness_label.visible = true
-			var total = 0
-			active_habitat.spawn_creatures_clean_up()
-			for creature in active_habitat.spawned_creatures:
-				if is_instance_valid(creature) and creature.data:
-					total += creature.data.hapiness
-			for f in furniture_inside:
-				if is_instance_valid(f) and "is_placed" in f and f.is_placed and "furniture_data" in f and f.furniture_data:
-					total += f.furniture_data.hapiness
+			var total = get_total_happiness()
 			happiness_label.text = "Happiness: " + str(total)
 	else:
 		if happiness_label:

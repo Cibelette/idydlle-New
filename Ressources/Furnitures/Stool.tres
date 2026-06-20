@@ -18,4 +18,4 @@ furniture_type = 3
 costs = Array[ExtResource("1_costitem")]([SubResource("Resource_cost")])
 texture = SubResource("AtlasTexture_awkjv")
 scale = 1.5
-hapiness = 5
+happiness = 5
