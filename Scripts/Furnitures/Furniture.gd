@@ -10,6 +10,7 @@ extends StaticBody2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 
 var inventory: Dictionary = {}
+var living_area: LivingArea = null
 
 var bubble_indicator: BubbleIndicator = null
 
@@ -103,18 +104,25 @@ func _init_bubble():
 	
 	_update_bubble()
 
+func get_inventory() -> Dictionary:
+	if living_area and is_instance_valid(living_area):
+		return living_area.inventory
+	return inventory
+
 func _update_bubble():
 	if not bubble_indicator or not is_instance_valid(bubble_indicator): return
 	
-	if inventory.is_empty():
+	var inv = get_inventory()
+	if inv.is_empty():
 		bubble_indicator.hide_bubble()
 	else:
-		var resource_type = inventory.keys()[0]
+		var resource_type = inv.keys()[0]
 		var res_data = ResourcesManager.get_resource_data(resource_type)
 		if res_data and res_data.sprite:
 			bubble_indicator.show_icon(res_data.sprite)
 		else:
 			bubble_indicator.hide_bubble()
+
 
 func _notification(what):
 	if Engine.is_editor_hint():
@@ -177,6 +185,18 @@ func _on_production_timeout():
 	
 	var zone = _get_current_living_area()
 	if zone and is_instance_valid(zone.active_habitat):
+		# Check if the living area contains at least one chest
+		var has_chest = false
+		for item in zone.furniture_inside:
+			if is_instance_valid(item) and "furniture_data" in item and item.furniture_data:
+				if item.furniture_data.furniture_type == Types.FurnitureType.STORAGE:
+					has_chest = true
+					break
+					
+		if not has_chest:
+			# Do not trigger production if there's no chest in the LivingArea
+			return
+			
 		var habitat = zone.active_habitat
 		var matched_any = false
 		for creature in habitat.spawned_creatures:
@@ -208,15 +228,20 @@ func _input_event(viewport: Node, event: InputEvent, shape_idx: int):
 			collect_inventory()
 
 func store_resource(type: Types.ResourceType, amount: int):
-	if inventory.has(type):
-		inventory[type] += amount
+	var inv = get_inventory()
+	if inv.has(type):
+		inv[type] += amount
 	else:
-		inventory[type] = amount
+		inv[type] = amount
 	
-	_update_bubble()
+	if living_area and is_instance_valid(living_area):
+		living_area.update_all_chests_bubbles()
+	else:
+		_update_bubble()
 
 func collect_inventory():
-	if inventory.is_empty():
+	var inv = get_inventory()
+	if inv.is_empty():
 		print("[Storage] Chest is empty.")
 		return
 		
@@ -224,10 +249,11 @@ func collect_inventory():
 	
 	var popup_scene = resource_popup_scene
 	var idx = 0
-	var total_types = inventory.size()
+	var total_types = inv.size()
 	
-	for type in inventory:
-		var amount = inventory[type]
+	var inv_dup = inv.duplicate()
+	for type in inv_dup:
+		var amount = inv_dup[type]
 		ResourcesManager.add_resource(type, amount)
 		print("  - Added ", amount, " ", Types.resource_to_string(type), " to global storage.")
 		
@@ -248,8 +274,12 @@ func collect_inventory():
 			burst.setup(type)
 		idx += 1
 		
-	inventory.clear()
-	_update_bubble()
+	inv.clear()
+	
+	if living_area and is_instance_valid(living_area):
+		living_area.update_all_chests_bubbles()
+	else:
+		_update_bubble()
 	
 	# Visual feedback for collection
 	var tween = create_tween()

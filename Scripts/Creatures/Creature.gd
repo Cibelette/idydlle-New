@@ -85,15 +85,15 @@ func produce_from_source(source: Node2D):
 		print("[Production] ", data.species_name, " aborted harvest: Not in a valid LivingArea.")
 		return
 		
-	# Find a Chest in the LivingArea
-	var target_chest = null
+	# Find if there is at least one Chest in the LivingArea
+	var has_chest = false
 	for item in habitat.furniture_inside:
 		if is_instance_valid(item) and "furniture_data" in item and item.furniture_data:
 			if item.furniture_data.furniture_type == Types.FurnitureType.STORAGE:
-				target_chest = item
+				has_chest = true
 				break
 				
-	if not target_chest:
+	if not has_chest:
 		print("[Production] ", data.species_name, " aborted harvest: No Chest found in habitat to store resources.")
 		return
 	
@@ -106,9 +106,9 @@ func produce_from_source(source: Node2D):
 	var total_amount = data.produce_amount * f_amount
 	
 	if total_amount > 0:
-		# Store in the Chest instead of global
-		target_chest.store_resource(data.resource_type, total_amount)
-		print("[Production] ", data.species_name, " deposited ", total_amount, " ", Types.resource_to_string(data.resource_type), " into Chest.")
+		# Store in the LivingArea inventory instead of a specific chest
+		habitat.store_resource(data.resource_type, total_amount)
+		print("[Production] ", data.species_name, " deposited ", total_amount, " ", Types.resource_to_string(data.resource_type), " into LivingArea inventory.")
 
 ## Allows you to inject custom data at runtime (e.g. for evolutions)
 func set_creature_data(new_data: CreatureData):
