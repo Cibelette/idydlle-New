@@ -143,7 +143,7 @@ func place():
 	# Set the Z index or layer if necessary to ensure it's behind/in front of things
 	z_index = int(global_position.y) 
 	
-	FurnitureManager.register_item(self)
+	GridManager.register_item(self)
 	
 	# Update navigation obstacle if it exists
 	var obstacle = get_node_or_null("NavigationObstacle2D")
@@ -246,7 +246,7 @@ func pickup():
 	if furniture_data and furniture_data.furniture_type == Types.FurnitureType.STORAGE:
 		collect_inventory()
 		
-	FurnitureManager.deregister_item(self)
+	GridManager.deregister_item(self)
 		
 	# Remove from living area if inside one
 	if living_area and is_instance_valid(living_area):
@@ -269,7 +269,7 @@ func pickup():
 
 func _exit_tree():
 	if Engine.is_editor_hint(): return
-	FurnitureManager.deregister_item(self)
+	GridManager.deregister_item(self)
 
 func store_resource(type: Types.ResourceType, amount: int):
 	var inv = get_inventory()

@@ -30,7 +30,7 @@ func place():
 	collision.disabled = false
 	background.show()
 	
-	FurnitureManager.register_item(self)
+	GridManager.register_item(self)
 	
 	# Check for furniture already inside
 	_update_furniture_inside()
@@ -38,7 +38,7 @@ func place():
 
 func _exit_tree():
 	if Engine.is_editor_hint(): return
-	FurnitureManager.deregister_item(self)
+	GridManager.deregister_item(self)
 
 func _on_area_2d_body_entered(body: Node2D):
 	# If it's a furniture (has furniture_data), we track it even if not placed yet
@@ -70,11 +70,11 @@ func _update_furniture_inside():
 			f.living_area = null
 	furniture_inside.clear()
 	
-	var zone_cells = FurnitureManager.get_occupied_cells_for_item(self)
+	var zone_cells = GridManager.get_occupied_cells_for_item(self)
 	print("[LivingArea] Scanning for furniture inside zone cells: ", zone_cells)
 	
 	for cell in zone_cells:
-		var f = FurnitureManager.furniture_grid.get(cell)
+		var f = GridManager.furniture_grid.get(cell)
 		if is_instance_valid(f) and f.is_placed:
 			if not furniture_inside.has(f):
 				furniture_inside.append(f)
