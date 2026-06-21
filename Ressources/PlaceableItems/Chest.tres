@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dnme0ilvktar2" path="res://Scripts/Items/CostItem.gd" id="1_costitem"]
 [ext_resource type="Texture2D" uid="uid://byye4boofb7c5" path="res://Assets/Sprout Lands - UI Pack - Basic pack/Sprite sheets/Dialouge UI/dialog box.png" id="1_tnrkh"]
-[ext_resource type="Script" uid="uid://delsvj2nfyyma" path="res://Scripts/PlaceableItems/FurnitureData.gd" id="2_kbbx7"]
 [ext_resource type="Texture2D" uid="uid://hvw5yhs41ad5" path="res://Assets/Objects/Chest.png" id="2_nphx2"]
+[ext_resource type="Script" uid="uid://delsvj2nfyyma" path="res://Scripts/PlaceableItems/Furnitures/FurnitureData.gd" id="3_p51wv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gpyiv"]
 atlas = ExtResource("1_tnrkh")
@@ -39,7 +39,7 @@ atlas = ExtResource("2_nphx2")
 region = Rect2(63, 19, 18, 13)
 
 [resource]
-script = ExtResource("2_kbbx7")
+script = ExtResource("3_p51wv")
 costs = Array[ExtResource("1_costitem")]([SubResource("Resource_cost")])
 function = 1
 furniture_type = 4

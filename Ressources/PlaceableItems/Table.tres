@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="FurnitureData" format=3 uid="uid://b0xqis5eqyghh"]
 
 [ext_resource type="Script" uid="uid://dnme0ilvktar2" path="res://Scripts/Items/CostItem.gd" id="1_costitem"]
-[ext_resource type="Script" uid="uid://delsvj2nfyyma" path="res://Scripts/PlaceableItems/FurnitureData.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://doooqhuqhksaj" path="res://Assets/Objects/Basic Furniture.png" id="2_n2g3s"]
+[ext_resource type="Script" uid="uid://delsvj2nfyyma" path="res://Scripts/PlaceableItems/Furnitures/FurnitureData.gd" id="2_p0qp4"]
 
 [sub_resource type="Resource" id="Resource_cost"]
 script = ExtResource("1_costitem")
@@ -12,7 +12,7 @@ atlas = ExtResource("2_n2g3s")
 region = Rect2(48.155605, 48.470226, 15.847126, 15.355743)
 
 [resource]
-script = ExtResource("1_script")
+script = ExtResource("2_p0qp4")
 costs = Array[ExtResource("1_costitem")]([SubResource("Resource_cost")])
 function = 2
 furniture_type = 3

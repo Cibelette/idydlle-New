@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="NaturalResourceData" format=3 uid="uid://c7m5yq1p8j3v2"]
 
-[ext_resource type="Script" uid="uid://dcq5xpwb46lx5" path="res://Scripts/PlaceableItems/NaturalResourceData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://dcq5xpwb46lx5" path="res://Scripts/PlaceableItems/NaturalResources/NaturalResourceData.gd" id="1_qq0ju"]
 [ext_resource type="Texture2D" uid="uid://bes5p4jeu47ke" path="res://Assets/Objects/Basic Grass Biom things 1.png" id="2_q0yih"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jjnfm"]
@@ -8,7 +8,7 @@ atlas = ExtResource("2_q0yih")
 region = Rect2(17.956875, -0.014499664, 28.242287, 32.4043)
 
 [resource]
-script = ExtResource("1_script")
+script = ExtResource("1_qq0ju")
 natural_resource_type = 1
 resource_type = 1
 produce_amount = 5

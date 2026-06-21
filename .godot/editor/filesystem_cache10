@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1782080854
+::res://::1782080990
 DynamicCreationNotes.md::TextFile::-1::1781706872::0::1::::<><><>0<>0<><>::
 export_presets.cfg::TextFile::-1::1782062734::0::1::::<><><>0<>0<><>::
 HowToAddCreatures.md::TextFile::-1::1781629068::0::1::::<><><>0<>0<><>::
@@ -133,13 +133,13 @@ Coins.tres::Resource/ResourceVisualData::8866113117219066666::1781813083::0::1::
 LeafVisual.tres::Resource/ResourceVisualData::1917230529832345421::1781885820::0::1::::<><><>0<>0<><>::uid://bojic1is5b2ho::::res://Scripts/Items/ResourceVisualData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
 StoneVisual.tres::Resource/ResourceVisualData::1973423486520550697::1781813087::0::1::::<><><>0<>0<><>::uid://bojic1is5b2ho::::res://Scripts/Items/ResourceVisualData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
 WoodVisual.tres::Resource/ResourceVisualData::5056841739947175736::1781813089::0::1::::<><><>0<>0<><>::uid://bojic1is5b2ho::::res://Scripts/Items/ResourceVisualData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
-::res://Ressources/PlaceableItems/::1782080791
+::res://Ressources/PlaceableItems/::1782080990
 Bush.tres::Resource/NaturalResourceData::2379209459930984472::1782080228::0::1::::<><><>0<>0<><>::uid://dqk5knegtkhqr::::res://Scripts/PlaceableItems/NaturalResourceData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
-Chest.tres::Resource/FurnitureData::1564625552614499286::1782080791::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://byye4boofb7c5::::res://Assets/Sprout Lands - UI Pack - Basic pack/Sprite sheets/Dialouge UI/dialog box.png<>uid://delsvj2nfyyma::::res://Scripts/PlaceableItems/FurnitureData.gd<>uid://hvw5yhs41ad5::::res://Assets/Objects/Chest.png
+Chest.tres::Resource/FurnitureData::1564625552614499286::1782080990::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://byye4boofb7c5::::res://Assets/Sprout Lands - UI Pack - Basic pack/Sprite sheets/Dialouge UI/dialog box.png<>uid://delsvj2nfyyma::::res://Scripts/PlaceableItems/Furnitures/FurnitureData.gd<>uid://hvw5yhs41ad5::::res://Assets/Objects/Chest.png
 LivingArea.tres::Resource/LivingAreaData::5428020490508237891::1782080240::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://cetomlnlxdcnh::::res://Scripts/LivingAreaData.gd<>uid://cxexaipntin76::::res://Scenes/LivingArea.tscn
 Rock.tres::Resource/NaturalResourceData::1765082072277109291::1782080791::0::1::::<><><>0<>0<><>::uid://dcq5xpwb46lx5::::res://Scripts/PlaceableItems/NaturalResourceData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
-Stool.tres::Resource/FurnitureData::6991903602599207309::1782080791::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://delsvj2nfyyma::::res://Scripts/PlaceableItems/FurnitureData.gd<>uid://doooqhuqhksaj::::res://Assets/Objects/Basic Furniture.png
-Table.tres::Resource/FurnitureData::4189609213191296717::1782080791::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://delsvj2nfyyma::::res://Scripts/PlaceableItems/FurnitureData.gd<>uid://doooqhuqhksaj::::res://Assets/Objects/Basic Furniture.png
+Stool.tres::Resource/FurnitureData::6991903602599207309::1782080990::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://delsvj2nfyyma::::res://Scripts/PlaceableItems/Furnitures/FurnitureData.gd<>uid://doooqhuqhksaj::::res://Assets/Objects/Basic Furniture.png
+Table.tres::Resource/FurnitureData::4189609213191296717::1782080990::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://delsvj2nfyyma::::res://Scripts/PlaceableItems/Furnitures/FurnitureData.gd<>uid://doooqhuqhksaj::::res://Assets/Objects/Basic Furniture.png
 tree.tres::Resource/NaturalResourceData::7045522146953201549::1782080791::0::1::::<><><>0<>0<><>::uid://dcq5xpwb46lx5::::res://Scripts/PlaceableItems/NaturalResourceData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
 ::res://Scenes/::1782080791
 chest.tscn::PackedScene::436630136317224299::1782079211::0::1::::<><><>0<>0<><>::uid://bfnrlhu3qtm5y::::res://Scripts/PlaceableItems/PlaceableItem.gd<>uid://hvw5yhs41ad5::::res://Assets/Objects/Chest.png
@@ -183,12 +183,14 @@ CostItem.gd::GDScript::8096777502389034101::1781825070::0::1::::CostItem<>Resour
 ResourcePopup.gd::GDScript::4360899025718192088::1781813068::0::1::::ResourcePopup<>Node2D<><>0<>0<><>::
 ResourcesManager.gd::GDScript::4072440777901273087::1782079223::0::1::::<>Node<><>0<>0<><>::
 ResourceVisualData.gd::GDScript::3388134580765571472::1781813042::0::1::::ResourceVisualData<>Resource<><>0<>0<><>::
-::res://Scripts/PlaceableItems/::1782080719
-FurnitureComponent.gd::GDScript::1670693795645587314::1782080837::0::1::::FurnitureComponent<>Node<><>0<>0<><>::
-FurnitureData.gd::GDScript::7463856503486073576::1782080195::0::1::::FurnitureData<>PlaceableItemData<><>0<>0<><>::
+::res://Scripts/PlaceableItems/::1782080990
 GridManager.gd::GDScript::4442258231151153014::1782079174::0::1::::<>Node<><>0<>0<><>::
-NaturalResourceComponent.gd::GDScript::1301747444995660642::1782080689::0::1::::NaturalResourceComponent<>Node<><>0<>0<><>::
-NaturalResourceData.gd::GDScript::7334533187384501312::1782080194::0::1::::NaturalResourceData<>PlaceableItemData<><>0<>0<><>::
 PlaceableItem.gd::GDScript::4811004557507560458::1782080697::0::1::::PlaceableItem<>StaticBody2D<><>0<>1<><>::
 PlaceableItemData.gd::GDScript::3014135923909771407::1782080198::0::1::::PlaceableItemData<>Resource<><>0<>0<><>::
 PlaceableItemManager.gd::GDScript::4545795199838964771::1782080206::0::1::::<>Node<><>0<>0<><>::
+::res://Scripts/PlaceableItems/Furnitures/::1782080990
+FurnitureComponent.gd::GDScript::1670693795645587314::1782080837::0::1::::FurnitureComponent<>Node<><>0<>0<><>::
+FurnitureData.gd::GDScript::7463856503486073576::1782080195::0::1::::FurnitureData<>PlaceableItemData<><>0<>0<><>::
+::res://Scripts/PlaceableItems/NaturalResources/::0
+NaturalResourceComponent.gd::GDScript::1301747444995660642::1782080689::0::1::::NaturalResourceComponent<>Node<><>0<>0<><>::
+NaturalResourceData.gd::GDScript::7334533187384501312::1782080194::0::1::::NaturalResourceData<>PlaceableItemData<><>0<>0<><>::
