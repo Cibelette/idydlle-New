@@ -11,15 +11,27 @@ enum ResourceType {
 	FRUIT
 }
 
-enum PlaceableType {
+enum NaturalResourceType {
 	MISC,
-	STORAGE,
-	TABLE,
-	STOOL,
 	TREE,
-	ZONE,
 	ROCK,
 	BUSH
+}
+
+enum FurnitureFunction {
+	MISC,
+	STORAGE,
+	DECORATIVE,
+	PROCESSING,
+	CRAFTING
+}
+
+enum FurnitureType {
+	MISC,
+	WORKBENCH,
+	STOOL,
+	TABLE,
+	CHEST
 }
 
 static func resource_to_string(type: ResourceType) -> String:
@@ -42,24 +54,48 @@ static func string_to_resource(s: String) -> ResourceType:
 		"fruit": return ResourceType.FRUIT
 		_: return ResourceType.NONE
 
-static func placeable_to_string(type: PlaceableType) -> String:
+static func natural_resource_to_string(type: NaturalResourceType) -> String:
 	match type:
-		PlaceableType.STORAGE: return "Storage"
-		PlaceableType.TABLE: return "Table"
-		PlaceableType.STOOL: return "Stool"
-		PlaceableType.TREE: return "Tree"
-		PlaceableType.ZONE: return "Zone"
-		PlaceableType.ROCK: return "Rock"
-		PlaceableType.BUSH: return "Bush"
+		NaturalResourceType.TREE: return "Tree"
+		NaturalResourceType.ROCK: return "Rock"
+		NaturalResourceType.BUSH: return "Bush"
 		_: return "Misc"
 
-static func string_to_placeable(s: String) -> PlaceableType:
+static func string_to_natural_resource(s: String) -> NaturalResourceType:
 	match s.to_lower():
-		"Storage": return PlaceableType.STORAGE
-		"table": return PlaceableType.TABLE
-		"stool": return PlaceableType.STOOL
-		"tree": return PlaceableType.TREE
-		"zone": return PlaceableType.ZONE
-		"rock": return PlaceableType.ROCK
-		"bush": return PlaceableType.BUSH
-		_: return PlaceableType.MISC
+		"tree": return NaturalResourceType.TREE
+		"rock": return NaturalResourceType.ROCK
+		"bush": return NaturalResourceType.BUSH
+		_: return NaturalResourceType.MISC
+
+static func furniture_function_to_string(type: FurnitureFunction) -> String:
+	match type:
+		FurnitureFunction.STORAGE: return "Storage"
+		FurnitureFunction.DECORATIVE: return "Decorative"
+		FurnitureFunction.PROCESSING: return "Processing"
+		FurnitureFunction.CRAFTING: return "Crafting"
+		_: return "Misc"
+
+static func string_to_furniture_function(s: String) -> FurnitureFunction:
+	match s.to_lower():
+		"storage": return FurnitureFunction.STORAGE
+		"decorative": return FurnitureFunction.DECORATIVE
+		"processing": return FurnitureFunction.PROCESSING
+		"crafting": return FurnitureFunction.CRAFTING
+		_: return FurnitureFunction.MISC
+
+static func furniture_type_to_string(type: FurnitureType) -> String:
+	match type:
+		FurnitureType.WORKBENCH: return "Workbench"
+		FurnitureType.STOOL: return "Stool"
+		FurnitureType.TABLE: return "Table"
+		FurnitureType.CHEST: return "Chest"
+		_: return "Misc"
+
+static func string_to_furniture_type(s: String) -> FurnitureType:
+	match s.to_lower():
+		"workbench": return FurnitureType.WORKBENCH
+		"stool": return FurnitureType.STOOL
+		"table": return FurnitureType.TABLE
+		"chest": return FurnitureType.CHEST
+		_: return FurnitureType.MISC

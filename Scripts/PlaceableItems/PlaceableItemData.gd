@@ -1,10 +1,7 @@
 extends Resource
-
 class_name PlaceableItemData
 
 @export var name: String = "New Placeable"
-@export var placeable_type: Types.PlaceableType = Types.PlaceableType.MISC # Used for Habitat Recipes (e.g. "Table")
-@export var costs: Array[CostItem] = []
 @export var icon: Texture2D
 @export var custom_scene: PackedScene
 
@@ -17,9 +14,3 @@ class_name PlaceableItemData
 
 @export_group("Physics")
 @export var size: Vector2i = Vector2i(1, 1)
-
-@export_group("Production")
-@export var resource_type: Types.ResourceType = Types.ResourceType.NONE # e.g. "Wood"
-@export var produce_amount: int = 0
-@export var produce_time: float = 0.0 # 0 means no production
-@export var happiness: int = 0

@@ -56,8 +56,9 @@ func finalize_placement():
 		
 		if p_data:
 			if current_placing_item.has_meta("is_direct_craft") and current_placing_item.get_meta("is_direct_craft"):
-				if ResourcesManager.can_afford_multiple(p_data.costs):
-					ResourcesManager.spend_multiple(p_data.costs)
+				var costs = p_data.costs if p_data is FurnitureData else []
+				if ResourcesManager.can_afford_multiple(costs):
+					ResourcesManager.spend_multiple(costs)
 				else:
 					print("[PlaceableItemManager] Cannot place - resources no longer available!")
 					cancel_placement()

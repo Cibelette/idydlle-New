@@ -45,7 +45,8 @@ func produce_from_source(source: Node2D):
 	var has_chest = false
 	for item in habitat.placeable_items_inside:
 		if is_instance_valid(item) and "placeable_item_data" in item and item.placeable_item_data:
-			if item.placeable_item_data.placeable_type == Types.PlaceableType.STORAGE:
+			var data = item.placeable_item_data
+			if data is FurnitureData and data.function == Types.FurnitureFunction.STORAGE:
 				has_chest = true
 				break
 				
@@ -57,7 +58,9 @@ func produce_from_source(source: Node2D):
 	# We assume the source is a Placeable with placeable_item_data
 	var f_amount = 0
 	if "placeable_item_data" in source and source.placeable_item_data:
-		f_amount = source.placeable_item_data.produce_amount
+		var s_data = source.placeable_item_data
+		if s_data is NaturalResourceData:
+			f_amount = s_data.produce_amount
 		
 	var total_amount = data.produce_amount * f_amount
 	

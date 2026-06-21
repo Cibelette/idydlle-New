@@ -98,7 +98,8 @@ func store_resource(type: Types.ResourceType, amount: int):
 func update_all_chests_bubbles():
 	for item in placeable_items_inside:
 		if is_instance_valid(item) and "placeable_item_data" in item and item.placeable_item_data:
-			if item.placeable_item_data.placeable_type == Types.PlaceableType.STORAGE:
+			var data = item.placeable_item_data
+			if data is FurnitureData and data.function == Types.FurnitureFunction.STORAGE:
 				if item.has_method("_update_bubble"):
 					item._update_bubble()
 
@@ -125,7 +126,9 @@ func get_total_happiness() -> int:
 	var total = 0
 	for f in placeable_items_inside:
 		if is_instance_valid(f) and "is_placed" in f and f.is_placed and "placeable_item_data" in f and f.placeable_item_data:
-			total += f.placeable_item_data.happiness
+			var data = f.placeable_item_data
+			if data is FurnitureData:
+				total += data.happiness
 	return total
 
 func update_happiness():

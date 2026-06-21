@@ -1,11 +1,7 @@
-[gd_resource type="Resource" script_class="PlaceableItemData" format=3 uid="uid://c7m5yq1p8j3v2"]
+[gd_resource type="Resource" script_class="NaturalResourceData" format=3 uid="uid://c7m5yq1p8j3v2"]
 
-[ext_resource type="Script" uid="uid://dnme0ilvktar2" path="res://Scripts/Items/CostItem.gd" id="1_costitem"]
-[ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/PlaceableItems/PlaceableItemData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://dcq5xpwb46lx5" path="res://Scripts/PlaceableItems/NaturalResourceData.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://bes5p4jeu47ke" path="res://Assets/Objects/Basic Grass Biom things 1.png" id="2_q0yih"]
-
-[sub_resource type="Resource" id="Resource_cost"]
-script = ExtResource("1_costitem")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jjnfm"]
 atlas = ExtResource("2_q0yih")
@@ -13,13 +9,12 @@ region = Rect2(17.956875, -0.014499664, 28.242287, 32.4043)
 
 [resource]
 script = ExtResource("1_script")
-name = "Pine Tree"
-placeable_type = 4
-costs = Array[ExtResource("1_costitem")]([SubResource("Resource_cost")])
-texture = SubResource("AtlasTexture_jjnfm")
-scale = 2.5
-size = Vector2i(2, 2)
+natural_resource_type = 1
 resource_type = 1
 produce_amount = 5
 produce_time = 5.0
+name = "Pine Tree"
+texture = SubResource("AtlasTexture_jjnfm")
+scale = 2.5
+size = Vector2i(2, 2)
 metadata/_custom_type_script = "uid://bkuhhp5f81uqc"

@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="PlaceableItemData" format=3 uid="uid://wj6fik6b7w5s"]
+[gd_resource type="Resource" script_class="FurnitureData" format=3 uid="uid://wj6fik6b7w5s"]
 
 [ext_resource type="Script" uid="uid://dnme0ilvktar2" path="res://Scripts/Items/CostItem.gd" id="1_costitem"]
 [ext_resource type="Texture2D" uid="uid://byye4boofb7c5" path="res://Assets/Sprout Lands - UI Pack - Basic pack/Sprite sheets/Dialouge UI/dialog box.png" id="1_tnrkh"]
-[ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/PlaceableItems/PlaceableItemData.gd" id="2_kbbx7"]
+[ext_resource type="Script" uid="uid://delsvj2nfyyma" path="res://Scripts/PlaceableItems/FurnitureData.gd" id="2_kbbx7"]
 [ext_resource type="Texture2D" uid="uid://hvw5yhs41ad5" path="res://Assets/Objects/Chest.png" id="2_nphx2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gpyiv"]
@@ -40,12 +40,13 @@ region = Rect2(63, 19, 18, 13)
 
 [resource]
 script = ExtResource("2_kbbx7")
-name = "Wooden Chest"
-placeable_type = 1
 costs = Array[ExtResource("1_costitem")]([SubResource("Resource_cost")])
+function = 1
+furniture_type = 4
+name = "Wooden Chest"
 texture = SubResource("AtlasTexture_2o17b")
 sprite_frames = SubResource("SpriteFrames_tnrkh")
 scale = 2.0
 bubble_texture = SubResource("AtlasTexture_gpyiv")
-bubble_offset = Vector2(0, -16)
+bubble_offset = Vector2(0, 0)
 size = Vector2i(2, 1)

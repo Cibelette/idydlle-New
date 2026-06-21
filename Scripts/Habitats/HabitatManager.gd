@@ -44,7 +44,11 @@ func find_recipe_components_in_zone(recipe: HabitatData, zone: LivingArea) -> Ar
 	var recipe_counts = {}
 	for req in recipe.recipe_items:
 		if req:
-			recipe_counts[req.placeable_type] = recipe_counts.get(req.placeable_type, 0) + req.amount
+			var key = "%d_%d" % [
+				req.mode,
+				req.furniture_type if req.mode == RecipeItem.RecipeMode.FURNITURE else req.natural_resource_type
+			]
+			recipe_counts[key] = recipe_counts.get(key, 0) + req.amount
 	
 	print("[HabitatManager] Checking recipe '", recipe.habitat_name, "' in zone. Items in zone: ", zone.placeable_items_inside.size())
 	
@@ -53,23 +57,36 @@ func find_recipe_components_in_zone(recipe: HabitatData, zone: LivingArea) -> Ar
 			print("[HabitatManager]   - Item ", item.name, " is NOT placed yet.")
 			continue
 			
-		var type: Types.PlaceableType = Types.PlaceableType.MISC
-		if "placeable_item_data" in item and item.placeable_item_data:
-			type = item.placeable_item_data.placeable_type
+		if not ("placeable_item_data" in item and item.placeable_item_data):
+			continue
+			
+		var data = item.placeable_item_data
+		var item_mode = -1
+		var item_type = -1
+		var type_string = "Unknown"
 		
-		var type_string = Types.placeable_to_string(type)
+		if data is FurnitureData:
+			item_mode = RecipeItem.RecipeMode.FURNITURE
+			item_type = data.furniture_type
+			type_string = Types.furniture_type_to_string(item_type)
+		elif data is NaturalResourceData:
+			item_mode = RecipeItem.RecipeMode.NATURAL_RESOURCE
+			item_type = data.natural_resource_type
+			type_string = Types.natural_resource_to_string(item_type)
+			
+		var key = "%d_%d" % [item_mode, item_type]
 		print("[HabitatManager]   - Found item type: '", type_string, "' (", item.name, ")")
 		
-		if recipe_counts.has(type) and recipe_counts[type] > 0:
+		if recipe_counts.has(key) and recipe_counts[key] > 0:
 			# Check if this item is already part of another habitat
 			if item.get_meta("habitat_parent", null) == null:
 				components_found.append(item)
-				recipe_counts[type] -= 1
-				print("[HabitatManager]     Matches requirement! Remaining: ", recipe_counts[type], " for ", type_string)
+				recipe_counts[key] -= 1
+				print("[HabitatManager]     Matches requirement! Remaining: ", recipe_counts[key], " for ", type_string)
 	
 	# Verify if all requirements are met
-	for type in recipe_counts:
-		if recipe_counts[type] > 0:
+	for key in recipe_counts:
+		if recipe_counts[key] > 0:
 			return [] # Recipe incomplete
 			
 	return components_found

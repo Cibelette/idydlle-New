@@ -47,7 +47,8 @@ func setup_menu():
 		
 		var btn = Button.new()
 		var cost_text = ""
-		for cost_item in item_data.costs:
+		var costs = item_data.costs if item_data is FurnitureData else []
+		for cost_item in costs:
 			if cost_item:
 				cost_text += "%d %s " % [cost_item.amount, Types.resource_to_string(cost_item.resource)]
 		
@@ -70,7 +71,8 @@ func show_menu():
 
 func craft_item(item_data: PlaceableItemData):
 	# Check if we can afford all resources
-	if ResourcesManager.can_afford_multiple(item_data.costs):
+	var costs = item_data.costs if item_data is FurnitureData else []
+	if ResourcesManager.can_afford_multiple(costs):
 		# Hide crafting panel
 		crafting_panel.visible = false
 		

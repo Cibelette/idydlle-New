@@ -7,7 +7,8 @@
 
 [sub_resource type="Resource" id="Resource_tree"]
 script = ExtResource("3_recipeitem")
-placeable_type = 4
+mode = 1
+natural_resource_type = 1
 amount = 1
 
 [resource]

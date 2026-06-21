@@ -1,11 +1,7 @@
-[gd_resource type="Resource" script_class="PlaceableItemData" format=3 uid="uid://85rh5ok3fu2k"]
+[gd_resource type="Resource" script_class="NaturalResourceData" format=3 uid="uid://85rh5ok3fu2k"]
 
-[ext_resource type="Script" uid="uid://dnme0ilvktar2" path="res://Scripts/Items/CostItem.gd" id="1_qdean"]
-[ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/PlaceableItems/PlaceableItemData.gd" id="2_fyir8"]
+[ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/PlaceableItems/NaturalResourceData.gd" id="2_fyir8"]
 [ext_resource type="Texture2D" uid="uid://bes5p4jeu47ke" path="res://Assets/Objects/Basic Grass Biom things 1.png" id="3_fyir8"]
-
-[sub_resource type="Resource" id="Resource_cost"]
-script = ExtResource("1_qdean")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jjnfm"]
 atlas = ExtResource("3_fyir8")
@@ -14,8 +10,7 @@ region = Rect2(16, 48, 17, 16)
 [resource]
 script = ExtResource("2_fyir8")
 name = "Bush"
-placeable_type = 7
-costs = Array[ExtResource("1_qdean")]([SubResource("Resource_cost")])
+natural_resource_type = 3
 texture = SubResource("AtlasTexture_jjnfm")
 scale = 4.0
 resource_type = 3
