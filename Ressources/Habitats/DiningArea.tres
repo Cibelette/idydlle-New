@@ -7,11 +7,11 @@
 
 [sub_resource type="Resource" id="Resource_table"]
 script = ExtResource("3_recipeitem")
-furniture_type = 2
+placeable_type = 2
 
 [sub_resource type="Resource" id="Resource_stool"]
 script = ExtResource("3_recipeitem")
-furniture_type = 3
+placeable_type = 3
 
 [resource]
 script = ExtResource("2_necsk")

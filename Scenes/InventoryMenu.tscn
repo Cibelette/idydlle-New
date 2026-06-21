@@ -102,10 +102,10 @@ custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
 text = "Resources"
 
-[node name="TabFurnitures" type="Button" parent="InventoryPanel/VBoxContainer/TabButtons" unique_id=1981376157]
+[node name="TabPlaceables" type="Button" parent="InventoryPanel/VBoxContainer/TabButtons" unique_id=1981376157]
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
-text = "Furnitures"
+text = "Placeables"
 
 [node name="HSeparator" type="HSeparator" parent="InventoryPanel/VBoxContainer" unique_id=1742509989]
 layout_mode = 2

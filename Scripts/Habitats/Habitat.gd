@@ -2,7 +2,7 @@ extends Node2D
 class_name Habitat
 
 var data: HabitatData
-var components: Array[Node2D] = [] # Furniture pieces making this habitat
+var components: Array[Node2D] = [] # PlaceableItem pieces making this habitat
 var spawned_creatures: Array[Creature] = []
 var living_area: Node2D = null
 

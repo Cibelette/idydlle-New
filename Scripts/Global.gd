@@ -1,7 +1,7 @@
 @tool
 extends Node
 
-signal furniture_placed(item: Node2D)
+signal placeable_item_placed(item: Node2D)
 
 var grid_size: int = 16
 var current_world: Node2D

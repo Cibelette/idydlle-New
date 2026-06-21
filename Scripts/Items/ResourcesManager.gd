@@ -7,12 +7,12 @@ signal resource_changed(type: Types.ResourceType, new_amount: int)
 
 @export_dir var resources_dir: String = "res://Ressources/"
 @export var resource_definitions: Array[ResourceVisualData] = []
-@export var furniture_definitions: Array[FurnitureData] = []
+@export var placeable_item_definitions: Array[PlaceableItemData] = []
 
 # Internal inventory state: { Types.ResourceType.WOOD: 10, Types.ResourceType.STONE: 5, ... }
 var inventory: Dictionary = {}
-# Internal furniture inventory state: { FurnitureData: amount }
-var furniture_inventory: Dictionary = {}
+# Internal placeable item inventory state: { PlaceableItemData: amount }
+var placeable_item_inventory: Dictionary = {}
 
 func _ready():
 	_load_resource_definitions()
@@ -27,10 +27,10 @@ func _load_resource_definitions():
 		var res = load(file_path)
 		if res is ResourceVisualData:
 			resource_definitions.append(res)
-		elif res is FurnitureData:
-			furniture_definitions.append(res)
+		elif res is PlaceableItemData:
+			placeable_item_definitions.append(res)
 
-	print("ResourcesManager: Loaded ", resource_definitions.size(), " resource definitions and ", furniture_definitions.size(), " furniture definitions recursively.")
+	print("ResourcesManager: Loaded ", resource_definitions.size(), " resource definitions and ", placeable_item_definitions.size(), " placeable item definitions recursively.")
 
 ## Ensures all defined resources are present in the inventory dictionary
 func _initialize_inventory():
@@ -130,29 +130,29 @@ func get_amount(type_in) -> int:
 func get_all_resources() -> Dictionary:
 	return inventory.duplicate()
 
-## Adds a furniture item to inventory
-func add_furniture(furniture_data: FurnitureData, amount: int = 1):
-	if not furniture_inventory.has(furniture_data):
-		furniture_inventory[furniture_data] = 0
-	furniture_inventory[furniture_data] += amount
-	print("ResourcesManager: Gained furniture ", furniture_data.name, "! Total: ", furniture_inventory[furniture_data])
+## Adds a placeable item to inventory
+func add_placeable_item(placeable_item_data: PlaceableItemData, amount: int = 1):
+	if not placeable_item_inventory.has(placeable_item_data):
+		placeable_item_inventory[placeable_item_data] = 0
+	placeable_item_inventory[placeable_item_data] += amount
+	print("ResourcesManager: Gained placeable ", placeable_item_data.name, "! Total: ", placeable_item_inventory[placeable_item_data])
 	inventory_updated.emit()
 
-## Spends/removes a furniture item from inventory
-func spend_furniture(furniture_data: FurnitureData, amount: int = 1) -> bool:
-	if has_furniture(furniture_data, amount):
-		furniture_inventory[furniture_data] -= amount
-		if furniture_inventory[furniture_data] <= 0:
-			furniture_inventory.erase(furniture_data)
-		print("ResourcesManager: Spent furniture ", furniture_data.name, "! Remaining: ", furniture_inventory.get(furniture_data, 0))
+## Spends/removes a placeable item from inventory
+func spend_placeable_item(placeable_item_data: PlaceableItemData, amount: int = 1) -> bool:
+	if has_placeable_item(placeable_item_data, amount):
+		placeable_item_inventory[placeable_item_data] -= amount
+		if placeable_item_inventory[placeable_item_data] <= 0:
+			placeable_item_inventory.erase(placeable_item_data)
+		print("ResourcesManager: Spent placeable ", placeable_item_data.name, "! Remaining: ", placeable_item_inventory.get(placeable_item_data, 0))
 		inventory_updated.emit()
 		return true
 	return false
 
-## Checks if the inventory has enough of a furniture item
-func has_furniture(furniture_data: FurnitureData, amount: int = 1) -> bool:
-	return furniture_inventory.get(furniture_data, 0) >= amount
+## Checks if the inventory has enough of a placeable item
+func has_placeable_item(placeable_item_data: PlaceableItemData, amount: int = 1) -> bool:
+	return placeable_item_inventory.get(placeable_item_data, 0) >= amount
 
-## Returns the entire furniture inventory dictionary
-func get_all_furniture() -> Dictionary:
-	return furniture_inventory.duplicate()
+## Returns the entire placeable item inventory dictionary
+func get_all_placeable_items() -> Dictionary:
+	return placeable_item_inventory.duplicate()

@@ -1,9 +1,9 @@
 extends Resource
 
-class_name FurnitureData
+class_name PlaceableItemData
 
-@export var name: String = "New Furniture"
-@export var furniture_type: Types.FurnitureType = Types.FurnitureType.MISC # Used for Habitat Recipes (e.g. "Table")
+@export var name: String = "New Placeable"
+@export var placeable_type: Types.PlaceableType = Types.PlaceableType.MISC # Used for Habitat Recipes (e.g. "Table")
 @export var costs: Array[CostItem] = []
 @export var icon: Texture2D
 @export var custom_scene: PackedScene

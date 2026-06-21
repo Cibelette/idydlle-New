@@ -43,9 +43,9 @@ func produce_from_source(source: Node2D):
 		
 	# Find if there is at least one Chest in the LivingArea
 	var has_chest = false
-	for item in habitat.furniture_inside:
-		if is_instance_valid(item) and "furniture_data" in item and item.furniture_data:
-			if item.furniture_data.furniture_type == Types.FurnitureType.STORAGE:
+	for item in habitat.placeable_items_inside:
+		if is_instance_valid(item) and "placeable_item_data" in item and item.placeable_item_data:
+			if item.placeable_item_data.placeable_type == Types.PlaceableType.STORAGE:
 				has_chest = true
 				break
 				
@@ -53,11 +53,11 @@ func produce_from_source(source: Node2D):
 		print("[Production] ", data.species_name, " aborted harvest: No Chest found in habitat to store resources.")
 		return
 	
-	# Amount = Creature Amount * Furniture Amount
-	# We assume the source is a Furniture with furniture_data
+	# Amount = Creature Amount * Placeable Amount
+	# We assume the source is a Placeable with placeable_item_data
 	var f_amount = 0
-	if "furniture_data" in source and source.furniture_data:
-		f_amount = source.furniture_data.produce_amount
+	if "placeable_item_data" in source and source.placeable_item_data:
+		f_amount = source.placeable_item_data.produce_amount
 		
 	var total_amount = data.produce_amount * f_amount
 	

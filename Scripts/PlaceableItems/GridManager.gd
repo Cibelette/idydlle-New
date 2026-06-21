@@ -2,7 +2,7 @@ extends Node
 
 # Logical grid models: cell coordinate (Vector2i) -> item (Node2D)
 var zone_grid: Dictionary = {}
-var furniture_grid: Dictionary = {}
+var placeable_grid: Dictionary = {}
 
 func _is_living_area(item: Node2D) -> bool:
 	return item is LivingArea
@@ -38,8 +38,8 @@ func get_occupied_cells_for_item(item: Node2D, custom_position: Vector2 = Vector
 				cells.append(top_left_cell + Vector2i(dx, dy))
 		return cells
 		
-	# Fallback to furniture_data size if no CollisionShape2D is found
-	var f_data = item.get("furniture_data")
+	# Fallback to placeable_item_data size if no CollisionShape2D is found
+	var f_data = item.get("placeable_item_data")
 	if not f_data or not "size" in f_data:
 		return cells
 		
@@ -69,8 +69,8 @@ func register_item(item: Node2D):
 		print("[GridManager] Registered Zone ", item.name, " at cells ", cells)
 	else:
 		for cell in cells:
-			furniture_grid[cell] = item
-		print("[GridManager] Registered Furniture ", item.name, " at cells ", cells)
+			placeable_grid[cell] = item
+		print("[GridManager] Registered Placeable ", item.name, " at cells ", cells)
 
 func deregister_item(item: Node2D):
 	var cells = get_occupied_cells_for_item(item)
@@ -84,9 +84,9 @@ func deregister_item(item: Node2D):
 		print("[GridManager] Deregistered Zone ", item.name, " from cells ", cells)
 	else:
 		for cell in cells:
-			if furniture_grid.get(cell) == item:
-				furniture_grid.erase(cell)
-		print("[GridManager] Deregistered Furniture ", item.name, " from cells ", cells)
+			if placeable_grid.get(cell) == item:
+				placeable_grid.erase(cell)
+		print("[GridManager] Deregistered Placeable ", item.name, " from cells ", cells)
 
 func is_position_valid(item: Node2D) -> bool:
 	var cells = get_occupied_cells_for_item(item)
@@ -100,9 +100,9 @@ func is_position_valid(item: Node2D) -> bool:
 			if is_instance_valid(existing) and existing != item:
 				return false
 	else:
-		# Furniture cannot overlap existing furniture
+		# Placeable items cannot overlap existing placeables
 		for cell in cells:
-			var existing = furniture_grid.get(cell)
+			var existing = placeable_grid.get(cell)
 			if is_instance_valid(existing) and existing != item:
 				return false
 				

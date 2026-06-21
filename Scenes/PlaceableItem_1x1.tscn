@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dp8ry28s5pkvx"]
 
-[ext_resource type="Script" uid="uid://bfnrlhu3qtm5y" path="res://Scripts/Furnitures/Furniture.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bfnrlhu3qtm5y" path="res://Scripts/PlaceableItems/PlaceableItem.gd" id="1_script"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_default"]
 size = Vector2(15, 15)
 
-[node name="Furniture_1x1" type="StaticBody2D" unique_id=311139844]
+[node name="PlaceableItem_1x1" type="StaticBody2D" unique_id=311139844]
 position = Vector2(8, 8)
 input_pickable = true
 script = ExtResource("1_script")

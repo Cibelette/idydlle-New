@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="FurnitureData" format=3 uid="uid://0fav5j3gbedn"]
+[gd_resource type="Resource" script_class="PlaceableItemData" format=3 uid="uid://0fav5j3gbedn"]
 
 [ext_resource type="Script" uid="uid://dnme0ilvktar2" path="res://Scripts/Items/CostItem.gd" id="1_costitem"]
-[ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/Furnitures/FurnitureData.gd" id="1_flwae"]
+[ext_resource type="Script" uid="uid://dqk5knegtkhqr" path="res://Scripts/PlaceableItems/PlaceableItemData.gd" id="1_flwae"]
 [ext_resource type="Texture2D" uid="uid://bes5p4jeu47ke" path="res://Assets/Objects/Basic Grass Biom things 1.png" id="2_5igdv"]
 
 [sub_resource type="Resource" id="Resource_cost"]
@@ -15,7 +15,7 @@ region = Rect2(78.04471, 64.12015, 19.388771, 15.879852)
 [resource]
 script = ExtResource("1_flwae")
 name = "Rock"
-furniture_type = 6
+placeable_type = 6
 costs = Array[ExtResource("1_costitem")]([SubResource("Resource_cost")])
 texture = SubResource("AtlasTexture_qccti")
 resource_type = 2

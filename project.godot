@@ -20,8 +20,8 @@ config/icon="res://icon.svg"
 ResourcesManager="*res://Scripts/Items/ResourcesManager.gd"
 CreatureManager="*res://Scripts/Creatures/CreatureManager.gd"
 HabitatManager="*res://Scripts/Habitats/HabitatManager.gd"
-FurnitureManager="*res://Scripts/Furnitures/FurnitureManager.gd"
-GridManager="*res://Scripts/Furnitures/GridManager.gd"
+PlaceableItemManager="*res://Scripts/PlaceableItems/PlaceableItemManager.gd"
+GridManager="*res://Scripts/PlaceableItems/GridManager.gd"
 Global="*uid://u50owy08q3dw"
 
 [display]

@@ -11,7 +11,7 @@ enum ResourceType {
 	FRUIT
 }
 
-enum FurnitureType {
+enum PlaceableType {
 	MISC,
 	STORAGE,
 	TABLE,
@@ -42,24 +42,24 @@ static func string_to_resource(s: String) -> ResourceType:
 		"fruit": return ResourceType.FRUIT
 		_: return ResourceType.NONE
 
-static func furniture_to_string(type: FurnitureType) -> String:
+static func placeable_to_string(type: PlaceableType) -> String:
 	match type:
-		FurnitureType.STORAGE: return "Storage"
-		FurnitureType.TABLE: return "Table"
-		FurnitureType.STOOL: return "Stool"
-		FurnitureType.TREE: return "Tree"
-		FurnitureType.ZONE: return "Zone"
-		FurnitureType.ROCK: return "Rock"
-		FurnitureType.BUSH: return "Bush"
+		PlaceableType.STORAGE: return "Storage"
+		PlaceableType.TABLE: return "Table"
+		PlaceableType.STOOL: return "Stool"
+		PlaceableType.TREE: return "Tree"
+		PlaceableType.ZONE: return "Zone"
+		PlaceableType.ROCK: return "Rock"
+		PlaceableType.BUSH: return "Bush"
 		_: return "Misc"
 
-static func string_to_furniture(s: String) -> FurnitureType:
+static func string_to_placeable(s: String) -> PlaceableType:
 	match s.to_lower():
-		"Storage": return FurnitureType.STORAGE
-		"table": return FurnitureType.TABLE
-		"stool": return FurnitureType.STOOL
-		"tree": return FurnitureType.TREE
-		"zone": return FurnitureType.ZONE
-		"rock": return FurnitureType.ROCK
-		"bush": return FurnitureType.BUSH
-		_: return FurnitureType.MISC
+		"Storage": return PlaceableType.STORAGE
+		"table": return PlaceableType.TABLE
+		"stool": return PlaceableType.STOOL
+		"tree": return PlaceableType.TREE
+		"zone": return PlaceableType.ZONE
+		"rock": return PlaceableType.ROCK
+		"bush": return PlaceableType.BUSH
+		_: return PlaceableType.MISC

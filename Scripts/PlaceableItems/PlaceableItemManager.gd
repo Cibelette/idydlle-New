@@ -1,8 +1,8 @@
 extends Node
 
-# Reference to the world node where furniture should be added
+# Reference to the world node where items should be added
 var current_placing_item: Node2D = null
-var all_furniture: Array[Node2D] = []
+var all_placeable_items: Array[Node2D] = []
 var opened_from_menu: String = ""
 
 func _process(_delta):
@@ -11,8 +11,8 @@ func _process(_delta):
 
 func update_preview():
 	var size_px = Vector2(16, 16)
-	if "furniture_data" in current_placing_item and current_placing_item.furniture_data:
-		size_px = Vector2(current_placing_item.furniture_data.size) * Global.grid_size
+	if "placeable_item_data" in current_placing_item and current_placing_item.placeable_item_data:
+		size_px = Vector2(current_placing_item.placeable_item_data.size) * Global.grid_size
 
 	current_placing_item.global_position = Global.snap_to_grid(current_placing_item.get_global_mouse_position(), size_px)
 
@@ -33,7 +33,7 @@ func start_placement(item_node: Node2D):
 		# Fallback to current scene if Global.current_world is not yet registered
 		get_tree().current_scene.add_child(current_placing_item)
 	
-	print("[FurnitureManager] Started placement of ", item_node.name)
+	print("[PlaceableItemManager] Started placement of ", item_node.name)
 
 func _input(event):
 	if current_placing_item != null:
@@ -41,46 +41,44 @@ func _input(event):
 			if GridManager.is_position_valid(current_placing_item):
 				finalize_placement()
 			else:
-				print("[FurnitureManager] Cannot place here - space occupied!")
+				print("[PlaceableItemManager] Cannot place here - space occupied!")
 		elif event.is_action_pressed("ui_cancel"): # Press ESC to cancel placement
 			cancel_placement()
 
-
-
 func finalize_placement():
 	if current_placing_item.has_method("place"):
-		var f_data = null
-		if "furniture_data" in current_placing_item:
-			f_data = current_placing_item.furniture_data
+		var p_data = null
+		if "placeable_item_data" in current_placing_item:
+			p_data = current_placing_item.placeable_item_data
 			
 		current_placing_item.place()
-		all_furniture.append(current_placing_item)
+		all_placeable_items.append(current_placing_item)
 		
-		if f_data:
+		if p_data:
 			if current_placing_item.has_meta("is_direct_craft") and current_placing_item.get_meta("is_direct_craft"):
-				if ResourcesManager.can_afford_multiple(f_data.costs):
-					ResourcesManager.spend_multiple(f_data.costs)
+				if ResourcesManager.can_afford_multiple(p_data.costs):
+					ResourcesManager.spend_multiple(p_data.costs)
 				else:
-					print("[FurnitureManager] Cannot place - resources no longer available!")
+					print("[PlaceableItemManager] Cannot place - resources no longer available!")
 					cancel_placement()
 					return
 			else:
-				ResourcesManager.spend_furniture(f_data, 1)
+				ResourcesManager.spend_placeable_item(p_data, 1)
 		
 		# Emit global signal for compatibility
-		Global.furniture_placed.emit(current_placing_item)
+		Global.placeable_item_placed.emit(current_placing_item)
 		
-		print("[FurnitureManager] Placed ", current_placing_item.name)
+		print("[PlaceableItemManager] Placed ", current_placing_item.name)
 		current_placing_item = null
 		_reopen_menu()
 	else:
-		print("[FurnitureManager] Error: Item does not have a 'place' method")
+		print("[PlaceableItemManager] Error: Item does not have a 'place' method")
 
 func cancel_placement():
 	if current_placing_item != null:
 		current_placing_item.queue_free()
 		current_placing_item = null
-		print("[FurnitureManager] Placement cancelled")
+		print("[PlaceableItemManager] Placement cancelled")
 		_reopen_menu()
 
 func _reopen_menu():
@@ -99,7 +97,7 @@ func _reopen_menu():
 				
 	opened_from_menu = ""
 
-func get_all_furniture() -> Array[Node2D]:
+func get_all_placeable_items() -> Array[Node2D]:
 	# Cleanup invalid references (queued for deletion)
-	all_furniture = all_furniture.filter(func(f): return is_instance_valid(f))
-	return all_furniture
+	all_placeable_items = all_placeable_items.filter(func(f): return is_instance_valid(f))
+	return all_placeable_items

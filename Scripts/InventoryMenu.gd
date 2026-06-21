@@ -4,12 +4,12 @@ extends Control
 @onready var grid_container = $InventoryPanel/VBoxContainer/ScrollContainer/GridContainer
 @onready var tab_all = $InventoryPanel/VBoxContainer/TabButtons/TabAll
 @onready var tab_resources = $InventoryPanel/VBoxContainer/TabButtons/TabResources
-@onready var tab_furnitures = $InventoryPanel/VBoxContainer/TabButtons/TabFurnitures
+@onready var tab_placeables = $InventoryPanel/VBoxContainer/TabButtons/TabPlaceables
 
-# Preloads for base furniture scenes, similar to CraftingMenu.gd
-@export var base_furniture_scene: PackedScene = preload("res://Scenes/Furniture.tscn")
+# Preloads for base placeable scenes, similar to CraftingMenu.gd
+@export var base_placeable_item_scene: PackedScene = preload("res://Scenes/PlaceableItem.tscn")
 
-var current_tab: String = "All" # "All", "Resources", "Furnitures"
+var current_tab: String = "All" # "All", "Resources", "Placeables"
 var slots: Array[Control] = []
 
 func _ready():
@@ -18,7 +18,7 @@ func _ready():
 	# Connect tab buttons
 	tab_all.pressed.connect(func(): set_tab("All"))
 	tab_resources.pressed.connect(func(): set_tab("Resources"))
-	tab_furnitures.pressed.connect(func(): set_tab("Furnitures"))
+	tab_placeables.pressed.connect(func(): set_tab("Placeables"))
 	
 	# Initialize 64 empty slots
 	_create_slots()
@@ -50,7 +50,7 @@ func _update_tab_button_styles():
 	
 	tab_all.modulate = active_color if current_tab == "All" else inactive_color
 	tab_resources.modulate = active_color if current_tab == "Resources" else inactive_color
-	tab_furnitures.modulate = active_color if current_tab == "Furnitures" else inactive_color
+	tab_placeables.modulate = active_color if current_tab == "Placeables" else inactive_color
 
 func _create_slots():
 	# Clear any placeholders
@@ -117,9 +117,9 @@ func refresh_grid():
 	if not is_inside_tree(): return
 	
 	# Fetch inventory items based on current tab
-	var items_to_show = [] # Array of Dictionary: { "type": "resource"/"furniture", "data": Resource, "amount": int }
+	var items_to_show = [] # Array of Dictionary: { "type": "resource"/"placeable", "data": Resource, "amount": int }
 	
-	# 1. Add resources if not in "Furnitures" tab
+	# 1. Add resources if not in "Placeables" tab
 	if current_tab == "All" or current_tab == "Resources":
 		var resources = ResourcesManager.get_all_resources()
 		for res_type in resources:
@@ -133,19 +133,19 @@ func refresh_grid():
 						"amount": amount
 					})
 					
-	# 2. Add furnitures if not in "Resources" tab
-	if current_tab == "All" or current_tab == "Furnitures":
-		var furnitures = ResourcesManager.get_all_furniture()
-		for furn_data in furnitures:
-			var amount = furnitures[furn_data]
+	# 2. Add placeables if not in "Resources" tab
+	if current_tab == "All" or current_tab == "Placeables":
+		var placeables = ResourcesManager.get_all_placeable_items()
+		for furn_data in placeables:
+			var amount = placeables[furn_data]
 			if amount > 0:
 				items_to_show.append({
-					"type": "furniture",
+					"type": "placeable",
 					"data": furn_data,
 					"amount": amount
 				})
 				
-	# Sort items to show (resources first, then furnitures, by name)
+	# Sort items to show (resources first, then placeables, by name)
 	items_to_show.sort_custom(func(a, b):
 		if a.type != b.type:
 			return a.type == "resource" # resources first
@@ -183,8 +183,8 @@ func refresh_grid():
 			
 			# Interactive border styling for occupied slots
 			var style = slot.get_theme_stylebox("panel").duplicate()
-			if item.type == "furniture":
-				# Give furniture a distinct border highlight (cozy terracotta/orange border)
+			if item.type == "placeable":
+				# Give placeables a distinct border highlight (cozy terracotta/orange border)
 				style.border_color = Color(0.839, 0.500, 0.459, 1.0)
 				style.bg_color = Color(0.18, 0.14, 0.12, 0.9)
 			else:
@@ -193,11 +193,11 @@ func refresh_grid():
 				style.bg_color = Color(0.14, 0.12, 0.11, 0.9)
 			slot.add_theme_stylebox_override("panel", style)
 			
-			# Handle clicks for furniture placement
-			if item.type == "furniture":
+			# Handle clicks for placeable placement
+			if item.type == "placeable":
 				var on_click = func(event):
 					if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-						place_furniture_item(item.data)
+						place_placeable_item(item.data)
 				slot.gui_input.connect(on_click)
 				slot.set_meta("click_callable", on_click)
 				slot.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
@@ -222,31 +222,31 @@ func show_menu():
 	inventory_panel.visible = true
 	refresh_grid()
 
-func place_furniture_item(item_data: FurnitureData):
-	print("[InventoryMenu] Placing furniture: ", item_data.name)
+func place_placeable_item(item_data: PlaceableItemData):
+	print("[InventoryMenu] Placing placeable: ", item_data.name)
 	
 	# Close the inventory menu
 	inventory_panel.visible = false
 	
 	# Instantiate and place
-	var scene_path = "res://Scenes/Furniture_%dx%d.tscn" % [item_data.size.x, item_data.size.y]
+	var scene_path = "res://Scenes/PlaceableItem_%dx%d.tscn" % [item_data.size.x, item_data.size.y]
 
-	# Fallback to base furniture scene if specific size doesn't exist
-	var target_scene = base_furniture_scene
+	# Fallback to base placeable scene if specific size doesn't exist
+	var target_scene = base_placeable_item_scene
 	if item_data.custom_scene:
 		target_scene = item_data.custom_scene
 	elif ResourceLoader.exists(scene_path):
 		target_scene = load(scene_path)
 
 	var new_item = target_scene.instantiate()
-	new_item.furniture_data = item_data
+	new_item.placeable_item_data = item_data
 
 	if "is_placed" in new_item:
 		new_item.is_placed = false
 	
 	# Start placement through the manager
-	FurnitureManager.opened_from_menu = "inventory"
-	FurnitureManager.start_placement(new_item)
+	PlaceableItemManager.opened_from_menu = "inventory"
+	PlaceableItemManager.start_placement(new_item)
 
 func _on_close_button_pressed():
 	toggle_menu()

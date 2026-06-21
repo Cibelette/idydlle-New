@@ -108,11 +108,11 @@ func _find_random_empty_position_in_area(area: LivingArea) -> Vector2:
 func _is_position_empty(pos: Vector2, area: LivingArea) -> bool:
 	var cell_rect = Rect2(pos.x - 8.0, pos.y - 8.0, 16.0, 16.0)
 	
-	# Check against furniture in this area
-	for f in area.furniture_inside:
-		if is_instance_valid(f) and f.is_placed and "furniture_data" in f and f.furniture_data:
-			var half_w = f.furniture_data.size.x * 8.0
-			var half_h = f.furniture_data.size.y * 8.0
+	# Check against placeable items in this area
+	for f in area.placeable_items_inside:
+		if is_instance_valid(f) and f.is_placed and "placeable_item_data" in f and f.placeable_item_data:
+			var half_w = f.placeable_item_data.size.x * 8.0
+			var half_h = f.placeable_item_data.size.y * 8.0
 			var f_rect = Rect2(f.global_position.x - half_w, f.global_position.y - half_h, half_w * 2.0, half_h * 2.0)
 			if f_rect.intersects(cell_rect):
 				return false

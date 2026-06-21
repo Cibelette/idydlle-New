@@ -2,7 +2,7 @@ extends StaticBody2D
 class_name LivingArea
 
 @export var is_placed: bool = false
-@export var furniture_data: FurnitureData
+@export var placeable_item_data: PlaceableItemData
 
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var area: Area2D = $Area2D
@@ -11,7 +11,7 @@ class_name LivingArea
 
 signal happiness_changed(new_value: int)
 
-var furniture_inside: Array[Node2D] = []
+var placeable_items_inside: Array[Node2D] = []
 var active_habitat: Habitat = null
 var inventory: Dictionary = {}
 var happiness: int = 0
@@ -32,8 +32,8 @@ func place():
 	
 	GridManager.register_item(self)
 	
-	# Check for furniture already inside
-	_update_furniture_inside()
+	# Check for placeable items already inside
+	_update_placeable_items_inside()
 	check_habitat_recipe()
 
 func _exit_tree():
@@ -41,9 +41,9 @@ func _exit_tree():
 	GridManager.deregister_item(self)
 
 func _on_area_2d_body_entered(body: Node2D):
-	# If it's a furniture (has furniture_data), we track it even if not placed yet
-	if "furniture_data" in body and not furniture_inside.has(body):
-		furniture_inside.append(body)
+	# If it's a placeable (has placeable_item_data), we track it even if not placed yet
+	if "placeable_item_data" in body and not placeable_items_inside.has(body):
+		placeable_items_inside.append(body)
 		if "living_area" in body:
 			body.living_area = self
 			if body.has_method("_update_bubble"):
@@ -54,8 +54,8 @@ func _on_area_2d_body_entered(body: Node2D):
 		update_happiness()
 
 func _on_area_2d_body_exited(body: Node2D):
-	if furniture_inside.has(body):
-		furniture_inside.erase(body)
+	if placeable_items_inside.has(body):
+		placeable_items_inside.erase(body)
 		if "living_area" in body and body.living_area == self:
 			body.living_area = null
 			if body.has_method("_update_bubble"):
@@ -64,27 +64,27 @@ func _on_area_2d_body_exited(body: Node2D):
 		update_happiness()
 
 
-func _update_furniture_inside():
-	for f in furniture_inside:
+func _update_placeable_items_inside():
+	for f in placeable_items_inside:
 		if is_instance_valid(f) and "living_area" in f and f.living_area == self:
 			f.living_area = null
-	furniture_inside.clear()
+	placeable_items_inside.clear()
 	
 	var zone_cells = GridManager.get_occupied_cells_for_item(self)
-	print("[LivingArea] Scanning for furniture inside zone cells: ", zone_cells)
+	print("[LivingArea] Scanning for placeable items inside zone cells: ", zone_cells)
 	
 	for cell in zone_cells:
-		var f = GridManager.furniture_grid.get(cell)
+		var f = GridManager.placeable_grid.get(cell)
 		if is_instance_valid(f) and f.is_placed:
-			if not furniture_inside.has(f):
-				furniture_inside.append(f)
+			if not placeable_items_inside.has(f):
+				placeable_items_inside.append(f)
 				if "living_area" in f:
 					f.living_area = self
 					if f.has_method("_update_bubble"):
 						f._update_bubble()
 				print("[LivingArea]   - Detected inside: ", f.name, " at cell ", cell)
 	
-	print("[LivingArea] Scan complete. Items found: ", furniture_inside.size())
+	print("[LivingArea] Scan complete. Items found: ", placeable_items_inside.size())
 	update_happiness()
 
 
@@ -96,9 +96,9 @@ func store_resource(type: Types.ResourceType, amount: int):
 	update_all_chests_bubbles()
 
 func update_all_chests_bubbles():
-	for item in furniture_inside:
-		if is_instance_valid(item) and "furniture_data" in item and item.furniture_data:
-			if item.furniture_data.furniture_type == Types.FurnitureType.STORAGE:
+	for item in placeable_items_inside:
+		if is_instance_valid(item) and "placeable_item_data" in item and item.placeable_item_data:
+			if item.placeable_item_data.placeable_type == Types.PlaceableType.STORAGE:
 				if item.has_method("_update_bubble"):
 					item._update_bubble()
 
@@ -123,9 +123,9 @@ func set_habitat(habitat: Habitat):
 
 func get_total_happiness() -> int:
 	var total = 0
-	for f in furniture_inside:
-		if is_instance_valid(f) and "is_placed" in f and f.is_placed and "furniture_data" in f and f.furniture_data:
-			total += f.furniture_data.happiness
+	for f in placeable_items_inside:
+		if is_instance_valid(f) and "is_placed" in f and f.is_placed and "placeable_item_data" in f and f.placeable_item_data:
+			total += f.placeable_item_data.happiness
 	return total
 
 func update_happiness():

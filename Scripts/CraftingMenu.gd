@@ -5,9 +5,9 @@ signal item_crafted(item_node)
 @onready var crafting_panel = $CraftingPanel
 @onready var item_list = $CraftingPanel/VBoxContainer
 
-@export var craftable_items: Array[FurnitureData]
+@export var craftable_items: Array[PlaceableItemData]
 
-@export var base_furniture_scene: PackedScene = preload("res://Scenes/Furniture.tscn")
+@export var base_placeable_item_scene: PackedScene = preload("res://Scenes/PlaceableItem.tscn")
 
 func _ready():
 	crafting_panel.visible = false
@@ -20,8 +20,8 @@ func setup_menu():
 			child.queue_free()
 	
 	# Load all items from directory dynamically
-	var items: Array[FurnitureData] = []
-	var path = "res://Ressources/Furnitures/"
+	var items: Array[PlaceableItemData] = []
+	var path = "res://Ressources/PlaceableItems/"
 	var dir = DirAccess.open(path)
 	if dir:
 		dir.list_dir_begin()
@@ -33,7 +33,7 @@ func setup_menu():
 				# Strip .remap suffix if present
 				var clean_name = file_name.replace(".remap", "")
 				var res = load(path + clean_name)
-				if res is FurnitureData:
+				if res is PlaceableItemData:
 					items.append(res)
 			file_name = dir.get_next()
 		dir.list_dir_end()
@@ -68,29 +68,29 @@ func _on_open_button_pressed():
 func show_menu():
 	crafting_panel.visible = true
 
-func craft_item(item_data: FurnitureData):
+func craft_item(item_data: PlaceableItemData):
 	# Check if we can afford all resources
 	if ResourcesManager.can_afford_multiple(item_data.costs):
 		# Hide crafting panel
 		crafting_panel.visible = false
 		
 		# Instantiate and start direct placement
-		var scene_path = "res://Scenes/Furniture_%dx%d.tscn" % [item_data.size.x, item_data.size.y]
-		var target_scene = base_furniture_scene
+		var scene_path = "res://Scenes/PlaceableItem_%dx%d.tscn" % [item_data.size.x, item_data.size.y]
+		var target_scene = base_placeable_item_scene
 		if item_data.custom_scene:
 			target_scene = item_data.custom_scene
 		elif ResourceLoader.exists(scene_path):
 			target_scene = load(scene_path)
 
 		var new_item = target_scene.instantiate()
-		new_item.furniture_data = item_data
+		new_item.placeable_item_data = item_data
 		new_item.set_meta("is_direct_craft", true)
 
 		if "is_placed" in new_item:
 			new_item.is_placed = false
 
-		FurnitureManager.opened_from_menu = "crafting"
-		FurnitureManager.start_placement(new_item)
+		PlaceableItemManager.opened_from_menu = "crafting"
+		PlaceableItemManager.start_placement(new_item)
 		print("[Crafting] Proposed placement for: ", item_data.name)
 	else:
 		print("Not enough resources to craft ", item_data.name)

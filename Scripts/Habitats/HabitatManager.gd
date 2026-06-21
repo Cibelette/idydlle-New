@@ -19,12 +19,12 @@ func check_for_new_habitat(placed_item: Node2D):
 	await Global.get_tree().physics_frame
 	if not is_instance_valid(placed_item): return
 
-	# If we placed furniture, check if it's inside any LivingArea
-	if placed_item.is_in_group("furniture"):
+	# If we placed a placeable, check if it's inside any LivingArea
+	if placed_item.is_in_group("placeable_items"):
 		var all_zones = Global.current_world.get_tree().get_nodes_in_group("living_areas")
 		for zone in all_zones:
 			if zone is LivingArea:
-				zone._update_furniture_inside()
+				zone._update_placeable_items_inside()
 				zone.check_habitat_recipe()
 
 func check_zone_for_habitat(zone: LivingArea):
@@ -44,20 +44,20 @@ func find_recipe_components_in_zone(recipe: HabitatData, zone: LivingArea) -> Ar
 	var recipe_counts = {}
 	for req in recipe.recipe_items:
 		if req:
-			recipe_counts[req.furniture_type] = recipe_counts.get(req.furniture_type, 0) + req.amount
+			recipe_counts[req.placeable_type] = recipe_counts.get(req.placeable_type, 0) + req.amount
 	
-	print("[HabitatManager] Checking recipe '", recipe.habitat_name, "' in zone. Items in zone: ", zone.furniture_inside.size())
+	print("[HabitatManager] Checking recipe '", recipe.habitat_name, "' in zone. Items in zone: ", zone.placeable_items_inside.size())
 	
-	for item in zone.furniture_inside:
+	for item in zone.placeable_items_inside:
 		if not item.is_placed: 
 			print("[HabitatManager]   - Item ", item.name, " is NOT placed yet.")
 			continue
 			
-		var type: Types.FurnitureType = Types.FurnitureType.MISC
-		if "furniture_data" in item and item.furniture_data:
-			type = item.furniture_data.furniture_type
+		var type: Types.PlaceableType = Types.PlaceableType.MISC
+		if "placeable_item_data" in item and item.placeable_item_data:
+			type = item.placeable_item_data.placeable_type
 		
-		var type_string = Types.furniture_to_string(type)
+		var type_string = Types.placeable_to_string(type)
 		print("[HabitatManager]   - Found item type: '", type_string, "' (", item.name, ")")
 		
 		if recipe_counts.has(type) and recipe_counts[type] > 0:

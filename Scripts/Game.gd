@@ -9,10 +9,10 @@ func _ready():
 	Global.current_world = self
 	
 	_load_habitat_recipes()
-	Global.furniture_placed.connect(_on_furniture_placed)
+	Global.placeable_item_placed.connect(_on_placeable_item_placed)
 
-func _on_furniture_placed(item):
-	print("[Game] Signal received: Furniture placed, checking habitat...")
+func _on_placeable_item_placed(item):
+	print("[Game] Signal received: Placeable item placed, checking habitat...")
 	HabitatManager.check_for_new_habitat(item)
 
 func _load_habitat_recipes():
@@ -31,11 +31,11 @@ func _load_habitat_recipes():
 func _process(_delta):
 
 	# Request redraw if we are currently placing an item to show the grid
-	if FurnitureManager.current_placing_item != null:
+	if PlaceableItemManager.current_placing_item != null:
 		queue_redraw()
 
 func _draw():
-	if FurnitureManager.current_placing_item != null:
+	if PlaceableItemManager.current_placing_item != null:
 		draw_grid()
 
 func draw_grid():
