@@ -5,7 +5,7 @@ var zone_grid: Dictionary = {}
 var furniture_grid: Dictionary = {}
 
 func _is_living_area(item: Node2D) -> bool:
-	return item.get_script() != null and item.get_script().resource_path.contains("LivingArea.gd")
+	return item is LivingArea
 
 func get_occupied_cells_for_item(item: Node2D, custom_position: Vector2 = Vector2.ZERO) -> Array[Vector2i]:
 	var cells: Array[Vector2i] = []
