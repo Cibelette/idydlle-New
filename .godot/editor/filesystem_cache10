@@ -1,7 +1,7 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1782044838
+::res://::1782054660
 DynamicCreationNotes.md::TextFile::-1::1781706872::0::1::::<><><>0<>0<><>::
-export_presets.cfg::TextFile::-1::1781906788::0::1::::<><><>0<>0<><>::
+export_presets.cfg::TextFile::-1::1782045000::0::1::::<><><>0<>0<><>::
 HowToAddCreatures.md::TextFile::-1::1781629068::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D::285414437791331260::1781629068::1781629105::1::::<><><>0<>0<>0d1aff556201e2bdbb0e42946b7419d1<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://Assets/::1781891697
@@ -117,23 +117,23 @@ TopDownHouse_FloorsAndWalls_OpenDoors.png::CompressedTexture2D::8735953777729947
 TopDownHouse_FurnitureState1.png::CompressedTexture2D::9121649894989639511::1781692113::1781692113::1::::<><><>0<>0<>977145966688f960c22e1ac4b3c3a3e0<>res://.godot/imported/TopDownHouse_FurnitureState1.png-98858b96a7894ce86695ab8c3d330d79.ctex::
 TopDownHouse_FurnitureState2.png::CompressedTexture2D::7051300436076820891::1781692113::1781692113::1::::<><><>0<>0<>056222b0c8cd306707b12bb2cf49eb45<>res://.godot/imported/TopDownHouse_FurnitureState2.png-e5ba2b949457efb40f09eae6039591a0.ctex::
 TopDownHouse_SmallItems.png::CompressedTexture2D::1261091935296875366::1781692113::1781692113::1::::<><><>0<>0<>f64dea366ae7b0331663d11c4885dfb3<>res://.godot/imported/TopDownHouse_SmallItems.png-d81fb2b71ecddb64a35302e60e84c662.ctex::
-::res://Ressources/::1781709409
-::res://Ressources/Creatures/::1781972544
-Cat.tres::Resource/CreatureData::7865328481461977991::1781972544::0::1::::<><><>0<>0<><>::uid://bmqoq12meetm6::::res://Scripts/Creatures/CreatureData.gd<>uid://c4365kfxwflrh::::res://Assets/Characters/Basic Charakter Spritesheet.png
+::res://Ressources/::1782054652
+::res://Ressources/Creatures/::1782053757
+Cat.tres::Resource/CreatureData::7865328481461977991::1782053757::0::1::::<><><>0<>0<><>::uid://bmqoq12meetm6::::res://Scripts/Creatures/CreatureData.gd<>uid://c4365kfxwflrh::::res://Assets/Characters/Basic Charakter Spritesheet.png
 Chicken.tres::Resource/CreatureData::7745525661866992019::1781970676::0::1::::<><><>0<>0<><>::uid://bmqoq12meetm6::::res://Scripts/Creatures/CreatureData.gd<>uid://b03wkjons1jby::::res://Assets/Characters/Free Chicken Sprites.png
 Cow.tres::Resource/CreatureData::4726018041813490799::1781884980::0::1::::<><><>0<>0<><>::uid://bmqoq12meetm6::::res://Scripts/Creatures/CreatureData.gd<>uid://p7pgtqhrt2ht::::res://Assets/Characters/Free Cow Sprites.png
-::res://Ressources/Furnitures/::1781972544
-Bush.tres::Resource/FurnitureData::2379209459930984472::1781969616::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://dqk5knegtkhqr::::res://Scripts/Furnitures/FurnitureData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
-Chest.tres::Resource/FurnitureData::1564625552614499286::1781972544::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://byye4boofb7c5::::res://Assets/Sprout Lands - UI Pack - Basic pack/Sprite sheets/Dialouge UI/dialog box.png<>uid://dqk5knegtkhqr::::res://Scripts/Furnitures/FurnitureData.gd<>uid://hvw5yhs41ad5::::res://Assets/Objects/Chest.png
-LivingArea.tres::Resource/LivingAreaData::5428020490508237891::1781972184::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://cetomlnlxdcnh::::res://Scripts/LivingAreaData.gd<>uid://cxexaipntin76::::res://Scenes/LivingArea.tscn
-Rock.tres::Resource/FurnitureData::1765082072277109291::1781972544::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://dqk5knegtkhqr::::res://Scripts/Furnitures/FurnitureData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
-Stool.tres::Resource/FurnitureData::6991903602599207309::1781972544::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://dqk5knegtkhqr::::res://Scripts/Furnitures/FurnitureData.gd<>uid://doooqhuqhksaj::::res://Assets/Objects/Basic Furniture.png
-Table.tres::Resource/FurnitureData::4189609213191296717::1781972544::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://dqk5knegtkhqr::::res://Scripts/Furnitures/FurnitureData.gd<>uid://doooqhuqhksaj::::res://Assets/Objects/Basic Furniture.png
-tree.tres::Resource/FurnitureData::7045522146953201549::1781972544::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://dqk5knegtkhqr::::res://Scripts/Furnitures/FurnitureData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
-::res://Ressources/Habitats/::1781885820
-DiningArea.tres::Resource/HabitatData::7652119365467453815::1781870324::0::1::::<><><>0<>0<><>::uid://b8lk3dvnja152::::res://Ressources/Creatures/Cow.tres<>uid://02fm25c7lmj4::::res://Scenes/Creature.tscn<>uid://bkuhhp5f81uqc::::res://Scripts/Habitats/HabitatData.gd<>uid://whnko2ecmjpy::::res://Scripts/Habitats/RecipeItem.gd
-HabitatStool.tres::Resource/HabitatData::5377083364831357381::1781885820::0::1::::<><><>0<>0<><>::uid://bkuhhp5f81uqc::::res://Scripts/Habitats/HabitatData.gd<>uid://dil8w8qd3k0fv::::res://Ressources/Creatures/Chicken.tres<>uid://02fm25c7lmj4::::res://Scenes/Creature.tscn<>uid://whnko2ecmjpy::::res://Scripts/Habitats/RecipeItem.gd
-TreeArea.tres::Resource/HabitatData::8980167044678591514::1781870054::0::1::::<><><>0<>0<><>::uid://dkca2tpu0yrm2::::res://Ressources/Creatures/Cat.tres<>uid://bkuhhp5f81uqc::::res://Scripts/Habitats/HabitatData.gd<>uid://02fm25c7lmj4::::res://Scenes/Creature.tscn<>res://Scripts/Habitats/RecipeItem.gd
+::res://Ressources/Furnitures/::1782054652
+Bush.tres::Resource/FurnitureData::2379209459930984472::1782054652::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://dqk5knegtkhqr::::res://Scripts/Furnitures/FurnitureData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
+Chest.tres::Resource/FurnitureData::1564625552614499286::1782054652::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://byye4boofb7c5::::res://Assets/Sprout Lands - UI Pack - Basic pack/Sprite sheets/Dialouge UI/dialog box.png<>uid://dqk5knegtkhqr::::res://Scripts/Furnitures/FurnitureData.gd<>uid://hvw5yhs41ad5::::res://Assets/Objects/Chest.png
+LivingArea.tres::Resource/LivingAreaData::5428020490508237891::1782054652::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://cetomlnlxdcnh::::res://Scripts/LivingAreaData.gd<>uid://cxexaipntin76::::res://Scenes/LivingArea.tscn
+Rock.tres::Resource/FurnitureData::1765082072277109291::1782054652::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://dqk5knegtkhqr::::res://Scripts/Furnitures/FurnitureData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
+Stool.tres::Resource/FurnitureData::6991903602599207309::1782054652::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://dqk5knegtkhqr::::res://Scripts/Furnitures/FurnitureData.gd<>uid://doooqhuqhksaj::::res://Assets/Objects/Basic Furniture.png
+Table.tres::Resource/FurnitureData::4189609213191296717::1782054652::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://dqk5knegtkhqr::::res://Scripts/Furnitures/FurnitureData.gd<>uid://doooqhuqhksaj::::res://Assets/Objects/Basic Furniture.png
+tree.tres::Resource/FurnitureData::7045522146953201549::1782054652::0::1::::<><><>0<>0<><>::uid://dnme0ilvktar2::::res://Scripts/Items/CostItem.gd<>uid://dqk5knegtkhqr::::res://Scripts/Furnitures/FurnitureData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
+::res://Ressources/Habitats/::1782054652
+DiningArea.tres::Resource/HabitatData::7652119365467453815::1782054652::0::1::::<><><>0<>0<><>::uid://b8lk3dvnja152::::res://Ressources/Creatures/Cow.tres<>uid://02fm25c7lmj4::::res://Scenes/Creature.tscn<>uid://bkuhhp5f81uqc::::res://Scripts/Habitats/HabitatData.gd<>uid://whnko2ecmjpy::::res://Scripts/Habitats/RecipeItem.gd
+HabitatStool.tres::Resource/HabitatData::5377083364831357381::1782054652::0::1::::<><><>0<>0<><>::uid://bkuhhp5f81uqc::::res://Scripts/Habitats/HabitatData.gd<>uid://dil8w8qd3k0fv::::res://Ressources/Creatures/Chicken.tres<>uid://02fm25c7lmj4::::res://Scenes/Creature.tscn<>uid://whnko2ecmjpy::::res://Scripts/Habitats/RecipeItem.gd
+TreeArea.tres::Resource/HabitatData::8980167044678591514::1782054652::0::1::::<><><>0<>0<><>::uid://dkca2tpu0yrm2::::res://Ressources/Creatures/Cat.tres<>uid://bkuhhp5f81uqc::::res://Scripts/Habitats/HabitatData.gd<>uid://02fm25c7lmj4::::res://Scenes/Creature.tscn<>res://Scripts/Habitats/RecipeItem.gd
 ::res://Ressources/Items/::1781885820
 apple.tres::Resource/ResourceVisualData::8971336877880775175::1781813092::0::1::::<><><>0<>0<><>::uid://bojic1is5b2ho::::res://Scripts/Items/ResourceVisualData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
 BerryVisual.tres::Resource/ResourceVisualData::2891495702793522055::1781885820::0::1::::<><><>0<>0<><>::uid://bojic1is5b2ho::::res://Scripts/Items/ResourceVisualData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
@@ -141,50 +141,51 @@ Coins.tres::Resource/ResourceVisualData::8866113117219066666::1781813083::0::1::
 LeafVisual.tres::Resource/ResourceVisualData::1917230529832345421::1781885820::0::1::::<><><>0<>0<><>::uid://bojic1is5b2ho::::res://Scripts/Items/ResourceVisualData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
 StoneVisual.tres::Resource/ResourceVisualData::1973423486520550697::1781813087::0::1::::<><><>0<>0<><>::uid://bojic1is5b2ho::::res://Scripts/Items/ResourceVisualData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
 WoodVisual.tres::Resource/ResourceVisualData::5056841739947175736::1781813089::0::1::::<><><>0<>0<><>::uid://bojic1is5b2ho::::res://Scripts/Items/ResourceVisualData.gd<>uid://bes5p4jeu47ke::::res://Assets/Objects/Basic Grass Biom things 1.png
-::res://Scenes/::1781972695
-chest.tscn::PackedScene::436630136317224299::1781971912::0::1::::<><><>0<>0<><>::uid://bfnrlhu3qtm5y::::res://Scripts/Furnitures/Furniture.gd<>uid://hvw5yhs41ad5::::res://Assets/Objects/Chest.png
-CraftingMenu.tscn::PackedScene::4870821069239385964::1781889325::0::1::::<><><>0<>0<><>::uid://c8f4rgp52ih1w::::res://Scripts/CraftingMenu.gd<>uid://dqk5knegtkhqr::::res://Scripts/Furnitures/FurnitureData.gd<>uid://wj6fik6b7w5s::::res://Ressources/Furnitures/Chest.tres<>uid://b0xqis5eqyghh::::res://Ressources/Furnitures/Table.tres<>uid://c6u6vphfkp0qr::::res://Ressources/Furnitures/Stool.tres<>uid://c7m5yq1p8j3v2::::res://Ressources/Furnitures/tree.tres<>uid://cjlmx7ld1y0gt::::res://Ressources/Furnitures/LivingArea.tres<>uid://0fav5j3gbedn::::res://Ressources/Furnitures/Rock.tres
+::res://Scenes/::1782054652
+chest.tscn::PackedScene::436630136317224299::1782054652::0::1::::<><><>0<>0<><>::uid://bfnrlhu3qtm5y::::res://Scripts/Furnitures/Furniture.gd<>uid://hvw5yhs41ad5::::res://Assets/Objects/Chest.png
+CraftingMenu.tscn::PackedScene::4870821069239385964::1782054652::0::1::::<><><>0<>0<><>::uid://c8f4rgp52ih1w::::res://Scripts/CraftingMenu.gd<>uid://dqk5knegtkhqr::::res://Scripts/Furnitures/FurnitureData.gd<>uid://wj6fik6b7w5s::::res://Ressources/Furnitures/Chest.tres<>uid://b0xqis5eqyghh::::res://Ressources/Furnitures/Table.tres<>uid://c6u6vphfkp0qr::::res://Ressources/Furnitures/Stool.tres<>uid://c7m5yq1p8j3v2::::res://Ressources/Furnitures/tree.tres<>uid://cjlmx7ld1y0gt::::res://Ressources/Furnitures/LivingArea.tres<>uid://0fav5j3gbedn::::res://Ressources/Furnitures/Rock.tres
 Creature.tscn::PackedScene::1810785769409781143::1781964105::0::1::::<><><>0<>0<><>::uid://c4365kfxwflrh::::res://Assets/Characters/Basic Charakter Spritesheet.png<>uid://dhvbwx3psmngh::::res://Scripts/Creatures/Creature.gd<>uid://dkca2tpu0yrm2::::res://Ressources/Creatures/Cat.tres
-Furniture.tscn::PackedScene::5479829335468851547::1781792841::0::1::::<><><>0<>0<><>::uid://bfnrlhu3qtm5y::::res://Scripts/Furnitures/Furniture.gd
-Furniture_1x1.tscn::PackedScene::8281295689432038113::1781792841::0::1::::<><><>0<>0<><>::uid://bfnrlhu3qtm5y::::res://Scripts/Furnitures/Furniture.gd
-Furniture_2x1.tscn::PackedScene::4052010124623948493::1781792841::0::1::::<><><>0<>0<><>::uid://bfnrlhu3qtm5y::::res://Scripts/Furnitures/Furniture.gd
-Furniture_2x2.tscn::PackedScene::398147238679603116::1781792841::0::1::::<><><>0<>0<><>::uid://bfnrlhu3qtm5y::::res://Scripts/Furnitures/Furniture.gd
-game.tscn::PackedScene::4275628924665518078::1781972695::0::1::::<><><>0<>0<><>::uid://df4rpok0h54iw::::res://Assets/Tilesets/Grass.png<>uid://cp4movt136ywo::::res://Scripts/Game.gd<>uid://b5y1p60sjngof::::res://Scenes/rts_camera.tscn<>uid://pwqshwpwjb57::::res://Scenes/resource_counter.tscn<>uid://cbnpygl4mn6ku::::res://Scenes/CraftingMenu.tscn<>uid://c7t6qnx3r5u1v::::res://Scenes/InventoryMenu.tscn
+Furniture.tscn::PackedScene::5479829335468851547::1782054652::0::1::::<><><>0<>0<><>::uid://bfnrlhu3qtm5y::::res://Scripts/Furnitures/Furniture.gd
+Furniture_1x1.tscn::PackedScene::8281295689432038113::1782054652::0::1::::<><><>0<>0<><>::uid://bfnrlhu3qtm5y::::res://Scripts/Furnitures/Furniture.gd
+Furniture_2x1.tscn::PackedScene::4052010124623948493::1782054652::0::1::::<><><>0<>0<><>::uid://bfnrlhu3qtm5y::::res://Scripts/Furnitures/Furniture.gd
+Furniture_2x2.tscn::PackedScene::398147238679603116::1782054652::0::1::::<><><>0<>0<><>::uid://bfnrlhu3qtm5y::::res://Scripts/Furnitures/Furniture.gd
+game.tscn::PackedScene::4275628924665518078::1782053757::0::1::::<><><>0<>0<><>::uid://df4rpok0h54iw::::res://Assets/Tilesets/Grass.png<>uid://cp4movt136ywo::::res://Scripts/Game.gd<>uid://b5y1p60sjngof::::res://Scenes/rts_camera.tscn<>uid://pwqshwpwjb57::::res://Scenes/resource_counter.tscn<>uid://cbnpygl4mn6ku::::res://Scenes/CraftingMenu.tscn<>uid://c7t6qnx3r5u1v::::res://Scenes/InventoryMenu.tscn
 Habitat.tscn::PackedScene::-1::1781792841::0::1::::<><><>0<>0<><>::uid://butfwpx3vubo6::::res://Scripts/Habitats/Habitat.gd
-InventoryMenu.tscn::PackedScene::7060019060238779033::1781969339::0::1::::<><><>0<>0<><>::uid://btx1p2ej3r1o1::::res://Scripts/InventoryMenu.gd
+InventoryMenu.tscn::PackedScene::7060019060238779033::1782054652::0::1::::<><><>0<>0<><>::uid://btx1p2ej3r1o1::::res://Scripts/InventoryMenu.gd
 LivingArea.tscn::PackedScene::6396839216886063587::1781964105::0::1::::<><><>0<>0<><>::res://Scripts/LivingArea.gd
 resource_counter.tscn::PackedScene::1099252983694787240::1781885820::0::1::::<><><>0<>0<><>::uid://duvw337a7kvgq::::res://Assets/Sprout Lands - UI Pack - Basic pack/fonts/pixelFont-7-8x14-sproutLands.ttf<>uid://b46ajwp2vybi0::::res://Scripts/ResourceCounter.gd<>uid://bnfmh1mrrdpos::::res://Assets/Objects/Basic_tools_and_meterials.png
 resource_popup.tscn::PackedScene::5624204082794397723::1781811496::0::1::::<><><>0<>0<><>::res://Scripts/Items/ResourcePopup.gd<>uid://duvw337a7kvgq::::res://Assets/Sprout Lands - UI Pack - Basic pack/fonts/pixelFont-7-8x14-sproutLands.ttf
 rts_camera.tscn::PackedScene::4543238155326356593::1781692113::0::1::::<><><>0<>0<><>::uid://c1fx0jyievqxs::::res://Scripts/rts_camera.gd
-::res://Scripts/::1781969339
+::res://Scripts/::1782054652
 BubbleIndicator.gd::GDScript::6143729035137954629::1781885820::0::1::::BubbleIndicator<>Sprite2D<><>0<>0<><>::
-CraftingMenu.gd::GDScript::7101186587209814678::1781969339::0::1::::<>Control<><>0<>0<><>::
-Game.gd::GDScript::5886295715413909778::1781870638::0::1::::<>Node2D<><>0<>0<><>::
-Global.gd::GDScript::1467252325085926300::1781784531::0::1::::<>Node<><>0<>1<><>::
-InventoryMenu.gd::GDScript::3769096254636299206::1781969339::0::1::::<>Control<><>0<>0<><>::
-LivingArea.gd::GDScript::7641548452905739798::1781979704::0::1::::LivingArea<>StaticBody2D<><>0<>0<><>::
-LivingAreaData.gd::GDScript::5093691985061011697::1781889296::0::1::::LivingAreaData<>FurnitureData<><>0<>0<><>::
+CraftingMenu.gd::GDScript::7101186587209814678::1782054652::0::1::::<>Control<><>0<>0<><>::
+Game.gd::GDScript::5886295715413909778::1782054652::0::1::::<>Node2D<><>0<>0<><>::
+Global.gd::GDScript::1467252325085926300::1782054652::0::1::::<>Node<><>0<>1<><>::
+InventoryMenu.gd::GDScript::3769096254636299206::1782054652::0::1::::<>Control<><>0<>0<><>::
+LivingArea.gd::GDScript::7641548452905739798::1782054652::0::1::::LivingArea<>StaticBody2D<><>0<>0<><>::
+LivingAreaData.gd::GDScript::5093691985061011697::1782054652::0::1::::LivingAreaData<>FurnitureData<><>0<>0<><>::
 ResourceCounter.gd::GDScript::4485910111658570973::1781813049::0::1::::<>Control<><>0<>0<><>::
 rts_camera.gd::GDScript::6609514836581724744::1781692113::0::1::::<>Node2D<><>0<>0<><>::
 SparkleBurst.gd::GDScript::7574065040310939912::1781825407::0::1::::SparkleBurst<>CPUParticles2D<><>0<>0<><>::
-Types.gd::GDScript::3732372006776925188::1781889822::0::1::::Types<>Node<><>0<>0<><>::
+Types.gd::GDScript::3732372006776925188::1782054652::0::1::::Types<>Node<><>0<>0<><>::
 Utils.gd::GDScript::2299497289647737655::1781871572::0::1::::Utils<>Node<><>0<>0<><>::
-::res://Scripts/Creatures/::1781969339
-Creature.gd::GDScript::7694037145837108583::1781965018::0::1::::Creature<>CharacterBody2D<><>0<>0<><>::
+::res://Scripts/Creatures/::1782054652
+Creature.gd::GDScript::7694037145837108583::1782054652::0::1::::Creature<>CharacterBody2D<><>0<>0<><>::
 CreatureData.gd::GDScript::3262596869883227939::1781970675::0::1::::CreatureData<>Resource<><>0<>0<><>::
-CreatureManager.gd::GDScript::487434196868200755::1781965018::0::1::::<>Node<><>0<>0<><>::
-::res://Scripts/Furnitures/::1781981663
-Furniture.gd::GDScript::2765254045149898076::1781979697::0::1::::<>StaticBody2D<><>0<>1<><>::
-FurnitureData.gd::GDScript::8304767383831636109::1781969339::0::1::::FurnitureData<>Resource<><>0<>0<><>::
-FurnitureManager.gd::GDScript::8205732622996676974::1781979692::0::1::::<>Node<><>0<>0<><>::
-GridManager.gd::GDScript::8525194100551729689::1782043353::0::1::::<>Node<><>0<>0<><>::
-::res://Scripts/Habitats/::1781969339
-Habitat.gd::GDScript::3829764430892420911::1781970704::0::1::::Habitat<>Node2D<><>0<>0<><>::
+CreatureManager.gd::GDScript::487434196868200755::1782054652::0::1::::<>Node<><>0<>0<><>::
+::res://Scripts/Furnitures/::1782054652
+Furniture.gd::GDScript::2765254045149898076::1782054652::0::1::::<>StaticBody2D<><>0<>1<><>::
+FurnitureData.gd::GDScript::8304767383831636109::1782054652::0::1::::FurnitureData<>Resource<><>0<>0<><>::
+FurnitureManager.gd::GDScript::8205732622996676974::1782054652::0::1::::<>Node<><>0<>0<><>::
+GridManager.gd::GDScript::8525194100551729689::1782054652::0::1::::<>Node<><>0<>0<><>::
+::res://Scripts/Habitats/::1782054652
+Habitat.gd::GDScript::3829764430892420911::1782054652::0::1::::Habitat<>Node2D<><>0<>0<><>::
 HabitatData.gd::GDScript::3130035029128026354::1781870036::0::1::::HabitatData<>Resource<><>0<>0<><>::
-HabitatManager.gd::GDScript::857728502742021403::1781889338::0::1::::<>Node<><>0<>0<><>::
-RecipeItem.gd::GDScript::1559413160381662074::1781870033::0::1::::RecipeItem<>Resource<><>0<>0<><>::
-::res://Scripts/Items/::1781963544
+HabitatManager.gd::GDScript::857728502742021403::1782054652::0::1::::<>Node<><>0<>0<><>::
+RecipeItem.gd::GDScript::1559413160381662074::1782054652::0::1::::RecipeItem<>Resource<><>0<>0<><>::
+::res://Scripts/Items/::1782054652
 CostItem.gd::GDScript::8096777502389034101::1781825070::0::1::::CostItem<>Resource<><>0<>0<><>::
 ResourcePopup.gd::GDScript::4360899025718192088::1781813068::0::1::::ResourcePopup<>Node2D<><>0<>0<><>::
-ResourcesManager.gd::GDScript::4072440777901273087::1781963544::0::1::::<>Node<><>0<>0<><>::
+ResourcesManager.gd::GDScript::4072440777901273087::1782054652::0::1::::<>Node<><>0<>0<><>::
 ResourceVisualData.gd::GDScript::3388134580765571472::1781813042::0::1::::ResourceVisualData<>Resource<><>0<>0<><>::
+::res://Scripts/PlaceableItems/::1782054652
