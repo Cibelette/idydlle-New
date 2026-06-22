@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ResourceVisualData" format=3 uid="uid://c3k325eyfo62f"]
+
+[ext_resource type="Script" uid="uid://bojic1is5b2ho" path="res://Scripts/Items/ResourceVisualData.gd" id="1_cmej7"]
+[ext_resource type="Texture2D" uid="uid://r74886d1t4a1" path="res://Assets/Top-Down_Retro_Interior/TopDownHouse_SmallItems.png" id="2_mqcoc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ect24"]
+atlas = ExtResource("2_mqcoc")
+region = Rect2(111, 32, 17, 11)
+
+[resource]
+script = ExtResource("1_cmej7")
+name = "Pine Wood"
+cost = 10
+sprite = SubResource("AtlasTexture_ect24")

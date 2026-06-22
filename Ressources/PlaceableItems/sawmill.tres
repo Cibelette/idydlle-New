@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ProcessingFurnitureData" format=3 uid="uid://dwlpimcpjunuj"]
+
+[ext_resource type="Script" uid="uid://dnme0ilvktar2" path="res://Scripts/Items/CostItem.gd" id="1_4oibu"]
+[ext_resource type="Script" uid="uid://dp0kcpmp21btx" path="res://Scripts/PlaceableItems/Furnitures/ProcessingFurnitureData.gd" id="2_kwqa3"]
+[ext_resource type="Texture2D" uid="uid://d27uigxo5e5kl" path="res://Assets/Top-Down_Retro_Interior/TopDownHouse_FurnitureState1.png" id="3_kwqa3"]
+
+[sub_resource type="Resource" id="Resource_kwqa3"]
+script = ExtResource("1_4oibu")
+metadata/_custom_type_script = "uid://dnme0ilvktar2"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gubrw"]
+atlas = ExtResource("3_kwqa3")
+region = Rect2(49, 261, 30, 27)
+
+[resource]
+script = ExtResource("2_kwqa3")
+resource_type = 1
+input_item = "Pine Wood"
+output_item = "Pine Plank"
+costs = Array[ExtResource("1_4oibu")]([SubResource("Resource_kwqa3")])
+function = 3
+name = "Sawmill"
+texture = SubResource("AtlasTexture_gubrw")
+metadata/_custom_type_script = "uid://dp0kcpmp21btx"

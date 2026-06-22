@@ -15,4 +15,3 @@ produce_amount = 10
 produce_time = 10.0
 name = "Rock"
 texture = SubResource("AtlasTexture_qccti")
-metadata/_custom_type_script = "uid://dqk5knegtkhqr"

@@ -1,3 +1,4 @@
+ProcessingFurnitureData
 AtlasTexture
 FurnitureData
 ResourceVisualData

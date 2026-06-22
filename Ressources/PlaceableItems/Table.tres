@@ -14,7 +14,7 @@ region = Rect2(48.155605, 48.470226, 15.847126, 15.355743)
 [resource]
 script = ExtResource("2_p0qp4")
 costs = Array[ExtResource("1_costitem")]([SubResource("Resource_cost")])
-function = 2
+function = 3
 furniture_type = 3
 happiness = 5
 name = "Table"
