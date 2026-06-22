@@ -32,4 +32,5 @@ sprite_frames = SubResource("SpriteFrames_q00kg")
 produce_amount = 20
 produce_time = 1.0
 resource_type = 3
+fonction = 1
 sound_text = "Cluck!"

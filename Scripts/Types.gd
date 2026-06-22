@@ -2,13 +2,15 @@ extends Node
 class_name Types
 
 enum ResourceType {
-	NONE,
+	MISC,
 	WOOD,
 	STONE,
 	LEAF,
 	BERRY,
 	COINS,
-	FRUIT
+	FRUIT,
+	PLANK,
+	INGOT
 }
 
 enum NaturalResourceType {
@@ -17,6 +19,21 @@ enum NaturalResourceType {
 	ROCK,
 	BUSH
 }
+
+enum ResourceMaterial {
+	MISC,
+	PINE,
+	OAK,
+	COPPER,
+	SILVER,
+	GOLD
+}
+
+enum CreatureFunction {
+	FARMING,
+	PROCESSING
+}
+
 
 enum FurnitureFunction {
 	MISC,
@@ -52,7 +69,7 @@ static func string_to_resource(s: String) -> ResourceType:
 		"berry": return ResourceType.BERRY
 		"coins": return ResourceType.COINS
 		"fruit": return ResourceType.FRUIT
-		_: return ResourceType.NONE
+		_: return ResourceType.MISC
 
 static func natural_resource_to_string(type: NaturalResourceType) -> String:
 	match type:
@@ -99,3 +116,15 @@ static func string_to_furniture_type(s: String) -> FurnitureType:
 		"table": return FurnitureType.TABLE
 		"chest": return FurnitureType.CHEST
 		_: return FurnitureType.MISC
+
+static func creature_function_to_string(type: CreatureFunction) -> String:
+	match type:
+		CreatureFunction.FARMING: return "Farming"
+		CreatureFunction.PROCESSING: return "Processing"
+		_: return "Farming"
+
+static func string_to_creature_function(s: String) -> CreatureFunction:
+	match s.to_lower():
+		"farming": return CreatureFunction.FARMING
+		"processing": return CreatureFunction.PROCESSING
+		_: return CreatureFunction.FARMING

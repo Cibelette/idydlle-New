@@ -31,4 +31,5 @@ species_name = "Cat"
 sprite_frames = SubResource("SpriteFrames_1qhx7")
 produce_amount = 10
 produce_time = 1.0
+fonction = 1
 sound_text = "Meow!"

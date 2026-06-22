@@ -9,6 +9,8 @@ region = Rect2(111, 32, 17, 11)
 
 [resource]
 script = ExtResource("1_cmej7")
-name = "Pine Wood"
+name = "Pine Plank"
+type = 1
+category = 1
 cost = 10
 sprite = SubResource("AtlasTexture_ect24")

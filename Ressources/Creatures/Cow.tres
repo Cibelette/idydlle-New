@@ -38,5 +38,7 @@ species_name = "cow"
 sprite_frames = SubResource("SpriteFrames_oe8gf")
 produce_amount = 30
 resource_type = 2
+fonction = 0
 sound_text = "Mooh!"
+
 metadata/_custom_type_script = "uid://bmqoq12meetm6"
