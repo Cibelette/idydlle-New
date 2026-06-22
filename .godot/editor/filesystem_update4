@@ -5,3 +5,7 @@ res://Ressources/PlaceableItems/Table.tres
 res://Ressources/PlaceableItems/Stool.tres
 res://Ressources/PlaceableItems/tree.tres
 res://Ressources/PlaceableItems/Rock.tres
+res://Ressources/Items/WoodVisual.tres
+res://Ressources/Fond_menu_atlas.tres
+res://Scenes/InventoryMenu.tscn
+res://Ressources/button.tres
